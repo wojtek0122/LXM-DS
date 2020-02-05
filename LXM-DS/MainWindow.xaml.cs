@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LXM_DS.PRINTER;
 
 namespace LXM_DS
 {
@@ -23,6 +24,9 @@ namespace LXM_DS
         public MainWindow()
         {
             InitializeComponent();
+            PrinterManager _printerManager = new PrinterManager();
+            
+
         }
     }
 }

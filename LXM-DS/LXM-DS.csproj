@@ -97,5 +97,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PRINTER\COMPONENTS.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PRINTER\COMPONENTS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PRINTER\PRINTERS.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
