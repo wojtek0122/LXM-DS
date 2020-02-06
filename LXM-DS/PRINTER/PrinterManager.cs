@@ -34,8 +34,7 @@ namespace LXM_DS.PRINTER
                     {
                         if (_xmlReader.HasAttributes)
                         {
-                            Component _comp = new Component(_xmlReader.GetAttribute("PN"), _xmlReader.GetAttribute("FOTO"), _xmlReader.GetAttribute("DESC"), _xmlReader.GetAttribute("FID"));
-                            _components.Add(_comp);
+                            _components.Add(new Component(_xmlReader.GetAttribute("PN"), _xmlReader.GetAttribute("FOTO"), _xmlReader.GetAttribute("DESC"), _xmlReader.GetAttribute("FID"), _xmlReader.GetAttribute("TYPE")));
                         }
                     }
                 }

@@ -14,14 +14,16 @@ namespace LXM_DS.PRINTER
         public string _foto;
         public string _description;
         public string _FID;
+        public string _type;
 
-        public Component(string PN, string Foto, string Description, string FID)
+        public Component(string PN, string Foto, string Description, string FID, string Type)
         {
             _ID = _sID++;
             _PN = PN;
             _foto = Foto;
             _description = Description;
             _FID = FID;
+            _type = Type;
         }
     }
 }

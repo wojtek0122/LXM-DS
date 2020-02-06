@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LXM_DS.PRINTER;
+using LXM_DS.USERS;
 
 namespace LXM_DS
 {
@@ -21,12 +22,30 @@ namespace LXM_DS
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(int Permission)
         {
             InitializeComponent();
-            PrinterManager _printerManager = new PrinterManager();
-            
+            //Managers
 
+
+            //Windows
+            //LoginWindow _loginWindow = new LoginWindow();
+            //_loginWindow.Topmost = true;
+            //_loginWindow.Show();
+
+
+            //Console.WriteLine();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+         //   ComponentWindow _componentWindow1 = new ComponentWindow();
+         //   _componentWindow1.Topmost = true;
+         //   _componentWindow1.Show();
+         //   ComponentWindow _componentWindow2 = new ComponentWindow();
+         //   _componentWindow2.Topmost = true;
+         //   _componentWindow2.Show();
         }
     }
 }
