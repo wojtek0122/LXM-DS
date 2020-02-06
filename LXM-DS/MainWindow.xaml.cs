@@ -25,27 +25,22 @@ namespace LXM_DS
         public MainWindow(int Permission)
         {
             InitializeComponent();
-            //Managers
-
-
-            //Windows
-            //LoginWindow _loginWindow = new LoginWindow();
-            //_loginWindow.Topmost = true;
-            //_loginWindow.Show();
-
-
-            //Console.WriteLine();
-
+            if(Permission == 9)
+            {
+                gboxDismantle.Visibility = System.Windows.Visibility.Visible;
+            } 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnTest_Click(object sender, RoutedEventArgs e)
         {
-         //   ComponentWindow _componentWindow1 = new ComponentWindow();
-         //   _componentWindow1.Topmost = true;
-         //   _componentWindow1.Show();
-         //   ComponentWindow _componentWindow2 = new ComponentWindow();
-         //   _componentWindow2.Topmost = true;
-         //   _componentWindow2.Show();
+            TestWindow _testWindow = new TestWindow();
+            _testWindow.Show();
+        }
+
+        private void btnDismantle_Click(object sender, RoutedEventArgs e)
+        {
+            ComponentWindow _componentWindow = new ComponentWindow();
+            _componentWindow.Show();
         }
     }
 }

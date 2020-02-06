@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LXM_DS"
         mc:Ignorable="d"
-        Title="LOGIN" Height="450" Width="800"
+        Title="LOGIN" Height="1080" Width="1920"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Button x:Name="btnZaloguj" Content="Zaloguj" HorizontalAlignment="Left" Height="81" Margin="283,358,0,0" VerticalAlignment="Top" Width="281" Click="btnZaloguj_Click"/>

@@ -15,22 +15,22 @@ using System.Windows.Shapes;
 namespace LXM_DS
 {
     /// <summary>
-    /// Interaction logic for ComponentWindow.xaml
+    /// Interaction logic for TestWindow.xaml
     /// </summary>
-    public partial class ComponentWindow : Window
+    public partial class TestWindow : Window
     {
-        public ComponentWindow()
+        public TestWindow()
         {
             InitializeComponent();
-            this.Topmost = true;
+            this.Topmost=true;
         }
 
-        private void OK_Click(object sender, RoutedEventArgs e)
+        private void btnNOK_Click(object sender, RoutedEventArgs e)
         {
-            _browser.Navigate("file:///C:/Users/TGCS/source/repos/LXM-DS/LXM-DS/PRINTER/COMPONENTS/FID2505.04%2040X5167%20FLATBED%20SCANNER,%20COMPLETE.pdf");
+            this.Close();
         }
 
-        private void NOK_Click(object sender, RoutedEventArgs e)
+        private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

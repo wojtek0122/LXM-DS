@@ -1,0 +1,25 @@
+﻿<Window x:Class="LXM_DS.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LXM_DS"
+        mc:Ignorable="d"
+        Title="TestWindow" Height="1080" Width="1920"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Label Content="MT" HorizontalAlignment="Left" Height="30" Margin="63,89,0,0" VerticalAlignment="Top" Width="106"/>
+        <Label Content="SN" HorizontalAlignment="Left" Height="33" Margin="67,142,0,0" VerticalAlignment="Top" Width="220"/>
+        <Label Content="HDD" HorizontalAlignment="Left" Height="30" Margin="67,184,0,0" VerticalAlignment="Top" Width="116"/>
+        <CheckBox Content="Obecny" HorizontalAlignment="Left" Height="29" Margin="144,190,0,0" VerticalAlignment="Top" Width="88"/>
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="137,146,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="289"/>
+        <TextBox HorizontalAlignment="Left" Height="31" Margin="409,189,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="320"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="482,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="297"/>
+        <ListBox HorizontalAlignment="Left" Height="31" Margin="120,85,0,0" VerticalAlignment="Top" Width="347"/>
+        <Button x:Name="btnOK" Content="SPRAWNA" HorizontalAlignment="Left" Height="85" Margin="120,298,0,0" VerticalAlignment="Top" Width="268" Click="btnOK_Click"/>
+        <Button x:Name="btnNOK" Content="USZKODZONA" HorizontalAlignment="Left" Height="88" Margin="442,295,0,0" VerticalAlignment="Top" Width="290" Click="btnNOK_Click"/>
+        <Label Content="TEST" HorizontalAlignment="Left" Height="36" Margin="257,22,0,0" VerticalAlignment="Top" Width="327"/>
+        <Label Content="HDD SN:" HorizontalAlignment="Left" Height="28" Margin="285,200,0,0" VerticalAlignment="Top" Width="86"/>
+
+    </Grid>
+</Window>
