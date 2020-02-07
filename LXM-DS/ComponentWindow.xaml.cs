@@ -28,7 +28,7 @@ namespace LXM_DS
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            _browser.Navigate("file:///D:/FID2505.04%2040X5167%20FLATBED%20SCANNER,%20COMPLETE.pdf");
+            this.Close();
         }
 
         private void NOK_Click(object sender, RoutedEventArgs e)

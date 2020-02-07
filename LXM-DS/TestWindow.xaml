@@ -4,32 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LXM_DS"
+        xmlns:t="clr-namespace:LXM_DS.TOUCH"
         mc:Ignorable="d"
         Title="TestWindow" Height="1080" Width="1920"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
+        <Label Content="TEST DRUKARKI" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,20,0,0" VerticalAlignment="Top" Width="665"/>
         <!-- Back Button -->
         <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnBack_Click">
             <StackPanel Orientation="Horizontal">
                 <Image Source="FILES\Back.png" />
             </StackPanel>
         </Button>
+
+        <!-- Printer -->
+        <Label HorizontalAlignment="Left"  Margin="940,125,0,0" VerticalAlignment="Top" Height="500" Width="500">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="FILES\7657.png" />
+            </StackPanel>
+        </Label>
+
         <!-- Data -->
-
-        <Label Content="TEST" Margin="0,50" FontFamily="Oxygen" FontSize="36" FontStyle="Normal" Foreground="#4c4f5b" HorizontalAlignment="Center" Height="100" Width="330"/>
-
-        <Label Content="MT" Margin="100,105" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Foreground="#4c4f5b"  Height="100" Width="150"/>
-        <ListBox Margin="215,105,1355,925" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" BorderThickness="0" Height="50" Width="350"/>
-
-        <Label Content="SN" Margin="100,195" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Foreground="#4c4f5b" Height="100"  Width="150"/>
-        <TextBox Margin="215,195" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" BorderThickness="0" Height="50" TextWrapping="Wrap" Text="" Width="350"/>
-
-        <Label Content="HDD" Margin="100,290" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Foreground="#4c4f5b" Height="100" Width="150"/>
-
-        <Label Content="HDD SN:" Margin="500,290" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Foreground="#4c4f5b" Height="100" Width="150"/>
-        <TextBox Margin="640,290" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" BorderThickness="0" Height="50" TextWrapping="Wrap" Text="" Width="350"/>
-
+        <Label Content="Machine Type" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,120,0,0" VerticalAlignment="Top" Width="210"/>
+        <ListBox Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" Height="80" Margin="370,100,0,0" VerticalAlignment="Top" Width="450"/>
         
+        <Label Content="Serial" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,215,0,0" VerticalAlignment="Top" Width="210"/>
+        <t:TouchEnabledTextBox x:Name="txtSN" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="370,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
+        
+        <Label Content="HDD" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,315,0,0" VerticalAlignment="Top" Width="210"/>
+        <ListBox Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" Height="80" Margin="370,300,0,0" VerticalAlignment="Top" Width="450">
+            <ListBoxItem>TAK</ListBoxItem>
+            <ListBoxItem>NIE</ListBoxItem>
+        </ListBox>
+
+        <Label Content="HDD Serial" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,415,0,0" VerticalAlignment="Top" Width="210"/>
+        <t:TouchEnabledTextBox x:Name="txtHDDSN" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="370,400,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
+
         <!-- Buttons -->
         <Button x:Name="btnOK" Content="SPRAWNA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="270,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnOK_Click"/>
         <Button x:Name="btnNOK" Content="USZKODZONA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="770,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnNOK_Click"/>

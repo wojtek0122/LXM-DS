@@ -29,5 +29,10 @@ namespace LXM_DS
             ComponentWindow _componentWindow = new ComponentWindow();
             _componentWindow.Show();
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
