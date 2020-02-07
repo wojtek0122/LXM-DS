@@ -162,5 +162,8 @@
   <ItemGroup>
     <Resource Include="FILES\Syncreon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FILES\Back.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

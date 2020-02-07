@@ -22,9 +22,10 @@ namespace LXM_DS
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(int Permission)
+        public MainWindow(string Login, int Permission)
         {
             InitializeComponent();
+            lblName.Content = Login;
             if(Permission == 9)
             {
                 gboxDismantle.Visibility = System.Windows.Visibility.Visible;
@@ -41,6 +42,14 @@ namespace LXM_DS
         {
             ComponentWindow _componentWindow = new ComponentWindow();
             _componentWindow.Show();
+        }
+
+        private void btnWyloguj_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow _loginWindow = new LoginWindow();
+            _loginWindow.Topmost = true;
+            _loginWindow.Show();
+            this.Close();
         }
     }
 }

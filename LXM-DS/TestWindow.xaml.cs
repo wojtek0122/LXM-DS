@@ -34,5 +34,10 @@ namespace LXM_DS
         {
             this.Close();
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

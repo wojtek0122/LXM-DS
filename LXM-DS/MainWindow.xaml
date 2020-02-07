@@ -15,14 +15,16 @@
             </StackPanel>
         </Label>
         <!-- 3. Test & Dismantle -->
-        <GroupBox x:Name="gboxDismantle" Visibility="Visible"  Header="MENU" Margin="200">
+        <GroupBox x:Name="gboxDismantle" Visibility="Visible" Header="MENU" Margin="200">
             <Grid>
                 <Button x:Name="btnTest" Content="Test" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Width="450" Height="80" Click="btnTest_Click"/>
                 <Button x:Name="btnDismantle" Content="Rozkrecanie" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,140,0,0" Width="450" Height="80" Click="btnDismantle_Click"/>
-                <TextBlock Text="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}" Margin="30,0,0,0" />
-                <TextBlock Text="{Binding Source={x:Static SystemParameters.FullPrimaryScreenWidth}}" />
             </Grid>
         </GroupBox>
-        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,820,0,0" VerticalAlignment="Top" Width="1920"/>
+        <!-- Logout -->
+        <Button x:Name="btnWyloguj" Content="Wyloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" Margin="0,695,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWyloguj_Click"/>
+        <!-- Footer -->
+        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Margin="0,825,0,0"  Width="1920"/>
+        <Label x:Name="lblName"  FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center"  Height="40" Margin="0,822,0,0" />
     </Grid>
 </Window>

@@ -8,18 +8,16 @@
         Title="TestWindow" Height="1080" Width="1920"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <Label Content="MT" HorizontalAlignment="Left" Height="30" Margin="63,89,0,0" VerticalAlignment="Top" Width="106"/>
-        <Label Content="SN" HorizontalAlignment="Left" Height="33" Margin="67,142,0,0" VerticalAlignment="Top" Width="220"/>
-        <Label Content="HDD" HorizontalAlignment="Left" Height="30" Margin="67,184,0,0" VerticalAlignment="Top" Width="116"/>
-        <CheckBox Content="Obecny" HorizontalAlignment="Left" Height="29" Margin="144,190,0,0" VerticalAlignment="Top" Width="88"/>
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="137,146,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="289"/>
-        <TextBox HorizontalAlignment="Left" Height="31" Margin="409,189,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="320"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="482,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="297"/>
-        <ListBox HorizontalAlignment="Left" Height="31" Margin="120,85,0,0" VerticalAlignment="Top" Width="347"/>
-        <Button x:Name="btnOK" Content="SPRAWNA" HorizontalAlignment="Left" Height="85" Margin="120,298,0,0" VerticalAlignment="Top" Width="268" Click="btnOK_Click"/>
-        <Button x:Name="btnNOK" Content="USZKODZONA" HorizontalAlignment="Left" Height="88" Margin="442,295,0,0" VerticalAlignment="Top" Width="290" Click="btnNOK_Click"/>
-        <Label Content="TEST" HorizontalAlignment="Left" Height="36" Margin="257,22,0,0" VerticalAlignment="Top" Width="327"/>
-        <Label Content="HDD SN:" HorizontalAlignment="Left" Height="28" Margin="285,200,0,0" VerticalAlignment="Top" Width="86"/>
+        <!-- LOGO -->
+        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnBack_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="FILES\Back.png" />
+            </StackPanel>
+        </Button>
 
+        <Button x:Name="btnOK" Content="SPRAWNA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="270,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnOK_Click"/>
+        <Button x:Name="btnNOK" Content="USZKODZONA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="770,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnNOK_Click"/>
+
+        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,825,0,0" VerticalAlignment="Top" Width="1920"/>
     </Grid>
 </Window>
