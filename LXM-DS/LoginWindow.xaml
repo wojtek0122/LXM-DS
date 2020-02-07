@@ -4,15 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LXM_DS"
+        xmlns:t="clr-namespace:LXM_DS.TOUCH"
         mc:Ignorable="d"
         Title="LOGIN" Height="1080" Width="1920"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <Button x:Name="btnZaloguj" Content="Zaloguj" HorizontalAlignment="Left" Height="81" Margin="283,358,0,0" VerticalAlignment="Top" Width="281" Click="btnZaloguj_Click"/>
-        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Height="39" Margin="364,179,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374"/>
-        <Label Content="LOGIN:" HorizontalAlignment="Left" Height="29" Margin="146,188,0,0" VerticalAlignment="Top" Width="157"/>
-        <Label Content="HASŁO:" HorizontalAlignment="Left" Height="53" Margin="153,231,0,0" VerticalAlignment="Top" Width="189"/>
-        <PasswordBox x:Name="txtPassword"  HorizontalAlignment="Left" Height="44" Margin="364,233,0,0" VerticalAlignment="Top" Width="375"/>
-
+        <Button x:Name="btnZaloguj" Content="Zaloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="569,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnZaloguj_Click"/>
+        <t:TouchEnabledTextBox x:Name="txtLogin" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="565,410,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
+        <PasswordBox x:Name="txtPassword" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="565,530,0,0" VerticalAlignment="Top" Width="450" Height="70"/>
+        <Label Content="LOGIN" FontFamily="Oxygen-Bold" FontSize="16" Foreground="#4c4f5b" HorizontalAlignment="Left" Margin="580,380,0,0" VerticalAlignment="Top"/>
+        <Label Content="HASLO" FontFamily="Oxygen-Bold" FontSize="16" Foreground="#4c4f5b" HorizontalAlignment="Left" Margin="580,500,0,0" VerticalAlignment="Top"/>
+        <Label HorizontalAlignment="Left" Height="155" Margin="560,110,0,0" VerticalAlignment="Top" Width="475">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="FILES\Syncreon.png" />
+            </StackPanel>
+        </Label>
     </Grid>
 </Window>

@@ -8,11 +8,21 @@
         Title="MainWindow" Height="1080" Width="1920"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <GroupBox x:Name="gboxDismantle" Visibility="Visible"  Header="MENU" Margin="100">
+        <!-- LOGO -->
+        <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Width="475" Height="155">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="FILES\Syncreon.png" />
+            </StackPanel>
+        </Label>
+        <!-- 3. Test & Dismantle -->
+        <GroupBox x:Name="gboxDismantle" Visibility="Visible"  Header="MENU" Margin="200">
             <Grid>
-                <Button x:Name="btnTest" Content="Test" Margin="474,136,493,422" Click="btnTest_Click" />
-                <Button x:Name="btnDismantle" Content="Rozkrecanie" Margin="481,473,450,62" Click="btnDismantle_Click" />
+                <Button x:Name="btnTest" Content="Test" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Width="450" Height="80" Click="btnTest_Click"/>
+                <Button x:Name="btnDismantle" Content="Rozkrecanie" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,140,0,0" Width="450" Height="80" Click="btnDismantle_Click"/>
+                <TextBlock Text="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}" Margin="30,0,0,0" />
+                <TextBlock Text="{Binding Source={x:Static SystemParameters.FullPrimaryScreenWidth}}" />
             </Grid>
         </GroupBox>
+        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,820,0,0" VerticalAlignment="Top" Width="1920"/>
     </Grid>
 </Window>

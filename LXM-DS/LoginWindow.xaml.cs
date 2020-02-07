@@ -30,15 +30,32 @@ namespace LXM_DS
         private void btnZaloguj_Click(object sender, RoutedEventArgs e)
         {
             UserManager _userManager = _managers.GetUserManager();
-            User _user = _userManager.GetUserByLogin(this.txtLogin.Text);
-            string _pass = this.txtPassword.Password.ToString();
-            if(CalculateMD5(_pass) == _user.GetPassword())
+            string _login = this.txtLogin.Text.Trim().ToString();
+            if (!String.IsNullOrEmpty(_login) || !String.IsNullOrWhiteSpace(_login))
             {
-                MainWindow _mainWindow = new MainWindow(_user.GetPermission());
-                _mainWindow.Topmost = true;
-                _mainWindow.Show();
-                this.Close();
-            }
+                try
+                {
+                    User _user = _userManager.GetUserByLogin(_login);
+                    if(_user != null)
+                    {
+                        string _pass = this.txtPassword.Password.ToString().Trim();
+                        if (!String.IsNullOrEmpty(_pass) || !String.IsNullOrWhiteSpace(_pass))
+                        {
+                            if (CalculateMD5(_pass) == _user.GetPassword())
+                            {
+                                MainWindow _mainWindow = new MainWindow(_user.GetPermission());
+                                _mainWindow.Topmost = true;
+                                _mainWindow.Show();
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("BŁĄD:: Użytkownik nie istnieje!!!");
+                }  
+            }  
         }
 
         public string CalculateMD5(string Input)

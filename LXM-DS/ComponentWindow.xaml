@@ -8,8 +8,8 @@
         Title="COMPONENT" Height="1080" Width="1920"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <Button x:Name="OK" HorizontalAlignment="Left" Height="60" Margin="125,500,0,0" VerticalAlignment="Top" Width="200" Click="OK_Click"/>
-        <Button x:Name="NOK" HorizontalAlignment="Left" Height="66" Margin="475,500,0,0" VerticalAlignment="Top" Width="200" Click="NOK_Click"/>
+        <Button x:Name="OK" Content="OK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="169,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="OK_Click"/>
+        <Button x:Name="NOK" Content="NOK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="669,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="NOK_Click"/>
         <WebBrowser x:Name="_browser" HorizontalAlignment="Left" Height="485" Margin="0,0,-22,0" VerticalAlignment="Top" Width="814" IsEnabled="False"/>
     </Grid>
 
