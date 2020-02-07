@@ -8,13 +8,29 @@
         Title="TestWindow" Height="1080" Width="1920"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <!-- LOGO -->
+        <!-- Back Button -->
         <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnBack_Click">
             <StackPanel Orientation="Horizontal">
                 <Image Source="FILES\Back.png" />
             </StackPanel>
         </Button>
+        <!-- Data -->
 
+        <Label Content="TEST" Margin="0,50" FontFamily="Oxygen" FontSize="36" FontStyle="Normal" Foreground="#4c4f5b" HorizontalAlignment="Center" Height="100" Width="330"/>
+
+        <Label Content="MT" Margin="100,105" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Foreground="#4c4f5b"  Height="100" Width="150"/>
+        <ListBox Margin="215,105,1355,925" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" BorderThickness="0" Height="50" Width="350"/>
+
+        <Label Content="SN" Margin="100,195" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Foreground="#4c4f5b" Height="100"  Width="150"/>
+        <TextBox Margin="215,195" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" BorderThickness="0" Height="50" TextWrapping="Wrap" Text="" Width="350"/>
+
+        <Label Content="HDD" Margin="100,290" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Foreground="#4c4f5b" Height="100" Width="150"/>
+
+        <Label Content="HDD SN:" Margin="500,290" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Foreground="#4c4f5b" Height="100" Width="150"/>
+        <TextBox Margin="640,290" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" BorderThickness="0" Height="50" TextWrapping="Wrap" Text="" Width="350"/>
+
+        
+        <!-- Buttons -->
         <Button x:Name="btnOK" Content="SPRAWNA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="270,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnOK_Click"/>
         <Button x:Name="btnNOK" Content="USZKODZONA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="770,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnNOK_Click"/>
 

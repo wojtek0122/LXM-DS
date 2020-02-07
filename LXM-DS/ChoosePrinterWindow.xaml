@@ -1,0 +1,15 @@
+﻿<Window x:Class="LXM_DS.ChoosePrinterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LXM_DS"
+        mc:Ignorable="d"
+        Title="ChoosePrinterWindow" Height="1080" Width="1920"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        
+        <Button x:Name="btnWybierz" Content="Wybierz" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="569,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWybierz_Click"/>
+        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,825,0,0" VerticalAlignment="Top" Width="1920"/>
+    </Grid>
+</Window>

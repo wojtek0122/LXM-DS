@@ -79,6 +79,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChoosePrinterWindow.xaml.cs">
+      <DependentUpon>ChoosePrinterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Managers.cs" />
     <Compile Include="TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
@@ -86,6 +89,10 @@
     <Compile Include="TOUCH\TouchEnabledTextBox.cs" />
     <Compile Include="USERS\User.cs" />
     <Compile Include="USERS\UserManager.cs" />
+    <Page Include="ChoosePrinterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ComponentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

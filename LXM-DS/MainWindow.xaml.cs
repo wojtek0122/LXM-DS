@@ -35,13 +35,15 @@ namespace LXM_DS
         private void btnTest_Click(object sender, RoutedEventArgs e)
         {
             TestWindow _testWindow = new TestWindow();
+            _testWindow.Topmost = true;
             _testWindow.Show();
         }
 
         private void btnDismantle_Click(object sender, RoutedEventArgs e)
         {
-            ComponentWindow _componentWindow = new ComponentWindow();
-            _componentWindow.Show();
+            ChoosePrinterWindow _choosePrinter = new ChoosePrinterWindow();
+            _choosePrinter.Topmost = true;
+            _choosePrinter.Show();
         }
 
         private void btnWyloguj_Click(object sender, RoutedEventArgs e)

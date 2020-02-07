@@ -23,6 +23,7 @@ namespace LXM_DS
         {
             InitializeComponent();
             this.Topmost = true;
+            _browser.Navigate("file:///D:/FID2505.04%2040X5167%20FLATBED%20SCANNER,%20COMPLETE.pdf");
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
