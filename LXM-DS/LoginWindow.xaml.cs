@@ -31,7 +31,7 @@ namespace LXM_DS
         {
             UserManager _userManager = _managers.GetUserManager();
             string _login = this.txtLogin.Text.Trim().ToString();
-            if (!String.IsNullOrEmpty(_login) || !String.IsNullOrWhiteSpace(_login))
+            if (!String.IsNullOrEmpty(_login) && !String.IsNullOrWhiteSpace(_login))
             {
                 try
                 {
@@ -39,7 +39,7 @@ namespace LXM_DS
                     if(_user != null)
                     {
                         string _pass = this.txtPassword.Password.ToString().Trim();
-                        if (!String.IsNullOrEmpty(_pass) || !String.IsNullOrWhiteSpace(_pass))
+                        if (!String.IsNullOrEmpty(_pass) && !String.IsNullOrWhiteSpace(_pass))
                         {
                             if (CalculateMD5(_pass) == _user.GetPassword())
                             {
