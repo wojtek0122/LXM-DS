@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LXM_DS.MYSQL;
 using LXM_DS.USERS;
 
 namespace LXM_DS
@@ -29,13 +30,15 @@ namespace LXM_DS
 
         private void btnZaloguj_Click(object sender, RoutedEventArgs e)
         {
-            UserManager _userManager = _managers.GetUserManager();
+            //UserManager _userManager = _managers.GetUserManager();
+            MySQLManager _mySQLManager = _managers.GetMySQLManager();
+            
             string _login = this.txtLogin.Text.Trim().ToString();
             if (!String.IsNullOrEmpty(_login) && !String.IsNullOrWhiteSpace(_login))
             {
                 try
                 {
-                    User _user = _userManager.GetUserByLogin(_login);
+                    User _user = _mySQLManager.GetUser(_login);//_userManager.GetUserByLogin(_login);
                     if(_user != null)
                     {
                         string _pass = this.txtPassword.Password.ToString().Trim();

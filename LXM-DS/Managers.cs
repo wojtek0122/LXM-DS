@@ -1,4 +1,5 @@
-﻿using LXM_DS.PRINTER;
+﻿using LXM_DS.MYSQL;
+using LXM_DS.PRINTER;
 using LXM_DS.USERS;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,12 @@ namespace LXM_DS
         private static Managers _managers;
         PrinterManager _printerManager;
         UserManager _userManager;
+        MySQLManager _mysqlManager;
         private Managers()
         {
             _printerManager = new PrinterManager();
             _userManager = new UserManager();
+            _mysqlManager = MySQLManager.CreateManager();
         }
 
         public static Managers CreateManagers()
@@ -36,6 +39,11 @@ namespace LXM_DS
         public UserManager GetUserManager()
         {
             return _userManager;
+        }
+
+        public MySQLManager GetMySQLManager()
+        {
+            return _mysqlManager;
         }
     }
 }
