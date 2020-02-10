@@ -12,8 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LXM_DS.PRINTER;
-using LXM_DS.USERS;
 
 namespace LXM_DS
 {
@@ -25,6 +23,9 @@ namespace LXM_DS
         public MainWindow(string Login, int Permission)
         {
             InitializeComponent();
+            Managers _managers = Managers.CreateManagers();
+            _managers.InitializePrinters();
+            
             lblName.Content = Login;
             if(Permission == 9)
             {

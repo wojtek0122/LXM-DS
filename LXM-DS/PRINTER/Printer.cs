@@ -9,16 +9,18 @@ namespace LXM_DS.PRINTER
 {
     class Printer
     {
-        private static int _sID = 0;
+        //private static int _sID = 0;
         private int _ID;
         public string _machineType;
         private List<Component> _componentsList;
+        string _foto;
 
-        public Printer(string MachineType, List<Component> Components)
+        public Printer(int ID, string MachineType, List<Component> Components, string Foto)
         {
-            _ID = _sID++;
+            _ID = ID;//_sID++;
             _machineType = MachineType;
             _componentsList = Components;
+            _foto = Foto;
         }
 
     }

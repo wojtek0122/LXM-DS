@@ -13,13 +13,14 @@ namespace LXM_DS
     {
         private static Managers _managers;
         PrinterManager _printerManager;
-        UserManager _userManager;
+        //UserManager _userManager;
         MySQLManager _mysqlManager;
         private Managers()
         {
-            _printerManager = new PrinterManager();
-            _userManager = new UserManager();
             _mysqlManager = MySQLManager.CreateManager();
+            _printerManager = new PrinterManager();
+            
+            //_userManager = new UserManager();
         }
 
         public static Managers CreateManagers()
@@ -36,14 +37,22 @@ namespace LXM_DS
             return _printerManager;
         }
 
-        public UserManager GetUserManager()
-        {
-            return _userManager;
-        }
+        /* NOT USED IN MYSQL VERSION
+         * public UserManager GetUserManager()
+         *{
+         *   return _userManager;
+         *}
+         */
 
         public MySQLManager GetMySQLManager()
         {
             return _mysqlManager;
+        }
+
+        public void InitializePrinters()
+        {
+            _printerManager.SetComponents(_mysqlManager.GetComponents());
+            _printerManager.SetPrinters(_mysqlManager.GetPrinters(_printerManager.GetComponents()));
         }
     }
 }

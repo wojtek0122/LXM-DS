@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using LXM_DS;
+using LXM_DS.MYSQL;
 
 namespace LXM_DS.PRINTER
 {
@@ -15,14 +17,34 @@ namespace LXM_DS.PRINTER
 
         public PrinterManager()
         {
-            LoadComponents();
-            LoadPrinters();
-
-            Console.WriteLine();
+            
+            //LoadComponents();
+            //LoadPrinters();
         }
 
-        //wczytaj komponenty
-        private void LoadComponents()
+        public void SetComponents(List<Component> ListOfComponents)
+        {
+            _components = ListOfComponents;
+        }
+
+        public List<Component> GetComponents()
+        {
+            return _components;
+        }
+
+        public void SetPrinters(List<Printer> ListOfPrinters)
+        {
+            _printers = ListOfPrinters;
+        }
+
+        public List<Printer> GetPrinters()
+        {
+            return _printers;
+        }
+
+        //Load Components from XML
+        /*NOT USED IN MYSQL VERSION
+        private void LoadComponentsFromXML()
         {
             Console.WriteLine("LOG:: Wczytywanie komponentów...");
             try
@@ -34,7 +56,7 @@ namespace LXM_DS.PRINTER
                     {
                         if (_xmlReader.HasAttributes)
                         {
-                            _components.Add(new Component(_xmlReader.GetAttribute("PN"), _xmlReader.GetAttribute("FOTO"), _xmlReader.GetAttribute("DESC"), _xmlReader.GetAttribute("FID"), _xmlReader.GetAttribute("TYPE")));
+                            //_components.Add(new Component(_xmlReader.GetAttribute("PN"), _xmlReader.GetAttribute("FOTO"), _xmlReader.GetAttribute("DESC"), _xmlReader.GetAttribute("FID"), _xmlReader.GetAttribute("TYPE")));
                         }
                     }
                 }
@@ -47,9 +69,11 @@ namespace LXM_DS.PRINTER
             }
             
         }
+        */
 
-        //wczytaj drukarki
-        private void LoadPrinters()
+        //Load Printers from XML
+        /*NOT USED IN MYSQL VERSION
+        private void LoadPrintersFromXML()
         {
             Console.WriteLine("LOG:: Wczytywanie drukarek...");
             try
@@ -73,8 +97,10 @@ namespace LXM_DS.PRINTER
                 Console.WriteLine(ex.ToString());
             }            
         }
+        */
 
-        private List<Component> ParseComponents(string Components)
+        /*NOT USED IN MYSQL VERSION
+         * private List<Component> ParseComponents(string Components)
         {
             int _count = 0;
 
@@ -99,6 +125,6 @@ namespace LXM_DS.PRINTER
             }
             return _list;
         }
-
+        */
     }
 }

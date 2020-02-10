@@ -8,7 +8,7 @@ namespace LXM_DS.PRINTER
 {
     class Component
     {
-        private static int _sID = 0;
+        //private static int _sID = 0;
         private int _ID;
         public string _PN;
         public string _foto;
@@ -16,9 +16,9 @@ namespace LXM_DS.PRINTER
         public string _FID;
         public string _type;
 
-        public Component(string PN, string Foto, string Description, string FID, string Type)
+        public Component(int ID, string PN, string Foto, string Description, string FID, string Type)
         {
-            _ID = _sID++;
+            _ID = ID; //_sID++;
             _PN = PN;
             _foto = Foto;
             _description = Description;

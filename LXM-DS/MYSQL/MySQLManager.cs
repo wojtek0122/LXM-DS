@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LXM_DS.PRINTER;
 using LXM_DS.USERS;
 using MySql;
 
@@ -74,34 +75,99 @@ namespace LXM_DS.MYSQL
             return _user;
         }
 
-        public void GetComponents()
+        public List<Component> GetComponents()
         {
+            List<Component> _list = new List<Component>(); 
+            
             try
             {
                 _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT * FROM components';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
 
+                while (_dataReader.Read())
+                {
+                    int _id;
+                    Int32.TryParse(_dataReader.GetValue(0).ToString(), out _id);
+                    _list.Add(new Component(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _dataReader.GetValue(5).ToString()));
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
                 _conn.Close();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-        }
 
-        public void GetPrinters()
+            return _list;
+
+        }
+        
+        public List<Printer> GetPrinters(List<Component> ListOfComponents)
         {
+            List<Printer> _list = new List<Printer>();
             try
             {
                 _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT * FROM printers';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
 
+                while (_dataReader.Read())
+                {
+                    int _id;
+                    Int32.TryParse(_dataReader.GetValue(0).ToString(), out _id);
+
+                    string _components = _dataReader.GetValue(2).ToString();
+
+                    _list.Add(new Printer(_id, _dataReader.GetValue(1).ToString(), ParseComponents(_components, ListOfComponents), _dataReader.GetValue(3).ToString()));
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
                 _conn.Close();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 Console.WriteLine(ex.Message);
             }
+
+            return _list;
         }
 
+        private List<Component> ParseComponents(string Components, List<Component> ListOfComponents)
+        {
+            int _count = 0;
+
+            List<Component> _list = new List<Component>();
+            string[] _split = Components.Split(';');
+
+            foreach (string iterator in _split)
+            {
+                _count = _list.Count;
+                foreach (var value in ListOfComponents)
+                {
+                    if (iterator == value._PN)
+                    {
+                        _list.Add(value);
+                        break;
+                    }
+                }
+                if (_list.Count == _count)
+                {
+                    Console.WriteLine("BŁĄD:: Nie odnaleziono komponentu: '{0}'!!!", iterator);
+                }
+            }
+            return _list;
+        }
+        
     }
 
 }
