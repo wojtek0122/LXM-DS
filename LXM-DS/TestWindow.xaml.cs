@@ -88,7 +88,6 @@ namespace LXM_DS
 
         private void ChangePrinterFoto()
         {
-            //ZMIENIC SCIEZKE!!!
             this.imgFoto.Source = new ImageSourceConverter().ConvertFromString(@"..\..\FILES\" + _printer.mt.ToString() + ".png") as ImageSource;
         }
 
