@@ -89,7 +89,7 @@ namespace LXM_DS
         private void ChangePrinterFoto()
         {
             //ZMIENIC SCIEZKE!!!
-            this.imgFoto.Source = new ImageSourceConverter().ConvertFromString(@"C:\Users\TGCS\source\repos\LXM-DS\LXM-DS\FILES\" + _printer.mt.ToString() + ".png") as ImageSource;
+            this.imgFoto.Source = new ImageSourceConverter().ConvertFromString(@"..\..\FILES\" + _printer.mt.ToString() + ".png") as ImageSource;
         }
 
         private void bntTAK_Click(object sender, RoutedEventArgs e)
