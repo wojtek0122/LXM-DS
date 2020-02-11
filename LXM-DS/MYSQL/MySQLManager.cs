@@ -30,10 +30,15 @@ namespace LXM_DS.MYSQL
             return _manager;
         }
 
+        /* Connect pattern
         public void Connect()
         {
             try
             {
+                if(_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
                 _conn.Open();
 
                 _conn.Close();
@@ -43,12 +48,18 @@ namespace LXM_DS.MYSQL
                 Console.WriteLine(ex.Message);
             }
         }
+        */
 
         public User GetUser(string Login)
         {
             User _user = null;
             try
             {
+                if(_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
                 _conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
                 MySql.Data.MySqlClient.MySqlDataReader _dataReader;
@@ -56,7 +67,7 @@ namespace LXM_DS.MYSQL
                 _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
                 _dataReader = _mySqlCommand.ExecuteReader();
 
-                while(_dataReader.Read())
+                while (_dataReader.Read())
                 {
                     int _perm;
                     Int32.TryParse(_dataReader.GetValue(3).ToString(), out _perm);
@@ -66,6 +77,7 @@ namespace LXM_DS.MYSQL
                 _dataReader.Close();
                 _mySqlCommand.Dispose();
                 _conn.Close();
+
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -81,10 +93,15 @@ namespace LXM_DS.MYSQL
             
             try
             {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
                 _conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
                 MySql.Data.MySqlClient.MySqlDataReader _dataReader;
-                string _sql = "SELECT * FROM components';";
+                string _sql = "SELECT * FROM components;";
                 _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
                 _dataReader = _mySqlCommand.ExecuteReader();
 
@@ -113,10 +130,14 @@ namespace LXM_DS.MYSQL
             List<Printer> _list = new List<Printer>();
             try
             {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
                 _conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
                 MySql.Data.MySqlClient.MySqlDataReader _dataReader;
-                string _sql = "SELECT * FROM printers';";
+                string _sql = "SELECT * FROM printers;";
                 _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
                 _dataReader = _mySqlCommand.ExecuteReader();
 
@@ -167,7 +188,51 @@ namespace LXM_DS.MYSQL
             }
             return _list;
         }
-        
+
+        public void InsertTestData(string MT, string SN, bool HDD, string HDDSN, string Status, string User)
+        {
+            try
+            {
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                string _sql = ";";
+                
+
+                if (HDD)
+                {
+                    _sql = String.Format("INSERT INTO hdd (sn, prtmt, prtsn) VALUES ('{0}', '{1}', '{2}');", HDDSN, MT, SN);
+                    _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                    _mySqlCommand.ExecuteNonQuery();
+                    _mySqlCommand.Dispose();
+                }
+                else
+                {
+                    HDDSN = "0";
+                }
+
+                _sql = String.Format(
+                    "INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled) " +
+                    "VALUES (" +
+                    "(SELECT printersid FROM printers WHERE mt='{0}'), " +
+                    "'{1}', " +
+                    "(SELECT hddid FROM hdd WHERE prtsn='{2}'), " +
+                    "'{3}', " +
+                    "(SELECT usersid FROM users WHERE login='{4}'), " +
+                    "'{5}', " +
+                    "'{6}');", 
+                    MT, SN, SN, Status, User, DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss")), 0);
+
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _mySqlCommand.ExecuteNonQuery();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
     }
 
 }

@@ -17,7 +17,6 @@ namespace LXM_DS.PRINTER
 
         public PrinterManager()
         {
-            
             //LoadComponents();
             //LoadPrinters();
         }

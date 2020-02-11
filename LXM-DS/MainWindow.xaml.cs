@@ -20,13 +20,14 @@ namespace LXM_DS
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string _login;
         public MainWindow(string Login, int Permission)
         {
             InitializeComponent();
             Managers _managers = Managers.CreateManagers();
             _managers.InitializePrinters();
-            
-            lblName.Content = Login;
+
+            lblName.Content = _login = Login;
             if(Permission == 9)
             {
                 gboxDismantle.Visibility = System.Windows.Visibility.Visible;
@@ -35,7 +36,7 @@ namespace LXM_DS
 
         private void btnTest_Click(object sender, RoutedEventArgs e)
         {
-            TestWindow _testWindow = new TestWindow();
+            TestWindow _testWindow = new TestWindow(_login);
             _testWindow.Topmost = true;
             _testWindow.Show();
         }
