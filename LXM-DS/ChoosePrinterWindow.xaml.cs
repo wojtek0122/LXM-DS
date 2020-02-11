@@ -44,6 +44,7 @@ namespace LXM_DS
             {
                 _mysqlManager.SetDismantled(_id);
                 ComponentWindow _componentWindow = new ComponentWindow(_id);
+                this.Close();
                 _componentWindow.Show();
             }
             

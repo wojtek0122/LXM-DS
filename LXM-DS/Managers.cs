@@ -32,7 +32,7 @@ namespace LXM_DS
             return _managers;
         }
 
-        public PrinterManager GetPrintManager()
+        public PrinterManager GetPrinterManager()
         {
             return _printerManager;
         }

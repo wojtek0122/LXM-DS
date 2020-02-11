@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LXM_DS.MYSQL;
+using LXM_DS.PRINTER;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +21,20 @@ namespace LXM_DS
     /// </summary>
     public partial class ComponentWindow : Window
     {
+        //Managers
+        Managers _managers;
+        MySQLManager _mysqlManager;
+        PrinterManager _printerManager;
+
         public ComponentWindow(int ID)
         {
             InitializeComponent();
             this.Topmost = true;
-            _browser.Navigate("file:///D:/FID2505.04%2040X5167%20FLATBED%20SCANNER,%20COMPLETE.pdf");
+
+            _managers = Managers.CreateManagers();
+            _mysqlManager = _managers.GetMySQLManager();
+            _printerManager = _managers.GetPrinterManager();
+
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
