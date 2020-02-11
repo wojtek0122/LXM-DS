@@ -30,26 +30,6 @@ namespace LXM_DS.MYSQL
             return _manager;
         }
 
-        /* Connect pattern
-        public void Connect()
-        {
-            try
-            {
-                if(_conn.State == System.Data.ConnectionState.Open)
-                {
-                    _conn.Close();
-                }
-                _conn.Open();
-
-                _conn.Close();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-        */
-
         public User GetUser(string Login)
         {
             User _user = null;
@@ -231,6 +211,76 @@ namespace LXM_DS.MYSQL
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public int GetTestID(string SN)
+        {
+            int _id = 0;
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT testid FROM test WHERE sn='" + SN + "';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    if (_dataReader.GetValue(0).Equals(null))
+                    {
+                        _id = 0;
+                    }
+                    else
+                    {
+                        Int32.TryParse(_dataReader.GetValue(0).ToString(), out _id);
+                    }
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _id;
+        }
+
+        public void SetDismantled(int TestID)
+        {
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+
+                string _sql = String.Format("UPDATE test SET dismantled='1' WHERE testid='{0}'", TestID);
+
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _mySqlCommand.ExecuteNonQuery();
+               
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
     }

@@ -19,7 +19,7 @@ namespace LXM_DS
     /// </summary>
     public partial class ComponentWindow : Window
     {
-        public ComponentWindow()
+        public ComponentWindow(int ID)
         {
             InitializeComponent();
             this.Topmost = true;
