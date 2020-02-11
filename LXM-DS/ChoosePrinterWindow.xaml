@@ -16,18 +16,19 @@
                 <Image Source="FILES\Back.png" />
             </StackPanel>
         </Button>
-        <Label Content="Machine Type" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,320,0,0" VerticalAlignment="Top" Width="210"/>
-        <ListBox Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" Height="80" Margin="370,300,0,0" VerticalAlignment="Top" Width="450"/>
-        <Label Content="Serial" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,415,0,0" VerticalAlignment="Top" Width="210"/>
-        <ListBox Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" Height="80" Margin="370,400,0,0" VerticalAlignment="Top" Width="450"/>
+        <!-- Label -->
+        <Label Content="Label" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,320,0,0" VerticalAlignment="Top" Width="210"/>
+        <t:TouchEnabledTextBox x:Name="txtLabel" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="370,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtLabel_TextChanged"/>
+
         <!-- Printer -->
         <Label HorizontalAlignment="Left"  Margin="940,125,0,0" VerticalAlignment="Top" Height="500" Width="500">
             <StackPanel Orientation="Horizontal">
-                <Image Source="FILES\7657.png" />
+                <Image x:Name="imgFoto" Source="FILES\lexmark.png" />
             </StackPanel>
         </Label>
 
         <Button x:Name="btnWybierz" Content="Wybierz" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="570,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWybierz_Click"/>
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,825,0,0" VerticalAlignment="Top" Width="1920"/>
+        <Label x:Name="lblInfo"  FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,822,0,0" />
     </Grid>
 </Window>

@@ -26,7 +26,7 @@
 
         <!-- Data -->
         <Label Content="Label" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,145,0,0" VerticalAlignment="Top" Width="210"/>
-        <t:TouchEnabledTextBox x:Name="txtSN" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="370,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtSN_TextChanged"/>
+        <t:TouchEnabledTextBox x:Name="txtSN" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="370,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtSN_TextChanged"/>
         
         <Label Content="Machine Type" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,235,0,0" VerticalAlignment="Top" Width="210"/>
         <TextBox x:Name="txtMTlbl" IsReadOnly="True" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#646c74" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="370,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>

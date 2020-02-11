@@ -2,6 +2,7 @@
 using LXM_DS.PRINTER;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,7 +89,14 @@ namespace LXM_DS
 
         private void ChangePrinterFoto()
         {
-            this.imgFoto.Source = new ImageSourceConverter().ConvertFromString(@"..\..\FILES\" + _printer.mt.ToString() + ".png") as ImageSource;
+            if (File.Exists(@"..\..\FILES\" + _printer.mt.ToString() + ".png"))
+            {
+                this.imgFoto.Source = new ImageSourceConverter().ConvertFromString(@"..\..\FILES\" + _printer.mt.ToString() + ".png") as ImageSource;
+            }
+            else
+            {
+                this.imgFoto.Source = new ImageSourceConverter().ConvertFromString(@"..\..\FILES\lexmark.png") as ImageSource;
+            }
         }
 
         private void bntTAK_Click(object sender, RoutedEventArgs e)
