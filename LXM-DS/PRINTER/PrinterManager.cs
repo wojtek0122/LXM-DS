@@ -36,9 +36,22 @@ namespace LXM_DS.PRINTER
             _printers = ListOfPrinters;
         }
 
-        public List<Printer> GetPrinters()
+        public List<Printer> GetPrintersList()
         {
             return _printers;
+        }
+
+        public Printer GetPrinterByMT(string MT)
+        {
+            Printer _prt = null;
+            foreach(var value in _printers)
+            {
+                if(value._machineType == MT)
+                {
+                    return value;
+                }
+            }
+            return _prt;
         }
 
         //Load Components from XML

@@ -11,13 +11,12 @@
         <WebBrowser x:Name="_browser" HorizontalAlignment="Left" Height="720" VerticalAlignment="Top" Width="1120" IsEnabled="False"/>
         <Button x:Name="OK" Content="OK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="90,732,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="OK_Click"/>
         <Button x:Name="NOK" Content="NOK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="590,732,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="NOK_Click"/>
-        <ListView HorizontalAlignment="Left" Height="825" Margin="1120,0,0,0" VerticalAlignment="Top" Width="416">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
+        
+        <!-- ListView -->
+        <ListView x:Name="lview" FontFamily="Oxygen" FontSize="24" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="825" Margin="1120,0,0,0" VerticalAlignment="Top" Width="415" SelectionChanged="lview_SelectionChanged">
+
         </ListView>
+        
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,825,0,0" VerticalAlignment="Top" Width="1920"/>
         <Label x:Name="lblMT"  FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,822,0,0" />
     </Grid>

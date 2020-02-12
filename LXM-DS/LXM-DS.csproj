@@ -159,9 +159,7 @@
   <ItemGroup>
     <Resource Include="PRINTER\COMPONENTS.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PRINTER\COMPONENTS\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="PRINTER\PRINTERS.xml" />
   </ItemGroup>

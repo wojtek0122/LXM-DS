@@ -35,7 +35,7 @@ namespace LXM_DS
 
         private void btnWybierz_Click(object sender, RoutedEventArgs e)
         {
-            _id = _mysqlManager.GetTestID(_printerSN);
+            _id = _mysqlManager.GetTestIDFromTest(_printerSN);
             if (_id == 0)
             {
                 this.lblInfo.Content = "BLAD: Drukarka nie zostala jeszcze przetestowana!";
@@ -43,7 +43,7 @@ namespace LXM_DS
             else
             {
                 _mysqlManager.SetDismantled(_id);
-                ComponentWindow _componentWindow = new ComponentWindow(_id);
+                ComponentWindow _componentWindow = new ComponentWindow(_id, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN));
                 this.Close();
                 _componentWindow.Show();
             }

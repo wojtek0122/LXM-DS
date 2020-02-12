@@ -47,7 +47,7 @@ namespace LXM_DS
                             if (CalculateMD5(_pass) == _user.GetPassword())
                             {
                                 MainWindow _mainWindow = new MainWindow(_login,_user.GetPermission());
-                                _mainWindow.Topmost = true;
+                                //_mainWindow.Topmost = true;
                                 _mainWindow.Show();
                                 this.Close();
                             }

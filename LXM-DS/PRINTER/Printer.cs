@@ -12,7 +12,7 @@ namespace LXM_DS.PRINTER
         //private static int _sID = 0;
         private int _ID;
         public string _machineType;
-        private List<Component> _componentsList;
+        public List<Component> _componentsList;
         string _foto;
 
         public Printer(int ID, string MachineType, List<Component> Components, string Foto)
@@ -21,6 +21,11 @@ namespace LXM_DS.PRINTER
             _machineType = MachineType;
             _componentsList = Components;
             _foto = Foto;
+        }
+
+        public List<Component> GetComponentList()
+        {
+            return _componentsList;
         }
 
     }

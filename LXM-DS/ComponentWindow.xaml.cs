@@ -3,6 +3,7 @@ using LXM_DS.PRINTER;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,26 +26,99 @@ namespace LXM_DS
         Managers _managers;
         MySQLManager _mysqlManager;
         PrinterManager _printerManager;
+        
+        Printer _printer;
 
-        public ComponentWindow(int ID)
+        int _id;
+        string _mt;
+        string _status;
+
+        List<Component> _dismantledComponentsList;
+
+        public ComponentWindow(int ID, string MT, string Status)
         {
             InitializeComponent();
-            this.Topmost = true;
+            //this.Topmost = true;
 
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
             _printerManager = _managers.GetPrinterManager();
 
+            _id = ID;
+            _mt = MT;
+            _status = Status;
+
+            _printer = _printerManager.GetPrinterByMT(_mt);
+            _dismantledComponentsList = new List<Component>();
+
+            InitializePrinterComponentsToListView(_status);
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            //Print label
+            //DeactivateField
+            //UpdateStock
+            //AddLog
+
+            //this.Close();
         }
 
         private void NOK_Click(object sender, RoutedEventArgs e)
         {
+            //DeactivateField
+            //AddLog
             this.Close();
+        }
+
+        public void InitializePrinterComponentsToListView(string Status)
+        {
+            if(Status == "OK")
+            {
+                foreach (var value in _printer.GetComponentList())
+                {
+                    _dismantledComponentsList.Add(value);
+                }
+            }
+            else
+            {
+                foreach (var value in _printer.GetComponentList())
+                {
+                    if(value._type == "E")
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        _dismantledComponentsList.Add(value);
+                    }
+                }
+            }
+            ListViewAddSource();
+        }
+
+        public void ListViewAddSource()
+        {
+            this.lview.ItemsSource = _dismantledComponentsList;
+        }
+
+        private void lview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string _text = lview.SelectedItem.ToString();
+            string _pn = _text.Substring(0, _text.IndexOf("\n"));
+            string _fid = "";
+            string _rev = "";
+            foreach (var value in _printer._componentsList)
+            {
+                if(_pn == value._PN)
+                {
+                    _fid = value._FID;
+                    _rev = value._REV;
+                    break;
+                }
+            }
+
+            _browser.Navigate(@"C:\LXM-DS\FID\" + _fid + "." + _rev + " " + _pn + ".pdf");
         }
     }
 }

@@ -89,7 +89,7 @@ namespace LXM_DS.MYSQL
                 {
                     int _id;
                     Int32.TryParse(_dataReader.GetValue(0).ToString(), out _id);
-                    _list.Add(new Component(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _dataReader.GetValue(5).ToString()));
+                    _list.Add(new Component(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _dataReader.GetValue(5).ToString(), _dataReader.GetValue(6).ToString()));
                 }
 
                 _dataReader.Close();
@@ -213,7 +213,7 @@ namespace LXM_DS.MYSQL
             }
         }
 
-        public int GetTestID(string SN)
+        public int GetTestIDFromTest(string SN)
         {
             int _id = 0;
             try
@@ -255,6 +255,118 @@ namespace LXM_DS.MYSQL
             return _id;
         }
 
+        public int GetPrinterIDFromTest(string SN)
+        {
+            int _id = 0;
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT printersid FROM test WHERE sn='" + SN + "';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    if (_dataReader.GetValue(0).Equals(null))
+                    {
+                        _id = 0;
+                    }
+                    else
+                    {
+                        Int32.TryParse(_dataReader.GetValue(0).ToString(), out _id);
+                    }
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _id;
+        }
+
+        public string GetStatusFromTest(string SN)
+        {
+            string _status = "";
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT status FROM test WHERE sn='" + SN + "';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    _status = _dataReader.GetValue(0).ToString();
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _status;
+        }
+
+        public string GetMTFromPrintersWherePrinterID(int PrinterID)
+        {
+            string _mt = "";
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT mt FROM printers WHERE printersid='" + PrinterID + "';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    _mt = _dataReader.GetValue(0).ToString();
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _mt;
+        }
+
         public void SetDismantled(int TestID)
         {
             try
@@ -281,6 +393,41 @@ namespace LXM_DS.MYSQL
                 Console.WriteLine(ex.Message);
             }
 
+        }
+
+        public string GetFIDFromComponents(string SN)
+        {
+            string _status = "";
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT status FROM test WHERE sn='" + SN + "';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    _status = _dataReader.GetValue(0).ToString();
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _status;
         }
 
     }
