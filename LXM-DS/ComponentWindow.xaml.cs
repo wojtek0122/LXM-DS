@@ -60,6 +60,8 @@ namespace LXM_DS
             //DeactivateField
             //UpdateStock
             //AddLog
+            BARCODE.Barcode _barcode = new BARCODE.Barcode();
+            _barcode.PrintLabel("40X1234", "A2");
 
             //this.Close();
         }
