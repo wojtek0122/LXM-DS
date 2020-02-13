@@ -15,7 +15,7 @@ namespace LXM_DS.BARCODE
         string _location = "";
         public void PrintLabel(string PN, string Location)
         {
-            _PN = "PN: " + PN;
+            _PN = PN;
             _location = "Zone: " + Location;
             PrintDocument printDoc = new PrintDocument();
             printDoc.PrintPage += new PrintPageEventHandler(printDoc_PrintPage);
@@ -27,6 +27,7 @@ namespace LXM_DS.BARCODE
             BarcodeLib.Barcode b = new BarcodeLib.Barcode();
             Image img = b.Encode(BarcodeLib.TYPE.CODE128, _PN, Color.Black, Color.White, 200, 60);
 
+            _PN = "PN: " + _PN; 
             Point imgCorner = new Point(-5, 20);
             Point txtPNCorner = new Point(20, 85);
             Point txtLocationCorner = new Point(20, 110);
