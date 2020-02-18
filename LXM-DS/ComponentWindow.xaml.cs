@@ -34,6 +34,7 @@ namespace LXM_DS
         string _status;
 
         List<Component> _dismantledComponentsList;
+        Component _component;
 
         public ComponentWindow(int ID, string MT, string Status)
         {
@@ -57,20 +58,39 @@ namespace LXM_DS
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             //Print label
-            //DeactivateField
-            //UpdateStock
-            //AddLog
             BARCODE.Barcode _barcode = new BARCODE.Barcode();
-            _barcode.PrintLabel("40X1234", "A2");
+            _barcode.PrintLabel(_component._PN, _component._location);
 
-            //this.Close();
+            //DeactivateField
+            _dismantledComponentsList.Remove(_component);
+            //lview.ItemsSource = null;
+            //ListViewAddSource();
+
+            //UpdateStock
+
+
+            //AddLog
+
+
+            if (_dismantledComponentsList.Count == 0)
+            {
+                this.Close();
+            }
         }
 
         private void NOK_Click(object sender, RoutedEventArgs e)
         {
             //DeactivateField
+            _dismantledComponentsList.Remove(_component);
+            //lview.ItemsSource = null;
+            //ListViewAddSource();
+
             //AddLog
             this.Close();
+            if (_dismantledComponentsList.Count == 0)
+            {
+                this.Close();
+            }
         }
 
         public void InitializePrinterComponentsToListView(string Status)
@@ -116,6 +136,7 @@ namespace LXM_DS
                 {
                     _fid = value._FID;
                     _rev = value._REV;
+                    _component = value;
                     break;
                 }
             }

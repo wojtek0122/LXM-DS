@@ -183,9 +183,6 @@
     <Resource Include="FILES\Back.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FILES\7657.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="FILES\lexmark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

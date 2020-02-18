@@ -16,8 +16,11 @@ namespace LXM_DS.PRINTER
         public string _FID;
         public string _REV;
         public string _type;
+        public int _stock;
+        public int _yield;
+        public string _location;
 
-        public Component(int ID, string PN, string Foto, string Description, string FID, string Rev, string Type)
+        public Component(int ID, string PN, string Foto, string Description, string FID, string Rev, string Type, int YIELD, string Location)
         {
             _ID = ID; //_sID++;
             _PN = PN;
@@ -26,6 +29,9 @@ namespace LXM_DS.PRINTER
             _FID = FID;
             _REV = Rev;
             _type = Type;
+            _stock = 0;
+            _yield = YIELD;
+            _location = Location;
         }
 
         public override string ToString()

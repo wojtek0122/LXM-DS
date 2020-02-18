@@ -89,7 +89,9 @@ namespace LXM_DS.MYSQL
                 {
                     int _id;
                     Int32.TryParse(_dataReader.GetValue(0).ToString(), out _id);
-                    _list.Add(new Component(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _dataReader.GetValue(5).ToString(), _dataReader.GetValue(6).ToString()));
+                    int _yield;
+                    Int32.TryParse(_dataReader.GetValue(8).ToString(), out _yield);
+                    _list.Add(new Component(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _dataReader.GetValue(5).ToString(), _dataReader.GetValue(6).ToString(), _yield, _dataReader.GetValue(9).ToString()));
                 }
 
                 _dataReader.Close();
