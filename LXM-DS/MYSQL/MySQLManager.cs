@@ -128,9 +128,9 @@ namespace LXM_DS.MYSQL
                     int _id;
                     Int32.TryParse(_dataReader.GetValue(0).ToString(), out _id);
 
-                    string _components = _dataReader.GetValue(2).ToString();
+                    string _components = _dataReader.GetValue(3).ToString();
 
-                    _list.Add(new Printer(_id, _dataReader.GetValue(1).ToString(), ParseComponents(_components, ListOfComponents), _dataReader.GetValue(3).ToString()));
+                    _list.Add(new Printer(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), ParseComponents(_components, ListOfComponents), _dataReader.GetValue(4).ToString()));
                 }
 
                 _dataReader.Close();
