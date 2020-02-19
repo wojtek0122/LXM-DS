@@ -7,15 +7,40 @@
         mc:Ignorable="d"
         Title="COMPONENT" Height="1080" Width="1920"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.Resources>
+        <Style x:Key="_ListViewItemStyle" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border Name="_Border"
+                                Padding="2"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="_Border" Property="Background" Value="#3f8997"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <WebBrowser x:Name="_browser" HorizontalAlignment="Left" Height="720" VerticalAlignment="Top" Width="1120" IsEnabled="False"/>
         <Button x:Name="OK" Content="OK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="90,732,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="OK_Click"/>
         <Button x:Name="NOK" Content="NOK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="590,732,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="NOK_Click"/>
         
         <!-- ListView -->
-        <ListView x:Name="lview" FontFamily="Oxygen" FontSize="24" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="825" Margin="1120,0,0,0" VerticalAlignment="Top" Width="415" SelectionChanged="lview_SelectionChanged">
-
+        <ListView x:Name="lview" ItemContainerStyle="{DynamicResource _ListViewItemStyle}" FontFamily="Oxygen" FontSize="18" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="825" Margin="1120,0,0,0" VerticalAlignment="Top" Width="415" SelectionChanged="lview_SelectionChanged"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto">
         </ListView>
+
+
         
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,825,0,0" VerticalAlignment="Top" Width="1920"/>
         <Label x:Name="lblMT"  FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,822,0,0" />
