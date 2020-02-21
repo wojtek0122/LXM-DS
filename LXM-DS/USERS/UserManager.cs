@@ -13,10 +13,10 @@ namespace LXM_DS.USERS
 
         public UserManager()
         {
-            LoadUsersFromXML();
+            //LoadUsersFromXML();
         }
 
-        private void LoadUsersFromXML()
+        /*private void LoadUsersFromXML()
         {
             Console.WriteLine("LOG:: Wczytywanie użytkowników...");
             try
@@ -53,5 +53,6 @@ namespace LXM_DS.USERS
             }
             return val;
         }
+        */
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace LXM_DS
 {
@@ -21,6 +22,7 @@ namespace LXM_DS
     public partial class MainWindow : Window
     {
         private string _login;
+        DispatcherTimer _timer;
         public MainWindow(string Login, int Permission)
         {
             InitializeComponent();
@@ -31,7 +33,25 @@ namespace LXM_DS
             if(Permission == 9)
             {
                 gboxDismantle.Visibility = System.Windows.Visibility.Visible;
-            } 
+            }
+
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += timer_Tick;
+            _timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lblName.Content = _login + " " + DateTime.Now.ToString("HH:mm:ss");
+            if ((DateTime.Now.Hour > 16) && (DateTime.Now.Minute > 1))
+            {
+                _timer.Stop();
+                LoginWindow _loginWindow = new LoginWindow();
+                _loginWindow.Topmost = true;
+                _loginWindow.Show();
+                this.Close();
+            }
         }
 
         private void btnTest_Click(object sender, RoutedEventArgs e)

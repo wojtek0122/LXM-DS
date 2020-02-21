@@ -33,25 +33,26 @@ namespace LXM_DS
             //UserManager _userManager = _managers.GetUserManager();
             MySQLManager _mySQLManager = _managers.GetMySQLManager();
             
-            string _login = this.txtLogin.Text.Trim().ToString();
-            if (!String.IsNullOrEmpty(_login) && !String.IsNullOrWhiteSpace(_login))
+            //string _login = this.txtLogin.Text.Trim().ToString();
+            string _nfc = this.txtNFC.Text.Trim().ToString();
+            if (!String.IsNullOrEmpty(_nfc) && !String.IsNullOrWhiteSpace(_nfc))
             {
                 try
                 {
-                    User _user = _mySQLManager.GetUser(_login);//_userManager.GetUserByLogin(_login);
+                    User _user = _mySQLManager.GetUserByNFC(_nfc);//_userManager.GetUserByLogin(_login);
                     if(_user != null)
                     {
-                        string _pass = this.txtPassword.Password.ToString().Trim();
-                        if (!String.IsNullOrEmpty(_pass) && !String.IsNullOrWhiteSpace(_pass))
-                        {
-                            if (CalculateMD5(_pass) == _user.GetPassword())
-                            {
-                                MainWindow _mainWindow = new MainWindow(_login,_user.GetPermission());
+                        //string _pass = this.txtPassword.Password.ToString().Trim();
+                        //if (!String.IsNullOrEmpty(_pass) && !String.IsNullOrWhiteSpace(_pass))
+                        //{
+                            //if (CalculateMD5(_pass) == _user.GetPassword())
+                            //{
+                                MainWindow _mainWindow = new MainWindow(_user._login,_user.GetPermission());
                                 //_mainWindow.Topmost = true;
                                 _mainWindow.Show();
                                 this.Close();
-                            }
-                        }
+                            //}
+                        //}
                     }
                 }
                 catch (Exception)

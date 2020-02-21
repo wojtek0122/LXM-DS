@@ -50,8 +50,45 @@ namespace LXM_DS.MYSQL
                 while (_dataReader.Read())
                 {
                     int _perm;
-                    Int32.TryParse(_dataReader.GetValue(3).ToString(), out _perm);
-                    _user = new User(_dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _perm);
+                    Int32.TryParse(_dataReader.GetValue(5).ToString(), out _perm);
+                    _user = new User(_dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _perm);
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _user;
+        }
+
+        public User GetUserByNFC(string NFC)
+        {
+            User _user = null;
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT * FROM users WHERE NFC='" + NFC + "' OR NFC2='" + NFC + "';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    int _perm;
+                    Int32.TryParse(_dataReader.GetValue(5).ToString(), out _perm);
+                    _user = new User(_dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _perm);
                 }
 
                 _dataReader.Close();

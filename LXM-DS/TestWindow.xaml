@@ -38,7 +38,7 @@
         <Button Content="NIE" x:Name="btnNIE" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="610,400,0,0" VerticalAlignment="Top" Width="200" Height="80" Click="btnNIE_Click"/>
 
         <Label Content="HDD Serial" x:Name="lblHDD" Visibility="Hidden" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,515,0,0" VerticalAlignment="Top" Width="210"/>
-        <t:TouchEnabledTextBox x:Name="txtHDDSN" Visibility="Hidden" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="370,500,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtHDDSN_TextChanged"/>
+        <t:TouchEnabledTextBox x:Name="txtHDDSN" Visibility="Visible" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="370,500,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtHDDSN_TextChanged"/>
 
         <!-- Buttons -->
         <Button x:Name="btnOK" Content="SPRAWNA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="270,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnOK_Click"/>
