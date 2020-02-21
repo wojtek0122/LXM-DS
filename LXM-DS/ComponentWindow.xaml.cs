@@ -143,5 +143,10 @@ namespace LXM_DS
 
             _browser.Navigate(@"C:\LXM-DS\FID\" + _fid + "." + _rev + " " + _pn + ".pdf");
         }
+
+        private void NONE_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
