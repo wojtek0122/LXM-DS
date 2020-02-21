@@ -211,7 +211,7 @@ namespace LXM_DS.MYSQL
             return _list;
         }
 
-        public void InsertTestData(string MT, string SN, bool HDD, string HDDSN, string Status, string User)
+        public void InsertTestData(string MT, string SN, bool HDD, string HDDSN, string Status, string User, bool firmware, bool defaults, bool nvram)
         {
             try
             {
@@ -233,7 +233,7 @@ namespace LXM_DS.MYSQL
                 }
 
                 _sql = String.Format(
-                    "INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled) " +
+                    "INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled, firmware, defaults, nvram) " +
                     "VALUES (" +
                     "(SELECT printersid FROM printers WHERE mt='{0}'), " +
                     "'{1}', " +
@@ -241,8 +241,11 @@ namespace LXM_DS.MYSQL
                     "'{3}', " +
                     "(SELECT usersid FROM users WHERE login='{4}'), " +
                     "'{5}', " +
-                    "'{6}');", 
-                    MT, SN, SN, Status, User, DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss")), 0);
+                    "'{6}', " +
+                    "'{7}', " +
+                    "'{8}', " +
+                    "'{9}', );", 
+                    MT, SN, SN, Status, User, DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss")), 0, firmware, defaults, nvram);
 
                 _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
                 _mySqlCommand.ExecuteNonQuery();

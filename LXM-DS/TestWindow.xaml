@@ -8,7 +8,66 @@
         mc:Ignorable="d"
         Title="TestWindow" Height="1080" Width="1920"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.Resources>
+
+        <Style x:Key="ButtonFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#F3F3F3" Offset="0"/>
+            <GradientStop Color="#EBEBEB" Offset="0.5"/>
+            <GradientStop Color="#DDDDDD" Offset="0.5"/>
+            <GradientStop Color="#CDCDCD" Offset="1"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ButtonNormalBorder" Color="#4c4f5b"/>
+        <Style x:Key="ToggleButtonStyle1" TargetType="{x:Type ToggleButton}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Border x:Name="on" Width="100" Height="50" Background="#d9d9d9" CornerRadius="2,0,0,4" Margin="10,0,0,0">
+                                <TextBlock x:Name="onText" Text="TAK" FontFamily="Oxygen" FontSize="20" FontStyle="Normal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border x:Name="off" Width="100" Height="50" Background="#d9d9d9" CornerRadius="0,2,4,0">
+                                <TextBlock x:Name="offText" Text="NIE" FontFamily="Oxygen" FontSize="20" FontStyle="Normal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#d9d9d9"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter TargetName="on" Property="Background" Value="#3f8997"/>
+                                <Setter TargetName="onText" Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="off" Property="Background" Value="#3f8997"/>
+                                <Setter TargetName="offText" Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
     <Grid>
+        
         <Label Content="TEST DRUKARKI" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,20,0,0" VerticalAlignment="Top" Width="665"/>
         <!-- Back Button -->
         <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnBack_Click">
@@ -32,17 +91,18 @@
         <TextBox x:Name="txtMTlbl" IsReadOnly="True" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#646c74" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="370,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
         <Label Content="Serial" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,315,0,0" VerticalAlignment="Top" Width="210"/>
         <TextBox x:Name="txtSNlbl" IsReadOnly="True" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#646c74" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="370,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
-        
-        <Label Content="HDD" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,415,0,0" VerticalAlignment="Top" Width="210"/>
-        <Button Content="TAK" x:Name="bntTAK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="380,400,0,0" VerticalAlignment="Top" Width="200" Height="80" Click="bntTAK_Click"/>
-        <Button Content="NIE" x:Name="btnNIE" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="610,400,0,0" VerticalAlignment="Top" Width="200" Height="80" Click="btnNIE_Click"/>
 
-        <Label Content="HDD Serial" x:Name="lblHDD" Visibility="Hidden" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,515,0,0" VerticalAlignment="Top" Width="210"/>
-        <t:TouchEnabledTextBox x:Name="txtHDDSN" Visibility="Visible" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="370,500,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtHDDSN_TextChanged"/>
+        <ToggleButton x:Name="tgbtnHDD" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="445,90,-310,325" Content="DYSK: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnHDD_Click" />
+        <Label Content="HDD Serial" x:Name="lblHDD" Visibility="Hidden" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,510,0,0" VerticalAlignment="Top" Width="210"/>
+        <t:TouchEnabledTextBox x:Name="txtHDDSN" Visibility="Hidden" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="370,480,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtHDDSN_TextChanged"/>
+
+        <ToggleButton x:Name="tgbtnfirmware" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="225,245,-90,115" Content="AKTUALIZACJA FIRMWARE: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnfirmware_Click"/>
+        <ToggleButton x:Name="tgbtndefaults" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="245,350,-110,90" Content="USTAWIENIA DOMYSLNE: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtndefaults_Click"/>
+        <ToggleButton x:Name="tgbtnnvram" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="395,455,-260,65" Content="DLE - NVRAM: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnnvram_Click"/>
 
         <!-- Buttons -->
-        <Button x:Name="btnOK" Content="SPRAWNA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="270,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnOK_Click"/>
-        <Button x:Name="btnNOK" Content="USZKODZONA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="770,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnNOK_Click"/>
+        <Button x:Name="btnOK" Content="SPRAWNA" Visibility="Hidden" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="270,780,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnOK_Click"/>
+        <Button x:Name="btnNOK" Content="USZKODZONA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="770,780,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnNOK_Click"/>
 
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,825,0,0" VerticalAlignment="Top" Width="1920"/>
 

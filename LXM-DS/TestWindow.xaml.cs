@@ -29,6 +29,9 @@ namespace LXM_DS
             public string status;
             public bool hdd;
             public string hddsn;
+            public bool firmware;
+            public bool defaults;
+            public bool nvram;
         }
 
         printer _printer;
@@ -47,7 +50,6 @@ namespace LXM_DS
             _mysqlManager = _managers.GetMySQLManager();
 
             _user = User;
-
         }
 
         private void btnNOK_Click(object sender, RoutedEventArgs e)
@@ -99,20 +101,6 @@ namespace LXM_DS
             }
         }
 
-        private void bntTAK_Click(object sender, RoutedEventArgs e)
-        {
-            this.lblHDD.Visibility = Visibility.Visible;
-            this.txtHDDSN.Visibility = Visibility.Visible;
-            _printer.hdd = true;
-        }
-
-        private void btnNIE_Click(object sender, RoutedEventArgs e)
-        {
-            this.lblHDD.Visibility = Visibility.Hidden;
-            this.txtHDDSN.Visibility = Visibility.Hidden;
-            _printer.hdd = false;
-        }
-
         private void txtHDDSN_TextChanged(object sender, TextChangedEventArgs e)
         {
             _printer.hddsn = this.txtHDDSN.Text.ToString();
@@ -120,7 +108,74 @@ namespace LXM_DS
 
         public void SendDataToMySQL()
         {
-            _mysqlManager.InsertTestData(_printer.mt, _printer.sn, _printer.hdd, _printer.hddsn, _printer.status, _user);
+            _mysqlManager.InsertTestData(_printer.mt, _printer.sn, _printer.hdd, _printer.hddsn, _printer.status, _user, _printer.firmware, _printer.defaults, _printer.nvram);
+        }
+
+        private void tgbtnHDD_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtnHDD.IsChecked == true)
+            {
+                this.lblHDD.Visibility = Visibility.Visible;
+                this.txtHDDSN.Visibility = Visibility.Visible;
+                _printer.hdd = true;
+            }
+            else
+            {
+                this.lblHDD.Visibility = Visibility.Hidden;
+                this.txtHDDSN.Visibility = Visibility.Hidden;
+                _printer.hdd = false;
+            }
+        }
+
+        private void tgbtnfirmware_Click(object sender, RoutedEventArgs e)
+        {
+            if(this.tgbtnfirmware.IsChecked == true)
+            {
+                _printer.firmware = true;
+            }
+            else
+            {
+                _printer.firmware = false;
+            }
+            ChangeVisibilityOK();
+        }
+
+        private void tgbtndefaults_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtndefaults.IsChecked == true)
+            {
+                _printer.defaults = true;
+            }
+            else
+            {
+                _printer.defaults = false;
+            }
+            ChangeVisibilityOK();
+        }
+
+        private void tgbtnnvram_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtnnvram.IsChecked == true)
+            {
+                _printer.nvram = true;
+            }
+            else
+            {
+                _printer.nvram = false;
+            }
+            ChangeVisibilityOK();
+        }
+
+        private void ChangeVisibilityOK()
+        {
+            if(_printer.firmware == true && _printer.nvram == true && _printer.defaults == true)
+            {
+                this.btnOK.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.btnOK.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
