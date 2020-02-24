@@ -23,27 +23,29 @@ namespace LXM_DS
     {
         private string _printerMT;
         private string _printerSN;
-        private int _id;
+        private int _testid;
         Managers _managers;
         MySQLManager _mysqlManager;
-        public ChoosePrinterWindow()
+        private string _login;
+        public ChoosePrinterWindow(String Login)
         {
             InitializeComponent();
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
+            _login = Login;
         }
 
         private void btnWybierz_Click(object sender, RoutedEventArgs e)
         {
-            _id = _mysqlManager.GetTestIDFromTest(_printerSN);
-            if (_id == 0)
+            _testid = _mysqlManager.GetTestIDFromTest(_printerSN);
+            if (_testid == 0)
             {
                 this.lblInfo.Content = "BLAD: Drukarka nie zostala jeszcze przetestowana!";
             }
             else
             {
-                _mysqlManager.SetDismantled(_id);
-                ComponentWindow _componentWindow = new ComponentWindow(_id, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN));
+                _mysqlManager.SetDismantled(_testid);
+                ComponentWindow _componentWindow = new ComponentWindow(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN), _login);
                 this.Close();
                 _componentWindow.Show();
             }

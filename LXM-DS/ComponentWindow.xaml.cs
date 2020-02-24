@@ -29,25 +29,27 @@ namespace LXM_DS
         
         Printer _printer;
 
-        int _id;
+        int _testid;
         string _mt;
         string _status;
+        string _login;
 
         List<Component> _dismantledComponentsList;
         Component _component;
 
-        public ComponentWindow(int ID, string MT, string Status)
+        public ComponentWindow(int TestID, string MT, string Status, string Login)
         {
             InitializeComponent();
-            //this.Topmost = true;
+            this.Topmost = true;
 
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
             _printerManager = _managers.GetPrinterManager();
 
-            _id = ID;
+            _testid = TestID;
             _mt = MT;
             _status = Status;
+            _login = Login;
 
             _printer = _printerManager.GetPrinterByMT(_mt);
             _dismantledComponentsList = new List<Component>();
@@ -63,15 +65,15 @@ namespace LXM_DS
 
             //DeactivateField
             _dismantledComponentsList.Remove(_component);
-            //lview.ItemsSource = null;
-            //ListViewAddSource();
+            this.lview.Items.Refresh();
 
             //UpdateStock
+            _mysqlManager.UpdateComponentStock(_component._id);
 
+            //Add log
+            _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "OK");
 
-            //AddLog
-
-
+            //Close window
             if (_dismantledComponentsList.Count == 0)
             {
                 this.Close();
@@ -80,13 +82,35 @@ namespace LXM_DS
 
         private void NOK_Click(object sender, RoutedEventArgs e)
         {
+            //Print label - SCR
+            BARCODE.Barcode _barcode = new BARCODE.Barcode();
+            _barcode.PrintLabel(_component._PN, "SCR");
+
             //DeactivateField
             _dismantledComponentsList.Remove(_component);
-            //lview.ItemsSource = null;
-            //ListViewAddSource();
+            this.lview.Items.Refresh();
 
-            //AddLog
+            //Add log
+            _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NOK");
+
+            //Close window
             this.Close();
+            if (_dismantledComponentsList.Count == 0)
+            {
+                this.Close();
+            }
+        }
+
+        private void NONE_Click(object sender, RoutedEventArgs e)
+        {
+            //DeactivateField
+            _dismantledComponentsList.Remove(_component);
+            this.lview.Items.Refresh();
+
+            //Add log
+            _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NONE");
+
+            //Close window
             if (_dismantledComponentsList.Count == 0)
             {
                 this.Close();
@@ -142,11 +166,6 @@ namespace LXM_DS
             }
 
             _browser.Navigate(@"C:\LXM-DS\FID\" + _fid + "." + _rev + " " + _pn + ".pdf");
-        }
-
-        private void NONE_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
