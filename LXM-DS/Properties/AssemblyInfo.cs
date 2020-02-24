@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("LXM-DS")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("LXM-DS")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2020")]
+[assembly: AssemblyCompany("R&D Syncreon Poland")]
+[assembly: AssemblyProduct("R&D Syncreon Poland")]
+[assembly: AssemblyCopyright("Copyright © R&D Syncreon Poland 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
