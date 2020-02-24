@@ -40,7 +40,7 @@ namespace LXM_DS
         public ComponentWindow(int TestID, string MT, string Status, string Login)
         {
             InitializeComponent();
-            this.Topmost = true;
+            //this.Topmost = true;
 
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
@@ -65,7 +65,7 @@ namespace LXM_DS
 
             //DeactivateField
             _dismantledComponentsList.Remove(_component);
-            this.lview.Items.Refresh();
+            ListViewAddSource();
 
             //UpdateStock
             _mysqlManager.UpdateComponentStock(_component._id);
@@ -88,13 +88,12 @@ namespace LXM_DS
 
             //DeactivateField
             _dismantledComponentsList.Remove(_component);
-            this.lview.Items.Refresh();
+            ListViewAddSource();
 
             //Add log
             _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NOK");
 
             //Close window
-            this.Close();
             if (_dismantledComponentsList.Count == 0)
             {
                 this.Close();
@@ -105,7 +104,7 @@ namespace LXM_DS
         {
             //DeactivateField
             _dismantledComponentsList.Remove(_component);
-            this.lview.Items.Refresh();
+            ListViewAddSource();
 
             //Add log
             _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NONE");
@@ -146,26 +145,39 @@ namespace LXM_DS
         public void ListViewAddSource()
         {
             this.lview.ItemsSource = _dismantledComponentsList;
+            this.lview.Items.Refresh();
         }
 
         private void lview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string _text = lview.SelectedItem.ToString();
-            string _pn = _text.Substring(0, _text.IndexOf("\n"));
-            string _fid = "";
-            string _rev = "";
-            foreach (var value in _printer._componentsList)
+            if (lview.Items.Count>0)
             {
-                if(_pn == value._PN)
+                try
                 {
-                    _fid = value._FID;
-                    _rev = value._REV;
-                    _component = value;
-                    break;
-                }
-            }
+                    string _text = lview.SelectedItem.ToString();
+                    string _pn = _text.Substring(0, _text.IndexOf("\n"));
+                    string _fid = "";
+                    string _rev = "";
+                    foreach (var value in _printer._componentsList)
+                    {
+                        if (_pn == value._PN)
+                        {
+                            _fid = value._FID;
+                            _rev = value._REV;
+                            _component = value;
+                            break;
+                        }
+                    }
 
-            _browser.Navigate(@"C:\LXM-DS\FID\" + _fid + "." + _rev + " " + _pn + ".pdf");
+                    _browser.Navigate(@"C:\LXM-DS\FID\" + _fid + "." + _rev + " " + _pn + ".pdf");
+                }
+                catch(Exception)
+                {
+
+                }
+
+            }
+            
         }
     }
 }

@@ -211,64 +211,76 @@ namespace LXM_DS.MYSQL
             return _list;
         }
 
-        public void InsertTestData(string MT, string SN, bool HDD, string HDDSN, string Status, string User, bool Firmware, bool Defaults, bool Nvram)
+        public void InsertHDD(string HDDSN, string PrinterMT, string PrinterSN)
         {
             try
             {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
                 _conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
-                string _sql = ";";
-                
 
-                if (HDD)
-                {
-                    _sql = String.Format("INSERT INTO hdd (sn, prtmt, prtsn) VALUES ('{0}', '{1}', '{2}');", HDDSN, MT, SN);
-                    _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
-                    _mySqlCommand.ExecuteNonQuery();
-                    _mySqlCommand.Dispose();
-                }
-                else
-                {
-                    HDDSN = "0";
-                }
-
-                int _firmware = 0;
-                int _defaults = 0;
-                int _nvram = 0;
-
-                if (Firmware)
-                {
-                    _firmware = 1;
-                }
-                if(Defaults)
-                {
-                    _defaults = 1;
-                }
-                if(Nvram)
-                {
-                    _nvram = 1;
-                }
-                
-
-                _sql = String.Format(
-                    "INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled, firmware, defaults, nvram) " +
-                    "VALUES (" +
-                    "(SELECT printersid FROM printers WHERE mt='{0}'), " +
-                    "'{1}', " +
-                    "(SELECT hddid FROM hdd WHERE prtsn='{2}'), " +
-                    "'{3}', " +
-                    "(SELECT usersid FROM users WHERE login='{4}'), " +
-                    "'{5}', " +
-                    "'{6}', " +
-                    "'{7}', " +
-                    "'{8}', " +
-                    "'{9}', );", 
-                    MT, SN, SN, Status, User, DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss")), 0, _firmware, _defaults, _nvram);
+                string _sql = String.Format("INSERT INTO hdd (sn, prtmt, prtsn, destroyed) VALUES ('{0}', '{1}', '{2}', '{3}');", HDDSN, PrinterMT, PrinterSN, 0);
 
                 _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
                 _mySqlCommand.ExecuteNonQuery();
+
                 _mySqlCommand.Dispose();
                 _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        public void InsertTestDataToMySQL(string PrinterMT, string PrinterSN, string Status, string Login, bool Firmware, bool Defaults, bool Nvram)
+        {
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+
+                string _sql = String.Format("INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled, firmware, defaults, nvram) VALUES " +
+                    "(" +
+                    //printersid
+                    "(SELECT printersid FROM printers WHERE mt='{0}'), " +
+                    //printer sn
+                    "'{1}', " +
+                    //hddid
+                    "(SELECT hddid FROM hdd WHERE prtsn='{1}'), " +
+                    //status
+                    "'{2}', " +
+                    //userid
+                    "(SELECT usersid FROM users WHERE login='{3}'), " +
+                    //date
+                    "'{4}', " +
+                    //dismantled
+                    "'{5}', " +
+                    //firmware
+                    "'{6}', " +
+                    //defaults
+                    "'{7}', " +
+                    //nvram
+                    "'{8}'" +
+                    ");", PrinterMT, PrinterSN, Status, Login, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), 0, (Firmware==true?1:0), (Defaults==true?1:0), (Nvram==true?1:0));
+
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _mySqlCommand.ExecuteNonQuery();
+
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -497,15 +509,20 @@ namespace LXM_DS.MYSQL
         {
             try
             {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
                 _conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
                 string _sql = ";";
 
 
                 _sql = String.Format("" +
-                    "INSERT INTO dismantled (userid, testid, componentid, status, date) VALUES " +
+                    "INSERT INTO dismantled (usersid, testid, componentid, status, date) VALUES " +
                     "(" +
-                    "'{0}', " +
+                    "(SELECT usersid FROM users WHERE login='{0}'), " +
                     "'{1}', " +
                     "'{2}', " +
                     "'{3}', " +

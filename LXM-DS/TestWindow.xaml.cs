@@ -35,7 +35,7 @@ namespace LXM_DS
         }
 
         printer _printer;
-        string _user;
+        string _login;
 
         Managers _managers;
         MySQLManager _mysqlManager;
@@ -43,26 +43,28 @@ namespace LXM_DS
         public TestWindow(string User)
         {
             InitializeComponent();
-            this.Topmost = true;
+            //this.Topmost = true;
             _printer = new printer();
 
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
 
-            _user = User;
+            _login = User;
         }
 
         private void btnNOK_Click(object sender, RoutedEventArgs e)
         {
             _printer.status = "NOK";
-            SendDataToMySQL();
+            InsertHDDToMySQL();
+            InsertDatatoMySQL();
             this.Close();
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             _printer.status = "OK";
-            SendDataToMySQL();
+            InsertHDDToMySQL();
+            InsertDatatoMySQL();
             this.Close();
         }
 
@@ -104,11 +106,6 @@ namespace LXM_DS
         private void txtHDDSN_TextChanged(object sender, TextChangedEventArgs e)
         {
             _printer.hddsn = this.txtHDDSN.Text.ToString();
-        }
-
-        public void SendDataToMySQL()
-        {
-            _mysqlManager.InsertTestData(_printer.mt, _printer.sn, _printer.hdd, _printer.hddsn, _printer.status, _user, _printer.firmware, _printer.defaults, _printer.nvram);
         }
 
         private void tgbtnHDD_Click(object sender, RoutedEventArgs e)
@@ -176,6 +173,19 @@ namespace LXM_DS
             {
                 this.btnOK.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void InsertHDDToMySQL()
+        {
+            if (this.tgbtnHDD.IsChecked == true)
+            {
+                _mysqlManager.InsertHDD(this.txtHDDSN.Text, this.txtMTlbl.Text, this.txtSNlbl.Text);
+            }
+        }
+
+        public void InsertDatatoMySQL()
+        {
+            _mysqlManager.InsertTestDataToMySQL(_printer.mt, _printer.sn, _printer.status, _login, _printer.firmware, _printer.defaults, _printer.nvram);
         }
     }
 }
