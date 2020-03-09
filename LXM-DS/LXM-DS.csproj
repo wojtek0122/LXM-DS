@@ -227,5 +227,8 @@
   <ItemGroup>
     <Resource Include="FILES\lexmark.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MYSQL\MySQL.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

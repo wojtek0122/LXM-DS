@@ -14,12 +14,11 @@ namespace LXM_DS.MYSQL
     {
         private static MySQLManager _manager;
         private static MySql.Data.MySqlClient.MySqlConnection _conn;
-        readonly private static string myConnectionString = "server=hosting1991484.online.pro;uid=00274822_lxm;pwd=Dismantle1@;database=00274822_lxm";
 
         private MySQLManager()
         {
             _conn = new MySql.Data.MySqlClient.MySqlConnection();
-            _conn.ConnectionString = myConnectionString;
+            _conn.ConnectionString = ParseConnectionStringFromXML();
         }
         public static MySQLManager CreateManager()
         {
@@ -28,6 +27,30 @@ namespace LXM_DS.MYSQL
                 _manager = new MySQLManager();
             }
             return _manager;
+        }
+
+        public string ParseConnectionStringFromXML()
+        {
+            string _parsedString = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\MySQL\\MySQL.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "MYSQL"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _parsedString = String.Format("server={0};uid={1};pwd={2};database={3}", _xmlReader.GetAttribute("SERVER"), _xmlReader.GetAttribute("USER"), _xmlReader.GetAttribute("PASSWORD"), _xmlReader.GetAttribute("DATABASE"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _parsedString;
         }
 
         public User GetUserByLogin(string Login)
