@@ -38,7 +38,7 @@ namespace LXM_DS
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += timer_Tick;
-            _timer.Start();
+            //_timer.Start();
         }
 
         private void timer_Tick(object sender, EventArgs e)

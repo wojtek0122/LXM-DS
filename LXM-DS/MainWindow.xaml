@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LXM_DS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920"
+        Title="MainWindow" Height="768" Width="1024"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <!-- LOGO -->
-        <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Width="475" Height="155">
+        <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Width="475" Height="155">
             <StackPanel Orientation="Horizontal">
                 <Image Source="FILES\Syncreon.png" />
             </StackPanel>
@@ -22,9 +22,9 @@
             </Grid>
         </GroupBox>
         <!-- Logout -->
-        <Button x:Name="btnWyloguj" Content="Wyloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" Margin="0,695,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWyloguj_Click"/>
+        <Button x:Name="btnWyloguj" Content="Wyloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" Margin="0,600,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWyloguj_Click"/>
         <!-- Footer -->
-        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Margin="0,825,0,0"  Width="1920"/>
-        <Label x:Name="lblName"  FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,822,0,0" />
+        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Margin="0,728,0,0"  Width="1920"/>
+        <Label x:Name="lblName" FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,735,0,0" />
     </Grid>
 </Window>

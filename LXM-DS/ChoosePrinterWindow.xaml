@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:LXM_DS"
         xmlns:t="clr-namespace:LXM_DS.TOUCH"
         mc:Ignorable="d"
-        Title="ChoosePrinterWindow" Height="1080" Width="1920"
+        Title="ChoosePrinterWindow" Height="768" Width="1024"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <Label Content="WYBIERZ DRUKARKE" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,20,0,0" VerticalAlignment="Top" Width="665"/>
+        <Label Content="WYBIERZ DRUKARKE" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,20,0,0" Width="665"/>
         <!-- Back Button -->
         <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnBack_Click">
             <StackPanel Orientation="Horizontal">
@@ -17,18 +17,18 @@
             </StackPanel>
         </Button>
         <!-- Label -->
-        <Label Content="Label" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,320,0,0" VerticalAlignment="Top" Width="210"/>
-        <t:TouchEnabledTextBox x:Name="txtLabel" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="370,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtLabel_TextChanged"/>
+        <Label Content="LABEL" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="35,335,0,0" VerticalAlignment="Top" Width="210"/>
+        <t:TouchEnabledTextBox x:Name="txtLabel" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="20,380,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtLabel_TextChanged"/>
 
         <!-- Printer -->
-        <Label HorizontalAlignment="Left"  Margin="940,125,0,0" VerticalAlignment="Top" Height="500" Width="500">
+        <Label HorizontalAlignment="Left"  Margin="500,125,0,0" VerticalAlignment="Top" Height="500" Width="500">
             <StackPanel Orientation="Horizontal">
                 <Image x:Name="imgFoto" Source="FILES\lexmark.png" />
             </StackPanel>
         </Label>
 
-        <Button x:Name="btnWybierz" Content="Wybierz" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="570,680,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWybierz_Click"/>
-        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,825,0,0" VerticalAlignment="Top" Width="1920"/>
-        <Label x:Name="lblInfo"  FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,822,0,0" />
+        <Button x:Name="btnWybierz" Content="Wybierz" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="315,630,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWybierz_Click"/>
+        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,728,0,0" VerticalAlignment="Top" Width="1920"/>
+        <Label x:Name="lblInfo" FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,735,0,0" />
     </Grid>
 </Window>
