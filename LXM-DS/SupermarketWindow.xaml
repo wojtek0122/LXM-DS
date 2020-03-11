@@ -1,0 +1,29 @@
+﻿<Window x:Class="LXM_DS.SupermarketWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LXM_DS"
+        xmlns:t="clr-namespace:LXM_DS.TOUCH"
+        mc:Ignorable="d"
+        Title="SupermarketWindow" Height="768" Width="1024"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Grid>
+            <!-- Label -->
+            <Label Content="SUPERMARKET" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,20,0,0" Width="665"/>
+            <!-- Back Button -->
+            <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="Button_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="FILES\Back.png" />
+                </StackPanel>
+            </Button>
+            <!-- Path -->
+            <t:TouchEnabledTextBox x:Name="txtPath" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="54,688,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
+            <!-- Button -->
+            <Button x:Name="btnWybierz" Content="Wybierz" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="315,630,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWybierz_Click"/>
+            <!-- Footer -->
+            <Rectangle Fill="#b9192c" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Margin="0,728,0,0"  Width="1920"/>
+        </Grid>
+    </Grid>
+</Window>

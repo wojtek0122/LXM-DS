@@ -14,11 +14,12 @@ namespace LXM_DS.MYSQL
     {
         private static MySQLManager _manager;
         private static MySql.Data.MySqlClient.MySqlConnection _conn;
+        private static MySql.Data.MySqlClient.MySqlBulkLoader _bulkLoader;
 
         private MySQLManager()
         {
-            _conn = new MySql.Data.MySqlClient.MySqlConnection();
-            _conn.ConnectionString = ParseConnectionStringFromXML();
+            _conn = new MySql.Data.MySqlClient.MySqlConnection(ParseConnectionStringFromXML());
+            _bulkLoader = new MySql.Data.MySqlClient.MySqlBulkLoader(_conn);
         }
         public static MySQLManager CreateManager()
         {
@@ -27,6 +28,34 @@ namespace LXM_DS.MYSQL
                 _manager = new MySQLManager();
             }
             return _manager;
+        }
+
+        public void AddNewOrderFromCSV(string Path)
+        {
+            _bulkLoader.TableName = "orders";
+            _bulkLoader.FieldTerminator = ";";
+            _bulkLoader.LineTerminator = "\n";
+            _bulkLoader.FileName = Path;
+
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+
+                // Upload data from file
+                int count = _bulkLoader.Load();
+                Console.WriteLine(count + " lines uploaded.");
+
+                _conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         public string ParseConnectionStringFromXML()
