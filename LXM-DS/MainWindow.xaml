@@ -21,9 +21,9 @@
                 <Button x:Name="btnDismantle" Content="Rozkrecanie" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,140,0,0" Width="450" Height="80" Click="btnDismantle_Click"/>
                 <!-- 
                 <Button x:Name="btnNewOrder" Content="Nowe Zamówienie" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Width="450" Height="80" Click="btnNewOrder_Click"/>
-                -->
                 <Button x:Name="btnSupermarket" Content="Supermarket" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Width="450" Height="80" Click="btnSupermarket_Click"/>
-            </Grid>
+                -->
+                </Grid>
         </GroupBox>
         <!-- Logout -->
         <Button x:Name="btnWyloguj" Content="Wyloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" Margin="0,600,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWyloguj_Click"/>

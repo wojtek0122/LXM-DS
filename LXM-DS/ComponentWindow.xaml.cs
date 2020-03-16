@@ -169,6 +169,13 @@ namespace LXM_DS
                         }
                     }
 
+                    switch(_component._type)
+                    {
+                        case "MB": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
+                        case "OP": { SNWindow _snWindow = new SNWindow(_component._type,  _testid); _snWindow.Show(); break; };
+                        case "ENG": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
+                    }
+
                     _browser.Navigate(@"C:\LXM-DS\FID\" + _fid + "." + _rev + " " + _pn + ".pdf");
                 }
                 catch(Exception)

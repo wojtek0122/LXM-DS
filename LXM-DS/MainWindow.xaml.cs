@@ -44,13 +44,16 @@ namespace LXM_DS
         private void timer_Tick(object sender, EventArgs e)
         {
             lblName.Content = _login + " " + DateTime.Now.ToString("HH:mm:ss");
-            if ((DateTime.Now.Hour > 16) && (DateTime.Now.Minute > 1))
+            if (_login != "admin")
             {
-                _timer.Stop();
-                LoginWindow _loginWindow = new LoginWindow();
-                _loginWindow.Topmost = true;
-                _loginWindow.Show();
-                this.Close();
+                if ((DateTime.Now.Hour > 16) && (DateTime.Now.Minute > 1))
+                {
+                    _timer.Stop();
+                    LoginWindow _loginWindow = new LoginWindow();
+                    _loginWindow.Topmost = true;
+                    _loginWindow.Show();
+                    this.Close();
+                }
             }
         }
 

@@ -30,6 +30,146 @@ namespace LXM_DS.MYSQL
             return _manager;
         }
 
+        public void UpdateResets(int TestID, string MBSN, string OPSN, string ENGINESN)
+        {
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+
+                string _sql = String.Format(
+                    "UPDATE resets SET ", TestID);
+                if (MBSN != null)
+                {
+                    _sql += String.Format("mbsn='{0}',", MBSN);
+                }
+                if (OPSN != null)
+                {
+                    _sql += String.Format("opsn='{0}',", OPSN);
+                }
+                if (ENGINESN != null)
+                {
+                    _sql += String.Format("enginesn='{0}',", ENGINESN);
+                }
+                _sql += String.Format(
+                    " date='{0}'" +
+                    " WHERE testid='{1}'", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), TestID);
+
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _mySqlCommand.ExecuteNonQuery();
+
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void InsertResets(int TestID, string MBSN, string OPSN, string ENGINESN)
+        {
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+
+                string _sql = String.Format(
+                    " INSERT INTO resets (testid, date, ");
+                if (MBSN != null)
+                {
+                    _sql += String.Format("mbsn");
+                }
+                if (OPSN != null)
+                {
+                    _sql += String.Format("opsn");
+                }
+                if (ENGINESN != null)
+                {
+                    _sql += String.Format("enginesn");
+                }
+                _sql += String.Format(") VALUES('{0}', '{1}', ", TestID, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                if (MBSN != null)
+                {
+                    _sql += String.Format("'{0}'", MBSN);
+                }
+                if (OPSN != null)
+                {
+                    _sql += String.Format("'{0}'", OPSN);
+                }
+                if (ENGINESN != null)
+                {
+                    _sql += String.Format("'{0}'", ENGINESN);
+                }
+                _sql += String.Format(");");
+
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _mySqlCommand.ExecuteNonQuery();
+
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void UpsertResets(int TestID, string MBSN, string OPSN, string ENGINESN)
+        {
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                _conn.Open();
+
+                string _sql = String.Format("SELECT resetsid FROM resets WHERE testid='{0}';", TestID);
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+                int _value = 0;
+
+                while (_dataReader.Read())
+                {
+                    Int32.TryParse(_dataReader.GetValue(0).ToString(), out _value);
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+                if (_value == 0)
+                {
+                    InsertResets(TestID, MBSN, OPSN, ENGINESN);
+                }
+                else
+                {
+                    UpdateResets(TestID, MBSN, OPSN, ENGINESN);
+                }
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public void AddNewOrderFromCSV(string Path)
         {
             _bulkLoader.TableName = "orders";
