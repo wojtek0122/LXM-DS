@@ -210,7 +210,10 @@ namespace LXM_DS.MYSQL
                     {
                         if (_xmlReader.HasAttributes)
                         {
-                            _parsedString = String.Format("server={0};uid={1};pwd={2};database={3}", _xmlReader.GetAttribute("SERVER"), _xmlReader.GetAttribute("USER"), _xmlReader.GetAttribute("PASSWORD"), _xmlReader.GetAttribute("DATABASE"));
+                            //XAMPP
+                            //datasource=127.0.0.1;port=3306;username=root;password=;database=test;
+                            _parsedString = String.Format("datasource={0};port={1};username={2};password={3};database={4};", _xmlReader.GetAttribute("DATASOURCE"), _xmlReader.GetAttribute("PORT"), _xmlReader.GetAttribute("USERNAME"), _xmlReader.GetAttribute("PASSWORD"), _xmlReader.GetAttribute("DATABASE"));
+                            //_parsedString = String.Format("server={0};uid={1};pwd={2};database={3}", _xmlReader.GetAttribute("SERVER"), _xmlReader.GetAttribute("USER"), _xmlReader.GetAttribute("PASSWORD"), _xmlReader.GetAttribute("DATABASE"));
                         }
                     }
                 }
