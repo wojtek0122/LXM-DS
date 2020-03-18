@@ -54,18 +54,25 @@ namespace LXM_DS
 
         private void btnNOK_Click(object sender, RoutedEventArgs e)
         {
-            _printer.status = "NOK";
-            InsertHDDToMySQL();
-            InsertDatatoMySQL();
-            this.Close();
+            if(!String.IsNullOrEmpty(txtSN.Text))
+            {
+                _printer.status = "NOK";
+                InsertHDDToMySQL();
+                InsertDatatoMySQL();
+                this.Close();
+            }
+            
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            _printer.status = "OK";
-            InsertHDDToMySQL();
-            InsertDatatoMySQL();
-            this.Close();
+            if (!String.IsNullOrEmpty(txtSN.Text))
+            {
+                _printer.status = "OK";
+                InsertHDDToMySQL();
+                InsertDatatoMySQL();
+                this.Close();
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
