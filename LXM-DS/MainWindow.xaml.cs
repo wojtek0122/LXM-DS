@@ -52,10 +52,6 @@ namespace LXM_DS
             {
                 if ((DateTime.Now.Hour == 16) && (DateTime.Now.Minute == 1))
                 {
-                    if(ParseBackupFromXML()=="YES")
-                    {
-                        _mysqlManager.MakeBackup(ParsePathFromXML());
-                    }
                     _timer.Stop();
                     LoginWindow _loginWindow = new LoginWindow();
                     _loginWindow.Topmost = true;
@@ -99,52 +95,5 @@ namespace LXM_DS
 
         }
 
-        public string ParseBackupFromXML()
-        {
-            string _parsed = "";
-            try
-            {
-                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
-                while (_xmlReader.Read())
-                {
-                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
-                    {
-                        if (_xmlReader.HasAttributes)
-                        {
-                            _parsed = String.Format(_xmlReader.GetAttribute("BACKUP"));
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            return _parsed;
-        }
-
-        public string ParsePathFromXML()
-        {
-            string _parsedPath = "";
-            try
-            {
-                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
-                while (_xmlReader.Read())
-                {
-                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
-                    {
-                        if (_xmlReader.HasAttributes)
-                        {
-                            _parsedPath = String.Format(_xmlReader.GetAttribute("PATH"));
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            return _parsedPath;
-        }
     }
 }

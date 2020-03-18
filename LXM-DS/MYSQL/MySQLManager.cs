@@ -29,19 +29,17 @@ namespace LXM_DS.MYSQL
             }
             return _manager;
         }
-        
+
         public void MakeBackup(string Path) //Install-Package MySqlBackup.NET
         {
-            //C:\LXM-DS\
-            string _file = Path + @"MYSQL\MySQL_BACKUP_" + DateTime.Now.ToString("yyyy-MM-dd_HH:mm:ss") + ".sql";
-
+            string _file = Path + "MYSQL\\";
+            string _datetime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
             try
             {
                 if (_conn.State == System.Data.ConnectionState.Open)
                 {
                     _conn.Close();
                 }
-
 
                 using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(ParseConnectionStringFromXML()))
                 {
@@ -51,7 +49,7 @@ namespace LXM_DS.MYSQL
                         {
                             cmd.Connection = conn;
                             conn.Open();
-                            mb.ExportToFile(_file);
+                            mb.ExportToFile(_file + _datetime + ".sql");
                             conn.Close();
                         }
                     }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using LXM_DS.MYSQL;
 using LXM_DS.USERS;
 
@@ -22,14 +23,33 @@ namespace LXM_DS
     public partial class LoginWindow : Window
     {
         Managers _managers;
+        MYSQL.MySQLManager _mysqlManager;
+        DispatcherTimer _timer;
         public LoginWindow()
         {
             InitializeComponent();
             _managers = Managers.CreateManagers();
+            _mysqlManager = MYSQL.MySQLManager.CreateManager();
+
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += timer_Tick;
+            _timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if ((DateTime.Now.Hour == 16) && (DateTime.Now.Minute == 0))
+            {
+                if (ParseBackupFromXML() == "YES")
+                {
+                    _mysqlManager.MakeBackup(ParsePathFromXML());
+                }
+            }
         }
 
         private void btnZaloguj_Click(object sender, RoutedEventArgs e)
-        {
+        {           
             //UserManager _userManager = _managers.GetUserManager();
             MySQLManager _mySQLManager = _managers.GetMySQLManager();
             
@@ -59,7 +79,8 @@ namespace LXM_DS
                 {
                     Console.WriteLine("BŁĄD:: Użytkownik nie istnieje!!!");
                 }  
-            }  
+            }
+                
         }
 
         public string CalculateMD5(string Input)
@@ -77,5 +98,54 @@ namespace LXM_DS
             }
             return sb.ToString();
         }
+
+        public string ParseBackupFromXML()
+        {
+            string _parsed = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _parsed = String.Format(_xmlReader.GetAttribute("BACKUP"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _parsed;
+        }
+
+        public string ParsePathFromXML()
+        {
+            string _parsedPath = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _parsedPath = String.Format(_xmlReader.GetAttribute("PATH"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _parsedPath;
+        }
+
     }
 }

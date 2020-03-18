@@ -118,6 +118,11 @@ namespace LXM_DS
 
         public void InitializePrinterComponentsToListView(string Status)
         {
+            foreach (var value in _printer.GetComponentList())
+            {
+                _dismantledComponentsList.Add(value);
+            }
+            /*
             if(Status == "OK")
             {
                 foreach (var value in _printer.GetComponentList())
@@ -139,6 +144,7 @@ namespace LXM_DS
                     }
                 }
             }
+            */
             ListViewAddSource();
         }
 
