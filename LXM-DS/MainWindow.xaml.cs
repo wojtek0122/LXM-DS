@@ -21,13 +21,17 @@ namespace LXM_DS
     /// </summary>
     public partial class MainWindow : Window
     {
+        Managers _managers;
+        MYSQL.MySQLManager _mysqlManager;
+
         private string _login;
         DispatcherTimer _timer;
         public MainWindow(string Login, int Permission)
         {
             InitializeComponent();
-            Managers _managers = Managers.CreateManagers();
+            _managers = Managers.CreateManagers();
             _managers.InitializePrinters();
+            _mysqlManager = MYSQL.MySQLManager.CreateManager();
 
             lblName.Content = _login = Login;
             if(Permission == 9)
@@ -46,8 +50,12 @@ namespace LXM_DS
             lblName.Content = _login + " " + DateTime.Now.ToString("HH:mm:ss");
             if (_login != "admin")
             {
-                if ((DateTime.Now.Hour > 16) && (DateTime.Now.Minute > 1))
+                if ((DateTime.Now.Hour == 16) && (DateTime.Now.Minute == 1))
                 {
+                    if(ParseBackupFromXML()=="YES")
+                    {
+                        _mysqlManager.MakeBackup(ParsePathFromXML());
+                    }
                     _timer.Stop();
                     LoginWindow _loginWindow = new LoginWindow();
                     _loginWindow.Topmost = true;
@@ -89,6 +97,54 @@ namespace LXM_DS
         private void btnSupermarket_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        public string ParseBackupFromXML()
+        {
+            string _parsed = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _parsed = String.Format(_xmlReader.GetAttribute("BACKUP"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _parsed;
+        }
+
+        public string ParsePathFromXML()
+        {
+            string _parsedPath = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _parsedPath = String.Format(_xmlReader.GetAttribute("PATH"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _parsedPath;
         }
     }
 }

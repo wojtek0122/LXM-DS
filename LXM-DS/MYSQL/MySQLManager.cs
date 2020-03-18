@@ -29,6 +29,41 @@ namespace LXM_DS.MYSQL
             }
             return _manager;
         }
+        
+        public void MakeBackup(string Path) //Install-Package MySqlBackup.NET
+        {
+            //C:\LXM-DS\
+            string _file = Path + @"MYSQL\MySQL_BACKUP_" + DateTime.Now.ToString("yyyy-MM-dd_HH:mm:ss") + ".sql";
+
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+
+                using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(ParseConnectionStringFromXML()))
+                {
+                    using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+                    {
+                        using (MySql.Data.MySqlClient.MySqlBackup mb = new MySql.Data.MySqlClient.MySqlBackup(cmd))
+                        {
+                            cmd.Connection = conn;
+                            conn.Open();
+                            mb.ExportToFile(_file);
+                            conn.Close();
+                        }
+                    }
+                }
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
 
         public void UpdateResets(int TestID, string MBSN, string OPSN, string ENGINESN)
         {

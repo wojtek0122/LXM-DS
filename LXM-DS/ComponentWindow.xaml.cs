@@ -175,8 +175,8 @@ namespace LXM_DS
                         case "OP": { SNWindow _snWindow = new SNWindow(_component._type,  _testid); _snWindow.Show(); break; };
                         case "ENG": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
                     }
-
-                    _browser.Navigate(@"C:\LXM-DS\FID\" + _fid + "." + _rev + " " + _pn + ".pdf");
+                    string _path = ParseFIDPathFromXML();
+                    _browser.Navigate(_path + @"FID\" + _fid + "." + _rev + " " + _pn + ".pdf");
                 }
                 catch(Exception)
                 {
@@ -185,6 +185,30 @@ namespace LXM_DS
 
             }
             
+        }
+
+        public string ParseFIDPathFromXML()
+        {
+            string _parsedPath = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _parsedPath = String.Format(_xmlReader.GetAttribute("PATH"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _parsedPath;
         }
     }
 }
