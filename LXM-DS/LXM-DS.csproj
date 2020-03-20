@@ -278,5 +278,9 @@
   <ItemGroup>
     <Resource Include="Config.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FILES\Left.png" />
+    <Resource Include="FILES\Right.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
