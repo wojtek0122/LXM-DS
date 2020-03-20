@@ -32,7 +32,7 @@ namespace LXM_DS
             _mysqlManager = MYSQL.MySQLManager.CreateManager();
 
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Interval = TimeSpan.FromMinutes(1);
             _timer.Tick += timer_Tick;
             _timer.Start();
         }
