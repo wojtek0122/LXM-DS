@@ -296,5 +296,10 @@
     <Resource Include="FILES\Left.png" />
     <Resource Include="FILES\Right.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FILES\nok.png" />
+    <Resource Include="FILES\none.png" />
+    <Resource Include="FILES\ok.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
