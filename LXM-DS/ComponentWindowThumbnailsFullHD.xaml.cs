@@ -184,7 +184,7 @@ namespace LXM_DS
                 Height = 200,
                 Width = 255,
                 Background = _brush,
-                ID = _sID,
+                ID = _sID++,
             };
             _btn.Click += new RoutedEventHandler(_btn_Click);
             Grid.SetColumn(_btn, _column);
