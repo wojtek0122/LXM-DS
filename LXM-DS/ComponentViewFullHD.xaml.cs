@@ -26,7 +26,6 @@ namespace LXM_DS
         MySQLManager _mysqlManager;
         int _testid;
         string _login;
-        string _pn;
         Component _component;
 
         public ComponentViewFullHD(string Login, int TestID, string PN)
@@ -37,7 +36,6 @@ namespace LXM_DS
             _mysqlManager = _managers.GetMySQLManager();
             _login = Login;
             _testid = TestID;
-            _pn = PN;
             _component = _mysqlManager.GetComponentByPN(PN.Remove(0,2));
             lblMT.Content = _component._PN;
 

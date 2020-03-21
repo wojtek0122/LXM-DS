@@ -34,7 +34,8 @@ namespace LXM_DS
         string _login;
 
         List<Component> _dismantledComponentsList;
-        Component _component;
+        List<Button> _buttonTable;
+
 
         public ComponentWindowThumbnailsFullHD(int TestID, string MT, string Status, string Login)
         {
@@ -49,6 +50,7 @@ namespace LXM_DS
 
             _printer = _printerManager.GetPrinterByMT(_mt);
             _dismantledComponentsList = new List<Component>();
+            _buttonTable = new List<Button>();
             foreach (var value in _printer.GetComponentList())
             {
                 _dismantledComponentsList.Add(value);
@@ -74,7 +76,7 @@ namespace LXM_DS
                 {
                     for (int col = 1; col < _maxColumns; col++)
                     {
-                        CreateNewButton(_dismantledComponentsList[_index]._PN, col, row - 1);
+                        _buttonTable.Add(CreateNewButton(_dismantledComponentsList[_index]._PN, col, row - 1));
                         _index++;
                         if (_count == _index)
                             break;
@@ -151,11 +153,11 @@ namespace LXM_DS
 
         private void _btn_Click(object sender, RoutedEventArgs e)
         {
-            Button _button = sender as Button;
-            string name = "PN" + _button.Name;  
+            Button _button = sender as Button;  
             ComponentViewFullHD _componentViewFullHD = new ComponentViewFullHD(_login, _testID, _button.Name);
             _componentViewFullHD.Topmost = true;
             _componentViewFullHD.Show();
+            _button.IsEnabled = false;
         }
     }
 }
