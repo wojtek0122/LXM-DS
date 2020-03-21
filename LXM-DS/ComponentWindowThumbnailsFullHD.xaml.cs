@@ -19,15 +19,15 @@ namespace LXM_DS
     /// </summary>
     public partial class ComponentWindowThumbnailsFullHD : Window
     {
-        private Button[] _btnTable;
         public ComponentWindowThumbnailsFullHD()
         {
             InitializeComponent();
-            
+            Button b1 = CreateNewButton("40X8017", 1, 0);
+            Button b2 = CreateNewButton("40X8161", 1, 1);
+            Button b3 = CreateNewButton("40X7678", 1, 2);
 
-           
         }
-        
+
         private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
             
@@ -75,18 +75,28 @@ namespace LXM_DS
             _brush = (Brush)_converter.ConvertFromString("#FFFFFFFF");
             Button _btn = new Button()
             {
+                Name = "PN" + PN,
                 Content = _grid,
                 Height = 200,
                 Width = 255,
                 Background = _brush,
             };
-
+            _btn.Click += new RoutedEventHandler(_btn_Click);
             Grid.SetColumn(_btn, Column);
             Grid.SetRow(_btn, Row);
 
             grdThumbnails.Children.Add(_btn);
 
             return _btn;
+        }
+
+        private void _btn_Click(object sender, RoutedEventArgs e)
+        {
+            Button _button = sender as Button;
+            if (_button.Name == "PN40X8017")
+            {
+
+            }
         }
     }
 }

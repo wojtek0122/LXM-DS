@@ -9,30 +9,19 @@
         Height="1080" Width="1920"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <!-- Left Button -->
-        <Button x:Name="btnLeft" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="White" Margin="10" Width="64" Height="64" Click="btnLeft_Click">
-            <StackPanel Orientation="Horizontal">
-                <Image Source="FILES\Left.png" />
-            </StackPanel>
-        </Button>
-        <!-- Right Button -->
-        <Button x:Name="btnRight" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnRight_Click">
-            <StackPanel Orientation="Horizontal">
-                <Image Source="FILES\Right.png" />
-            </StackPanel>
-        </Button>
-        
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,1040,0,0" VerticalAlignment="Top" Width="1920"/>
         <Label x:Name="lblMT" Content="4063" FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,1045,0,0" />
         
-        <Grid x:Name="grdThumbnails" Height="1030" VerticalAlignment="Top" Width="1752">
+        <Grid x:Name="grdThumbnails" Height="1030" VerticalAlignment="Top" Width="1920">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="84" />
                 <ColumnDefinition Width="292" />
                 <ColumnDefinition Width="292" />
                 <ColumnDefinition Width="292" />
                 <ColumnDefinition Width="292" />
                 <ColumnDefinition Width="292" />
                 <ColumnDefinition Width="292" />
+                <ColumnDefinition Width="84" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="206" />
@@ -42,8 +31,19 @@
                 <RowDefinition Height="206" />
             </Grid.RowDefinitions>
             <!-- Buttons -->
-
             
+            <!-- Left Button -->
+            <Button x:Name="btnLeft" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="White" Margin="10" Width="64" Height="64" Click="btnLeft_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="FILES\Left.png" />
+                </StackPanel>
+            </Button>
+            <!-- Right Button -->
+            <Button x:Name="btnRight" Grid.Column="7" Grid.Row="0" Grid.RowSpan="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnRight_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="FILES\Right.png" />
+                </StackPanel>
+            </Button>
 
             <!-- Buttons -->
         </Grid>
