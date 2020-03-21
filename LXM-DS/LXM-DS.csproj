@@ -147,6 +147,9 @@
     <Compile Include="ChoosePrinterWindow.xaml.cs">
       <DependentUpon>ChoosePrinterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ComponentWindowThumbnailsFullHD.xaml.cs">
+      <DependentUpon>ComponentWindowThumbnailsFullHD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Managers.cs" />
     <Compile Include="MYSQL\MySQLManager.cs" />
     <Compile Include="NewOrderWindow.xaml.cs">
@@ -169,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ComponentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ComponentWindowThumbnailsFullHD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
