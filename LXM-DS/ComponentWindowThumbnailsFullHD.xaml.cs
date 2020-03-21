@@ -56,7 +56,34 @@ namespace LXM_DS
 
             InitializeComponent();
 
+            int _maxColumns = 6;
+            //int _column = 1;
+            int _maxRows = 5;
+            //int _row = 0;
+            int _index = 0;
 
+            int _count = _dismantledComponentsList.Count;
+            if(_count >= 30)
+            {
+                //Jeżeli więcej niż 30 komponentów
+            }
+            else
+            {
+                
+                for (int row = 1; row <= _maxRows; row++)
+                {
+                    for (int col = 1; col < _maxColumns; col++)
+                    {
+                        CreateNewButton(_dismantledComponentsList[_index]._PN, col, row - 1);
+                        _index++;
+                        if (_count == _index)
+                            break;
+                    }
+                    if (_count == _index)
+                        break;
+                }
+
+            }
 
         }
 
@@ -125,12 +152,10 @@ namespace LXM_DS
         private void _btn_Click(object sender, RoutedEventArgs e)
         {
             Button _button = sender as Button;
-            if (_button.Name == "PN40X8017")
-            {
-                ComponentViewFullHD _componentViewFullHD = new ComponentViewFullHD(_login, _testID, _component);
-                _componentViewFullHD.Topmost = true;
-                _componentViewFullHD.Show();
-            }
+            string name = "PN" + _button.Name;  
+            ComponentViewFullHD _componentViewFullHD = new ComponentViewFullHD(_login, _testID, _button.Name);
+            _componentViewFullHD.Topmost = true;
+            _componentViewFullHD.Show();
         }
     }
 }

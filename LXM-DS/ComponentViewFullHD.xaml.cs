@@ -26,9 +26,10 @@ namespace LXM_DS
         MySQLManager _mysqlManager;
         int _testid;
         string _login;
+        string _pn;
         Component _component;
 
-        public ComponentViewFullHD(string Login, int TestID, Component Component)
+        public ComponentViewFullHD(string Login, int TestID, string PN)
         {
             InitializeComponent();
             
@@ -36,11 +37,22 @@ namespace LXM_DS
             _mysqlManager = _managers.GetMySQLManager();
             _login = Login;
             _testid = TestID;
-            _component = Component;
+            _pn = PN;
+            _component = _mysqlManager.GetComponentByPN(PN.Remove(0,2));
             lblMT.Content = _component._PN;
 
             string _path = ParseFIDPathFromXML();
-            _browser.Navigate(_path + @"FID\" + _component._FID + "." + _component._REV + " " + _component._PN + ".pdf");
+            int _revInt = 0;
+            int.TryParse(_component._REV, out _revInt);
+            if (_revInt > 9)
+            {
+                _browser.Navigate(_path + @"FID\" + _component._FID + "." + _component._REV + " " + _component._PN + ".pdf");
+            }
+            else
+            {
+                _browser.Navigate(_path + @"FID\" + _component._FID + ".0" + _component._REV + " " + _component._PN + ".pdf");
+            }
+            
 
             switch (_component._type)
             {

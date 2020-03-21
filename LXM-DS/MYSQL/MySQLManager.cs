@@ -374,7 +374,49 @@ namespace LXM_DS.MYSQL
             return _list;
 
         }
-        
+
+        public Component GetComponentByPN(string PN)
+        {
+            Component _component = null;
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = String.Format("SELECT * FROM components WHERE pn='{0}';", PN);
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    int _id;
+                    Int32.TryParse(_dataReader.GetValue(0).ToString(), out _id);
+                    int _stock;
+                    Int32.TryParse(_dataReader.GetValue(8).ToString(), out _stock);
+                    int _yield;
+                    Int32.TryParse(_dataReader.GetValue(9).ToString(), out _yield);
+
+                    _component = new Component(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _dataReader.GetValue(5).ToString(), _dataReader.GetValue(6).ToString(), _dataReader.GetValue(7).ToString(), _stock, _yield, _dataReader.GetValue(10).ToString(), _dataReader.GetValue(11).ToString());
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _component;
+
+        }
+
         public List<Printer> GetPrinters(List<Component> ListOfComponents)
         {
             List<Printer> _list = new List<Printer>();
