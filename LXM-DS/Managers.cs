@@ -1,4 +1,5 @@
-﻿using LXM_DS.MYSQL;
+﻿using LXM_DS.BUTTON;
+using LXM_DS.MYSQL;
 using LXM_DS.PRINTER;
 using LXM_DS.USERS;
 using System;
@@ -15,10 +16,12 @@ namespace LXM_DS
         PrinterManager _printerManager;
         //UserManager _userManager;
         MySQLManager _mysqlManager;
+        ButtonListManager _buttonListManager;
         private Managers()
         {
             _mysqlManager = MySQLManager.CreateManager();
             _printerManager = new PrinterManager();
+            _buttonListManager = ButtonListManager.CreateManager();
             
             //_userManager = new UserManager();
         }
@@ -30,6 +33,11 @@ namespace LXM_DS
                 _managers = new Managers();
             }
             return _managers;
+        }
+
+        public ButtonListManager GetButtonListManager()
+        {
+            return _buttonListManager;
         }
 
         public PrinterManager GetPrinterManager()

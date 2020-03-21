@@ -1,4 +1,5 @@
-﻿using LXM_DS.MYSQL;
+﻿using LXM_DS.BUTTON;
+using LXM_DS.MYSQL;
 using LXM_DS.PRINTER;
 using System;
 using System.Collections.Generic;
@@ -24,18 +25,24 @@ namespace LXM_DS
         //Managers
         Managers _managers;
         MySQLManager _mysqlManager;
+        ButtonListManager _buttonListManager;
         int _testid;
         string _login;
+        string _pn;
+        int _id;
         Component _component;
 
-        public ComponentViewFullHD(string Login, int TestID, string PN)
+        public ComponentViewFullHD(string Login, int TestID, string PN, int ID)
         {
             InitializeComponent();
             
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
+            _buttonListManager = _managers.GetButtonListManager();
             _login = Login;
             _testid = TestID;
+            _pn = PN;
+            _id = ID;
             _component = _mysqlManager.GetComponentByPN(PN.Remove(0,2));
             lblMT.Content = _component._PN;
 
@@ -72,6 +79,16 @@ namespace LXM_DS
             //Add log
             _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "OK");
 
+            StatusButton _btn;
+            foreach (var value in _buttonListManager.GetButtonList())
+            {
+                _btn = value.Item1;
+                if(_btn.ID == _id)
+                {
+                    _btn.STATUS = "OK";
+                }
+            }
+
             //Close window
             this.Close();
         }
@@ -85,6 +102,16 @@ namespace LXM_DS
             //Add log
             _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NOK");
 
+            StatusButton _btn;
+            foreach (var value in _buttonListManager.GetButtonList())
+            {
+                _btn = value.Item1;
+                if (_btn.ID == _id)
+                {
+                    _btn.STATUS = "NOK";
+                }
+            }
+
             //Close window
             this.Close();
         }
@@ -93,6 +120,16 @@ namespace LXM_DS
         {
             //Add log
             _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NONE");
+
+            StatusButton _btn;
+            foreach (var value in _buttonListManager.GetButtonList())
+            {
+                _btn = value.Item1;
+                if (_btn.ID == _id)
+                {
+                    _btn.STATUS = "NONE";
+                }
+            }
 
             //Close window
             this.Close();

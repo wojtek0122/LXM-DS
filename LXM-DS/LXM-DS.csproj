@@ -144,6 +144,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BARCODE\Barcode.cs" />
+    <Compile Include="BUTTON\ButtonListManager.cs" />
+    <Compile Include="BUTTON\StatusButton.cs" />
     <Compile Include="ChoosePrinterWindow.xaml.cs">
       <DependentUpon>ChoosePrinterWindow.xaml</DependentUpon>
     </Compile>

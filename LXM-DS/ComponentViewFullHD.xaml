@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ComponentViewFullHD" 
         Height="1080" Width="1920"
-        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        WindowStyle="None"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <WebBrowser x:Name="_browser" HorizontalAlignment="Left" Height="920" VerticalAlignment="Top" Width="1920" IsEnabled="False"/>
         <Button x:Name="OK" Content="OK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="142,940,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="OK_Click"/>
