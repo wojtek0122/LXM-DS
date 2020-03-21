@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LXM_DS"
         mc:Ignorable="d"
-        Title="ComponentViewFullHD" Height="450" Width="800">
+        Title="ComponentViewFullHD" 
+        Height="1080" Width="1920"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
+        <WebBrowser x:Name="_browser" HorizontalAlignment="Left" Height="920" VerticalAlignment="Top" Width="1920" IsEnabled="False"/>
+        <Button x:Name="OK" Content="OK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="142,940,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="OK_Click"/>
+        <Button x:Name="NOK" Content="NOK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="735,940,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="NOK_Click"/>
+        <Button x:Name="NONE" Content="BRAK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="1328,940,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="NONE_Click"/>
         
+        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,1040,0,0" VerticalAlignment="Top" Width="1920"/>
+        
+        <Image x:Name="serial_bcode1" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2"/>
     </Grid>
 </Window>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LXM_DS.PRINTER
 {
-    class Component
+    public class Component
     {
         //private static int _sID = 0;
         public int _id;
