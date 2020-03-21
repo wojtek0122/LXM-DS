@@ -158,6 +158,7 @@ namespace LXM_DS
             _componentViewFullHD.Topmost = true;
             _componentViewFullHD.Show();
             _button.IsEnabled = false;
+
         }
     }
 }
