@@ -35,6 +35,8 @@ namespace LXM_DS
             _timer.Interval = TimeSpan.FromMinutes(1);
             _timer.Tick += timer_Tick;
             _timer.Start();
+
+            txtNFC.Focus();
         }
 
         private void timer_Tick(object sender, EventArgs e)

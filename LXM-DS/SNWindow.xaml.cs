@@ -35,6 +35,7 @@ namespace LXM_DS
             _type = Type;
             _testID = TestID;
             ChangeLabel();
+            txtSN.Focus();
         }
 
         public void ChangeLabel()

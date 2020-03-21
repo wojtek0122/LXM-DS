@@ -33,6 +33,7 @@ namespace LXM_DS
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
             _login = Login;
+            txtLabel.Focus();
         }
 
         private void btnWybierz_Click(object sender, RoutedEventArgs e)

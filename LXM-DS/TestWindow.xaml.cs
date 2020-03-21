@@ -50,6 +50,7 @@ namespace LXM_DS
             _mysqlManager = _managers.GetMySQLManager();
 
             _login = User;
+            txtSN.Focus();
         }
 
         private void btnNOK_Click(object sender, RoutedEventArgs e)
