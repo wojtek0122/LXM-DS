@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LXM_DS.MYSQL;
+using LXM_DS.PRINTER;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,12 +21,42 @@ namespace LXM_DS
     /// </summary>
     public partial class ComponentWindowThumbnailsFullHD : Window
     {
+        //Managers
+        Managers _managers;
+        MySQLManager _mysqlManager;
+        PrinterManager _printerManager;
+
+        Printer _printer;
+
+        int _testID;
+        string _mt;
+        string _status;
+        string _login;
+
+        List<Component> _dismantledComponentsList;
+        Component _component;
+
         public ComponentWindowThumbnailsFullHD(int TestID, string MT, string Status, string Login)
         {
+            _testID = TestID;
+            _mt = MT;
+            _status = Status;
+            _login = Login;
+
+            _managers = Managers.CreateManagers();
+            _mysqlManager = _managers.GetMySQLManager();
+            _printerManager = _managers.GetPrinterManager();
+
+            _printer = _printerManager.GetPrinterByMT(_mt);
+            _dismantledComponentsList = new List<Component>();
+            foreach (var value in _printer.GetComponentList())
+            {
+                _dismantledComponentsList.Add(value);
+            }
+
             InitializeComponent();
-            Button b1 = CreateNewButton("40X8017", 1, 0);
-            Button b2 = CreateNewButton("40X8161", 1, 1);
-            Button b3 = CreateNewButton("40X7678", 1, 2);
+
+
 
         }
 
@@ -95,7 +127,9 @@ namespace LXM_DS
             Button _button = sender as Button;
             if (_button.Name == "PN40X8017")
             {
-
+                ComponentViewFullHD _componentViewFullHD = new ComponentViewFullHD(_login, _testID, _component);
+                _componentViewFullHD.Topmost = true;
+                _componentViewFullHD.Show();
             }
         }
     }

@@ -41,6 +41,13 @@ namespace LXM_DS
 
             string _path = ParseFIDPathFromXML();
             _browser.Navigate(_path + @"FID\" + _component._FID + "." + _component._REV + " " + _component._PN + ".pdf");
+
+            switch (_component._type)
+            {
+                case "MB": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
+                case "OP": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
+                case "ENG": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
+            }
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)

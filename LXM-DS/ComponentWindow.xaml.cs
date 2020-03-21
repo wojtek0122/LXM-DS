@@ -182,7 +182,17 @@ namespace LXM_DS
                         case "ENG": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
                     }
                     string _path = ParseFIDPathFromXML();
-                    _browser.Navigate(_path + @"FID\" + _fid + "." + _rev + " " + _pn + ".pdf");
+                    int _revInt = 0;
+                    int.TryParse(_rev, out _revInt);
+                    if(_revInt>9)
+                    {
+                        _browser.Navigate(_path + @"FID\" + _fid + "." + _rev + " " + _pn + ".pdf");
+                    }
+                    else
+                    {
+                        _browser.Navigate(_path + @"FID\" + _fid + ".0" + _rev + " " + _pn + ".pdf");
+                    }
+                    
                 }
                 catch(Exception)
                 {
