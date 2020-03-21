@@ -15,7 +15,7 @@
         <Button x:Name="NONE" Content="BRAK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="1328,940,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="NONE_Click"/>
         
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,1040,0,0" VerticalAlignment="Top" Width="1920"/>
-        
+        <Label x:Name="lblMT" FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,1050,0,0" />
         <Image x:Name="serial_bcode1" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2"/>
     </Grid>
 </Window>

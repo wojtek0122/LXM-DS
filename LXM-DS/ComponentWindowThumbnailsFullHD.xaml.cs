@@ -19,7 +19,7 @@ namespace LXM_DS
     /// </summary>
     public partial class ComponentWindowThumbnailsFullHD : Window
     {
-        public ComponentWindowThumbnailsFullHD()
+        public ComponentWindowThumbnailsFullHD(int TestID, string MT, string Status, string Login)
         {
             InitializeComponent();
             Button b1 = CreateNewButton("40X8017", 1, 0);

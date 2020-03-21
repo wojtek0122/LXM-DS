@@ -45,9 +45,18 @@ namespace LXM_DS
             else
             {
                 _mysqlManager.SetDismantled(_testid);
-                ComponentWindow _componentWindow = new ComponentWindow(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN), _login);
-                this.Close();
-                _componentWindow.Show();
+                if(ParseFullHDInfoFromXML() == "YES")
+                {
+                    ComponentWindowThumbnailsFullHD _componentWindowThumbnailsFullHD = new ComponentWindowThumbnailsFullHD(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN), _login);
+                    this.Close();
+                    _componentWindowThumbnailsFullHD.Show();
+                }
+                else
+                {
+                    ComponentWindow _componentWindow = new ComponentWindow(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN), _login);
+                    this.Close();
+                    _componentWindow.Show();
+                }
             }
             
         }
@@ -84,6 +93,30 @@ namespace LXM_DS
             {
                 this.imgFoto.Source = new ImageSourceConverter().ConvertFromString(@"..\..\FILES\lexmark.png") as ImageSource;
             }
+        }
+
+        public string ParseFullHDInfoFromXML()
+        {
+            string _parsedInfo = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _parsedInfo = String.Format(_xmlReader.GetAttribute("FULLHD"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _parsedInfo;
         }
     }
 }

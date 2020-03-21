@@ -37,6 +37,7 @@ namespace LXM_DS
             _login = Login;
             _testid = TestID;
             _component = Component;
+            lblMT.Content = _component._PN;
 
             string _path = ParseFIDPathFromXML();
             _browser.Navigate(_path + @"FID\" + _component._FID + "." + _component._REV + " " + _component._PN + ".pdf");
