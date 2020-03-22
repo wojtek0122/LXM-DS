@@ -41,7 +41,7 @@ namespace LXM_DS
 
         int _maxColumnsOnPage = 3;
         int _maxRowsOnPage = 3;
-        int _index = 0;
+        int _maxButtons = 0;
 
         List<Component> _dismantledComponentsList;
 
@@ -68,6 +68,12 @@ namespace LXM_DS
             InitializeComponent();
             this.lblMT.Content = "MT: " + _mt;
 
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += timer_Tick;
+            _timer.Start();
+
+            _maxButtons = _maxColumnsOnPage * _maxRowsOnPage;
             int _count = _dismantledComponentsList.Count;
 
             //CreateButtons
@@ -79,17 +85,25 @@ namespace LXM_DS
                 if(col == _maxRowsOnPage && row == _maxRowsOnPage)
                 {
                     _pageMax++;
-                    col = 0;
-                    row = 0;
+                    col = 1;
+                    row = 1;
                 }
                 if(col == _maxColumnsOnPage)
                 {
-                    col = 0;
+                    col = 1;
+                    row++;
                 }
                 if(row == _maxRowsOnPage)
                 {
-                    row = 0;
+                    row = 1;
                 }
+                col++;
+            }
+
+            if(_pageMax!=1)
+            {
+                btnLeft.Visibility = Visibility.Visible;
+                btnRight.Visibility = Visibility.Visible;
             }
             /*
             if (_count >= 30)
@@ -114,10 +128,6 @@ namespace LXM_DS
 
             }
             */
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1);
-            _timer.Tick += timer_Tick;
-            _timer.Start();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -156,12 +166,26 @@ namespace LXM_DS
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
-
+            if(_pageCurrent == 1)
+            {
+                _pageCurrent = 1;
+            }
+            else
+            {
+                _pageCurrent--;
+            }
         }
 
         private void btnRight_Click(object sender, RoutedEventArgs e)
         {
-
+            if(_pageCurrent==_pageMax)
+            {
+                _pageCurrent = _pageMax;
+            }
+            else
+            {
+                _pageCurrent++;
+            }
         }
 
         public StatusButton CreateNewButton(string PN, int Column, int Row)
@@ -210,6 +234,7 @@ namespace LXM_DS
                 Width = 255,
                 Background = _brush,
                 ID = _sID++,
+                //Visibility = Visibility.Hidden,
             };
             _btn.Click += new RoutedEventHandler(_btn_Click);
             Grid.SetColumn(_btn, _column);
