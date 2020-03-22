@@ -149,8 +149,14 @@
     <Compile Include="ChoosePrinterWindow.xaml.cs">
       <DependentUpon>ChoosePrinterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ComponentView.xaml.cs">
+      <DependentUpon>ComponentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ComponentViewFullHD.xaml.cs">
       <DependentUpon>ComponentViewFullHD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ComponentWindowThumbnails.xaml.cs">
+      <DependentUpon>ComponentWindowThumbnails.xaml</DependentUpon>
     </Compile>
     <Compile Include="ComponentWindowThumbnailsFullHD.xaml.cs">
       <DependentUpon>ComponentWindowThumbnailsFullHD.xaml</DependentUpon>
@@ -176,11 +182,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ComponentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ComponentViewFullHD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ComponentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ComponentWindowThumbnails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

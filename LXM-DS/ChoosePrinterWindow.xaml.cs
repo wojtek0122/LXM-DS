@@ -54,9 +54,12 @@ namespace LXM_DS
                 }
                 else
                 {
-                    ComponentWindow _componentWindow = new ComponentWindow(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN), _login);
+                    ComponentWindowThumbnails _componentWindowThumbnails = new ComponentWindowThumbnails(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN), _login);
                     this.Close();
-                    _componentWindow.Show();
+                    _componentWindowThumbnails.Show();
+                    //ComponentWindow _componentWindow = new ComponentWindow(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN), _login);
+                    //this.Close();
+                    //_componentWindow.Show();
                 }
             }
             

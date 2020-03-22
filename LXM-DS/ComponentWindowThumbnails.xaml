@@ -1,0 +1,45 @@
+﻿<Window x:Class="LXM_DS.ComponentWindowThumbnails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LXM_DS"
+        mc:Ignorable="d"
+        Title="ComponentWindowThumbnails" Height="768" Width="1024"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,728,0,0" VerticalAlignment="Top" Width="1920"/>
+        <Label x:Name="lblMT" Content="MT: " FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,735,0,0" />
+
+        <Grid x:Name="grdThumbnails" Height="728" VerticalAlignment="Top" Width="1024">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="84" />
+                <ColumnDefinition Width="285" />
+                <ColumnDefinition Width="285" />
+                <ColumnDefinition Width="285" />
+                <ColumnDefinition Width="84" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="242" />
+                <RowDefinition Height="242" />
+                <RowDefinition Height="242" />
+            </Grid.RowDefinitions>
+            <!-- Buttons -->
+
+            <!-- Left Button -->
+            <Button x:Name="btnLeft" Visibility="Hidden" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="White" Margin="10" Width="64" Height="64" Click="btnLeft_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="FILES\Left.png" />
+                </StackPanel>
+            </Button>
+            <!-- Right Button -->
+            <Button x:Name="btnRight" Visibility="Hidden" Grid.Column="7" Grid.Row="0" Grid.RowSpan="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnRight_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="FILES\Right.png" />
+                </StackPanel>
+            </Button>
+
+            <!-- Buttons -->
+        </Grid>
+    </Grid>
+</Window>
