@@ -36,6 +36,13 @@ namespace LXM_DS
         int _countDismantled = 0;
         int _sID = 0;
 
+        int _pageCurrent = 1;
+        int _pageMax = 1;
+
+        int _maxColumnsOnPage = 3;
+        int _maxRowsOnPage = 3;
+        int _index = 0;
+
         List<Component> _dismantledComponentsList;
 
         DispatcherTimer _timer;
@@ -61,11 +68,30 @@ namespace LXM_DS
             InitializeComponent();
             this.lblMT.Content = "MT: " + _mt;
 
-            int _maxColumns = 7;
-            int _maxRows = 5;
-            int _index = 0;
-
             int _count = _dismantledComponentsList.Count;
+
+            //CreateButtons
+            int col = 1;
+            int row = 1;
+            for(int i=0; i<_dismantledComponentsList.Count; i++)
+            {
+                _buttonListManager.AddItemToButtonList((CreateNewButton(_dismantledComponentsList[i]._PN, col, row - 1), col, row - 1));
+                if(col == _maxRowsOnPage && row == _maxRowsOnPage)
+                {
+                    _pageMax++;
+                    col = 0;
+                    row = 0;
+                }
+                if(col == _maxColumnsOnPage)
+                {
+                    col = 0;
+                }
+                if(row == _maxRowsOnPage)
+                {
+                    row = 0;
+                }
+            }
+            /*
             if (_count >= 30)
             {
                 //Jeżeli więcej niż 30 komponentów
@@ -87,7 +113,7 @@ namespace LXM_DS
                 }
 
             }
-
+            */
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += timer_Tick;
@@ -190,7 +216,6 @@ namespace LXM_DS
             Grid.SetRow(_btn, _row);
 
             grdThumbnails.Children.Add(_btn);
-
             return _btn;
         }
 
