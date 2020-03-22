@@ -149,7 +149,7 @@ namespace LXM_DS
                 Height = 150,
                 VerticalAlignment = VerticalAlignment.Top
             };
-            _img.Source = new ImageSourceConverter().ConvertFromString(@"C:\Syncreon\FID\miniaturka\" + PN + ".png") as ImageSource;
+            _img.Source = new ImageSourceConverter().ConvertFromString(ParseFIDPathFromXML() + @"\FID\Thumbnails\" + PN + ".png") as ImageSource;
 
             var _converter = new System.Windows.Media.BrushConverter();
             var _brush = (Brush)_converter.ConvertFromString("#FF4C4F5B");
@@ -233,6 +233,30 @@ namespace LXM_DS
             Grid.SetColumn(_imgState, Column);
             Grid.SetRow(_imgState, Row);
             grdThumbnails.Children.Add(_imgState);
+        }
+
+        public string ParseFIDPathFromXML()
+        {
+            string _parsedPath = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _parsedPath = String.Format(_xmlReader.GetAttribute("PATH"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _parsedPath;
         }
     }
 }
