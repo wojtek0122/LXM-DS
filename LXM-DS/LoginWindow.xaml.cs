@@ -64,15 +64,25 @@ namespace LXM_DS
                     User _user = _mySQLManager.GetUserByNFC(_nfc);//_userManager.GetUserByLogin(_login);
                     if(_user != null)
                     {
+                        if(ParseFullHDInfoFromXML() == "YES")
+                        {
+                            MainWindowFullHD _mainWindowFullHD = new MainWindowFullHD(_user._login, _user.GetPermission());
+                            _mainWindowFullHD.Topmost = true;
+                            _mainWindowFullHD.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MainWindow _mainWindow = new MainWindow(_user._login, _user.GetPermission());
+                            _mainWindow.Topmost = true;
+                            _mainWindow.Show();
+                            this.Close();
+                        }
                         //string _pass = this.txtPassword.Password.ToString().Trim();
                         //if (!String.IsNullOrEmpty(_pass) && !String.IsNullOrWhiteSpace(_pass))
                         //{
                             //if (CalculateMD5(_pass) == _user.GetPassword())
                             //{
-                                MainWindow _mainWindow = new MainWindow(_user._login,_user.GetPermission());
-                                //_mainWindow.Topmost = true;
-                                _mainWindow.Show();
-                                this.Close();
                             //}
                         //}
                     }
@@ -149,5 +159,28 @@ namespace LXM_DS
             return _parsedPath;
         }
 
+        public string ParseFullHDInfoFromXML()
+        {
+            string _parsedInfo = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _parsedInfo = String.Format(_xmlReader.GetAttribute("FULLHD"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _parsedInfo;
+        }
     }
 }

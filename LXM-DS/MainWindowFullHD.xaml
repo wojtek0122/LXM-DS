@@ -1,0 +1,35 @@
+﻿<Window x:Class="LXM_DS.MainWindowFullHD"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LXM_DS"
+        mc:Ignorable="d"
+        Title="MainWindowFullHD" Height="1080" Width="1920"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <!-- LOGO -->
+        <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Width="450" Height="155">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="FILES\Syncreon.png" />
+            </StackPanel>
+        </Label>
+        <!-- 3. Test & Dismantle -->
+        <GroupBox x:Name="gboxDismantle" Visibility="Visible" Header="MENU" Margin="200">
+            <Grid>
+                <Button x:Name="btnTest" Content="Test" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Width="450" Height="80" Click="btnTest_Click"/>
+                <Button x:Name="btnDismantle" Content="Rozkrecanie" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,140,0,0" Width="450" Height="80" Click="btnDismantle_Click"/>
+                <!-- 
+                <Button x:Name="btnNewOrder" Content="Nowe Zamówienie" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Width="450" Height="80" Click="btnNewOrder_Click"/>
+                <Button x:Name="btnSupermarket" Content="Supermarket" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Width="450" Height="80" Click="btnSupermarket_Click"/>
+                -->
+            </Grid>
+        </GroupBox>
+        <!-- Logout -->
+        <Button x:Name="btnWyloguj" Content="Wyloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" Margin="0,740,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWyloguj_Click"/>
+        <!-- Footer -->
+        <Rectangle Fill="#b9192c" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Margin="0,1040,0,0"  Width="1920"/>
+        <Label x:Name="lblName" FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,1045,0,0" />
+
+    </Grid>
+</Window>

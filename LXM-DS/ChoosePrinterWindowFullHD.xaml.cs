@@ -17,9 +17,9 @@ using System.Windows.Shapes;
 namespace LXM_DS
 {
     /// <summary>
-    /// Interaction logic for ChoosePrinterWindow.xaml
+    /// Interaction logic for ChoosePrinterWindowFullHD.xaml
     /// </summary>
-    public partial class ChoosePrinterWindow : Window
+    public partial class ChoosePrinterWindowFullHD : Window
     {
         private string _printerMT;
         private string _printerSN;
@@ -27,7 +27,8 @@ namespace LXM_DS
         Managers _managers;
         MySQLManager _mysqlManager;
         private string _login;
-        public ChoosePrinterWindow(String Login)
+
+        public ChoosePrinterWindowFullHD(String Login)
         {
             InitializeComponent();
             _managers = Managers.CreateManagers();
@@ -46,9 +47,9 @@ namespace LXM_DS
             else
             {
                 _mysqlManager.SetDismantled(_testid);
-                ComponentWindowThumbnails _componentWindowThumbnails = new ComponentWindowThumbnails(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN), _login);
+                ComponentWindowThumbnailsFullHD _componentWindowThumbnailsFullHD = new ComponentWindowThumbnailsFullHD(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN), _login);
                 this.Close();
-                _componentWindowThumbnails.Show();
+                _componentWindowThumbnailsFullHD.Show();
             }
         }
 
@@ -76,7 +77,7 @@ namespace LXM_DS
 
         private void ChangePrinterFoto()
         {
-            if(File.Exists(@"..\..\FILES\" + _printerMT.ToString() + ".png"))
+            if (File.Exists(@"..\..\FILES\" + _printerMT.ToString() + ".png"))
             {
                 this.imgFoto.Source = new ImageSourceConverter().ConvertFromString(@"..\..\FILES\" + _printerMT.ToString() + ".png") as ImageSource;
             }
