@@ -75,9 +75,13 @@ namespace LXM_DS
 
             _maxButtonsOnPage = _maxColumnsOnPage * _maxRowsOnPage;
             _pageMax = _dismantledComponentsList.Count / (_maxButtonsOnPage);
-            if(_dismantledComponentsList.Count % (_maxButtonsOnPage) > 0)
+            if ((_dismantledComponentsList.Count % _maxButtonsOnPage) > 0)
             {
                 _pageMax++;
+            }
+            if (_dismantledComponentsList.Count < _maxButtonsOnPage)
+            {
+                _pageMax = 1;
             }
             if (_pageMax > 1)
             {

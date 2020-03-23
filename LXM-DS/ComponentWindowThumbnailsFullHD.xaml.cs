@@ -28,6 +28,7 @@ namespace LXM_DS
         ButtonListManager _buttonListManager;
 
         Printer _printer;
+        List<Image> _imageStatusButtonList;
 
         int _testID;
         string _mt;
@@ -35,6 +36,13 @@ namespace LXM_DS
         string _login;
         int _countDismantled = 0;
         int _sID = 0;
+
+        int _pageCurrent = 1;
+        int _pageMax = 1;
+
+        int _maxColumnsOnPage = 6;
+        int _maxRowsOnPage = 5;
+        int _maxButtonsOnPage = 0;
 
         List<Component> _dismantledComponentsList;
 
@@ -52,91 +60,169 @@ namespace LXM_DS
             _buttonListManager = _managers.GetButtonListManager();
 
             _printer = _printerManager.GetPrinterByMT(_mt);
+            _imageStatusButtonList = new List<Image>();
             _dismantledComponentsList = new List<Component>();
             foreach (var value in _printer.GetComponentList())
             {
                 _dismantledComponentsList.Add(value);
-            }             
+            }
 
             InitializeComponent();
-            this.lblMT.Content = "MT: " + _mt;
-
-            int _maxColumns = 7;
-            int _maxRows = 5;
-            int _index = 0;
-
-            int _count = _dismantledComponentsList.Count;
-            if(_count >= 30)
-            {
-                //Jeżeli więcej niż 30 komponentów
-            }
-            else
-            {
-                
-                for (int row = 1; row <= _maxRows; row++)
-                {
-                    for (int col = 1; col < _maxColumns; col++)
-                    {
-                        _buttonListManager.AddItemToButtonList((CreateNewButton(_dismantledComponentsList[_index]._PN, col, row - 1), col, row - 1));
-                        _index++;
-                        if (_count == _index)
-                            break;
-                    }
-                    if (_count == _index)
-                        break;
-                }
-
-            }
 
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += timer_Tick;
             _timer.Start();
 
+            _maxButtonsOnPage = _maxColumnsOnPage * _maxRowsOnPage;
+            _pageMax = _dismantledComponentsList.Count / (_maxButtonsOnPage);
+            if ((_dismantledComponentsList.Count % _maxButtonsOnPage) > 0)
+            {
+                _pageMax++;
+            }
+            if (_dismantledComponentsList.Count<_maxButtonsOnPage)
+            {
+                _pageMax = 1;
+            }
+            if (_pageMax > 1)
+            {
+                btnRight.Visibility = Visibility.Visible;
+            }
+
+            //CreateButtons
+            CreateButtonList();
+            ButtonSetVisibility();
+            CreateImageButtonList();
+
+            this.lblMT.Content = "MT: " + _mt + " \tStrona: " + _pageCurrent + " / " + _pageMax;
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        public void ButtonSetVisibility()
         {
             StatusButton _btn;
-            foreach(var value in _buttonListManager.GetButtonList())
+            int _index = 0;
+            int _min = (_pageCurrent * _maxButtonsOnPage) - _maxButtonsOnPage;
+            int _max = (_pageCurrent * _maxButtonsOnPage) - 1;
+            foreach (var value in _buttonListManager.GetButtonList())
             {
                 _btn = value.Item1;
-                if(_countDismantled == _dismantledComponentsList.Count)
+                if (_index >= _min && _index <= _max)
                 {
-                    this.Close();
+                    _btn.Visibility = Visibility.Visible;
                 }
-                if (_btn.STATUS != "" && _btn.ACTIVE == true)
+                else
                 {
-                    if (_btn.STATUS == "OK")
+                    _btn.Visibility = Visibility.Hidden;
+                }
+                _index++;
+            }
+        }
+
+        public void ImageButtonSetVisibility()
+        {
+            Image _img;
+            int _index = 0;
+            int _min = (_pageCurrent * _maxButtonsOnPage) - _maxButtonsOnPage;
+            int _max = (_pageCurrent * _maxButtonsOnPage) - 1;
+
+            foreach (var value in _imageStatusButtonList)
+            {
+                _img = value;
+                if (_index >= _min && _index <= _max)
+                {
+                    ChangeImageStatus(_img, _buttonListManager.GetStatusButton(_index));
+                }
+                else
+                {
+                    _img.Visibility = Visibility.Hidden;
+                }
+                _index++;
+            }
+        }
+
+        public void CreateButtonList()
+        {
+            int _index = 0;
+            for (int page = 1; page <= _pageMax; page++)
+            {
+                for (int row = 1; row < _maxRowsOnPage + 1; row++)
+                {
+                    for (int col = 1; col < _maxColumnsOnPage + 1; col++)
                     {
-                        CreateImageStatus("OK", value.Item2, value.Item3);
-                        _btn.ACTIVE = false;
-                        _countDismantled++;
-                    }
-                    if (_btn.STATUS == "NOK")
-                    {
-                        CreateImageStatus("NOK", value.Item2, value.Item3);
-                        _btn.ACTIVE = false;
-                        _countDismantled++;
-                    }
-                    if (_btn.STATUS == "NONE")
-                    {
-                        CreateImageStatus("NONE", value.Item2, value.Item3);
-                        _btn.ACTIVE = false;
-                        _countDismantled++;
+                        _buttonListManager.AddItemToButtonList((CreateNewButton(_dismantledComponentsList[_index]._PN, col, row - 1), col, row - 1));
+                        _index++;
                     }
                 }
             }
         }
 
+        public void CreateImageButtonList()
+        {
+            for (int page = 1; page < _pageMax; page++)
+            {
+                for (int row = 1; row < _maxRowsOnPage + 1; row++)
+                {
+                    for (int col = 1; col < _maxColumnsOnPage + 1; col++)
+                    {
+                        _imageStatusButtonList.Add(CreateImageStatus(col, row - 1));
+                    }
+                }
+            }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            ImageButtonSetVisibility();
+
+            int _count = 1;
+            StatusButton _btn;
+            foreach (var value in _buttonListManager.GetButtonList())
+            {
+                _btn = value.Item1;
+                if (_btn.STATUS != "")
+                {
+                    _count++;
+                }
+            }
+
+            if (_count == _dismantledComponentsList.Count)
+            {
+                this.Close();
+            }
+        }
+
         private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (_pageCurrent == 1 + 1)
+            {
+                _pageCurrent = 1;
+                btnLeft.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnRight.Visibility = Visibility.Visible;
+                _pageCurrent--;
+            }
+            ButtonSetVisibility();
+            ImageButtonSetVisibility();
+            this.lblMT.Content = "MT: " + _mt + " \tStrona: " + _pageCurrent + " / " + _pageMax;
         }
 
         private void btnRight_Click(object sender, RoutedEventArgs e)
         {
-
+            if (_pageCurrent == _pageMax - 1)
+            {
+                _pageCurrent = _pageMax;
+                btnRight.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnLeft.Visibility = Visibility.Visible;
+                _pageCurrent++;
+            }
+            ButtonSetVisibility();
+            ImageButtonSetVisibility();
+            this.lblMT.Content = "MT: " + _mt + " \tStrona: " + _pageCurrent + " / " + _pageMax;
         }
 
         public StatusButton CreateNewButton(string PN, int Column, int Row)
@@ -185,55 +271,67 @@ namespace LXM_DS
                 Width = 255,
                 Background = _brush,
                 ID = _sID++,
+                Visibility = Visibility.Hidden,
             };
             _btn.Click += new RoutedEventHandler(_btn_Click);
             Grid.SetColumn(_btn, _column);
             Grid.SetRow(_btn, _row);
 
             grdThumbnails.Children.Add(_btn);
-
             return _btn;
         }
 
         private void _btn_Click(object sender, RoutedEventArgs e)
         {
-            StatusButton _button = sender as StatusButton;  
-            ComponentViewFullHD _componentViewFullHD = new ComponentViewFullHD(_login, _testID, _button.Name, _button.ID);
-            _componentViewFullHD.Topmost = true;
-            _componentViewFullHD.Show();
+            StatusButton _button = sender as StatusButton;
+            ComponentView _componentView = new ComponentView(_login, _testID, _button.Name, _button.ID);
+            _componentView.Topmost = true;
+            _componentView.Show();
             _button.IsEnabled = false;
         }
 
-        public void CreateImageStatus(string Status, int Column, int Row)
+        public Image CreateImageStatus(int Column, int Row)
         {
             Image _imgState = new Image()
             {
                 Height = 200,
                 Width = 255,
                 VerticalAlignment = VerticalAlignment.Center,
+                Visibility = Visibility.Hidden,
             };
 
-            switch (Status)
+            Grid.SetColumn(_imgState, Column);
+            Grid.SetRow(_imgState, Row);
+            grdThumbnails.Children.Add(_imgState);
+            return _imgState;
+        }
+
+        public void ChangeImageStatus(Image ImageButton, StatusButton Button)
+        {
+            ImageButton.Visibility = Visibility.Visible;
+            switch (Button.STATUS)
             {
                 case "OK":
                     {
-                        _imgState.Source = new ImageSourceConverter().ConvertFromString("..\\..\\FILES\\OK.png") as ImageSource;
+                        ImageButton.Source = new ImageSourceConverter().ConvertFromString("..\\..\\FILES\\OK.png") as ImageSource;
                         break;
                     };
                 case "NOK":
                     {
-                        _imgState.Source = new ImageSourceConverter().ConvertFromString("..\\..\\FILES\\NOK.png") as ImageSource;
+                        ImageButton.Source = new ImageSourceConverter().ConvertFromString("..\\..\\FILES\\NOK.png") as ImageSource;
                         break;
                     };
                 case "NONE":
                     {
-                        _imgState.Source = new ImageSourceConverter().ConvertFromString("..\\..\\FILES\\NONE.png") as ImageSource;
+                        ImageButton.Source = new ImageSourceConverter().ConvertFromString("..\\..\\FILES\\NONE.png") as ImageSource;
+                        break;
+                    };
+                case "":
+                    {
+                        ImageButton.Visibility = Visibility.Hidden;
                         break;
                     };
             }
-            Grid.SetColumn(_imgState, Column);
-            Grid.SetRow(_imgState, Row);
-            grdThumbnails.Children.Add(_imgState);
         }
 
         public string ParseFIDPathFromXML()
