@@ -36,5 +36,10 @@ namespace LXM_DS.BUTTON
         {
             return _buttonList;
         }
+
+        public StatusButton GetStatusButton(int Index)
+        {
+            return _buttonList[Index].Item1;
+        }
     }
 }
