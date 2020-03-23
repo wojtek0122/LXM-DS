@@ -205,7 +205,7 @@ namespace LXM_DS
         {
             ImageButtonSetVisibility();
 
-            int _count = 1;
+            int _count = 0;
             StatusButton _btn;
             foreach (var value in _buttonListManager.GetButtonList())
             {
@@ -315,9 +315,9 @@ namespace LXM_DS
         private void _btn_Click(object sender, RoutedEventArgs e)
         {
             StatusButton _button = sender as StatusButton;
-            ComponentView _componentView = new ComponentView(_login, _testID, _button.Name, _button.ID);
-            _componentView.Topmost = true;
-            _componentView.Show();
+            ComponentViewFullHD _componentViewFullHD = new ComponentViewFullHD(_login, _testID, _button.Name, _button.ID);
+            _componentViewFullHD.Topmost = true;
+            _componentViewFullHD.Show();
             _button.IsEnabled = false;
         }
 

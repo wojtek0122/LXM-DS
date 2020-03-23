@@ -205,7 +205,7 @@ namespace LXM_DS
         {
             ImageButtonSetVisibility();
 
-            int _count = 1;
+            int _count = 0;
             StatusButton _btn;
             foreach (var value in _buttonListManager.GetButtonList())
             {
