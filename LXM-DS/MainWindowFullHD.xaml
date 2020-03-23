@@ -26,7 +26,7 @@
             </Grid>
         </GroupBox>
         <!-- Logout -->
-        <Button x:Name="btnWyloguj" Content="Wyloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" Margin="0,740,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnWyloguj_Click"/>
+        <Button x:Name="btnWyloguj" Content="Wyloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" Margin="0,835,0,0" VerticalAlignment="Center" Width="450" Height="80" Click="btnWyloguj_Click"/>
         <!-- Footer -->
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Margin="0,1040,0,0"  Width="1920"/>
         <Label x:Name="lblName" FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,1045,0,0" />
