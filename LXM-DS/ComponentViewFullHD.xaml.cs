@@ -34,6 +34,7 @@ namespace LXM_DS
 
         public ComponentViewFullHD(string Login, int TestID, string PN, int ID)
         {
+            this.Topmost = true;
             InitializeComponent();
             
             _managers = Managers.CreateManagers();

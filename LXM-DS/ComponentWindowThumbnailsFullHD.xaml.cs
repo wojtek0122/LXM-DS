@@ -49,6 +49,7 @@ namespace LXM_DS
 
         public ComponentWindowThumbnailsFullHD(int TestID, string MT, string Status, string Login)
         {
+            this.Topmost = true;
             _testID = TestID;
             _mt = MT;
             _status = Status;
