@@ -141,29 +141,62 @@ namespace LXM_DS
 
         public void CreateButtonList()
         {
-            for (int page = 1; page < _pageMax; page++ )
+            int _index = 0;
+            for (int page = 1; page < _pageMax + 1; page++)
             {
                 for (int row = 1; row < _maxRowsOnPage + 1; row++)
                 {
                     for (int col = 1; col < _maxColumnsOnPage + 1; col++)
                     {
-                        _buttonListManager.AddItemToButtonList((CreateNewButton(_dismantledComponentsList[(page * (row * col)) - 1]._PN, col, row - 1), col, row - 1));
+                        if (_index == _dismantledComponentsList.Count)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            _buttonListManager.AddItemToButtonList((CreateNewButton(_dismantledComponentsList[_index]._PN, col, row - 1), col, row - 1));
+                            _index++;
+                        }
+                    }
+                    if (_index == _dismantledComponentsList.Count)
+                    {
+                        break;
                     }
                 }
+                if (_index == _dismantledComponentsList.Count)
+                {
+                    break;
+                }
             }
-
         }
 
         public void CreateImageButtonList()
         {
-            for (int page = 1; page < _pageMax; page++)
+            int _index = 0;
+            for (int page = 1; page < _pageMax + 1; page++)
             {
                 for (int row = 1; row < _maxRowsOnPage + 1; row++)
                 {
                     for (int col = 1; col < _maxColumnsOnPage + 1; col++)
                     {
-                        _imageStatusButtonList.Add(CreateImageStatus(col, row - 1));
+                        if (_index == _dismantledComponentsList.Count)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            _imageStatusButtonList.Add(CreateImageStatus(col, row - 1));
+                            _index++;
+                        }
                     }
+                    if (_index == _dismantledComponentsList.Count)
+                    {
+                        break;
+                    }
+                }
+                if (_index == _dismantledComponentsList.Count)
+                {
+                    break;
                 }
             }
         }
@@ -177,7 +210,7 @@ namespace LXM_DS
             foreach (var value in _buttonListManager.GetButtonList())
             {
                 _btn = value.Item1;
-                if(_btn.STATUS != "")
+                if (_btn.STATUS != "")
                 {
                     _count++;
                 }
@@ -191,7 +224,7 @@ namespace LXM_DS
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
-            if(_pageCurrent == 1+1)
+            if (_pageCurrent == 1 + 1)
             {
                 _pageCurrent = 1;
                 btnLeft.Visibility = Visibility.Hidden;
@@ -208,7 +241,7 @@ namespace LXM_DS
 
         private void btnRight_Click(object sender, RoutedEventArgs e)
         {
-            if(_pageCurrent==_pageMax-1)
+            if (_pageCurrent == _pageMax - 1)
             {
                 _pageCurrent = _pageMax;
                 btnRight.Visibility = Visibility.Hidden;

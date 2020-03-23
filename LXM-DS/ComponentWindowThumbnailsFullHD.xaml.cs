@@ -34,7 +34,6 @@ namespace LXM_DS
         string _mt;
         string _status;
         string _login;
-        int _countDismantled = 0;
         int _sID = 0;
 
         int _pageCurrent = 1;
@@ -143,29 +142,61 @@ namespace LXM_DS
         public void CreateButtonList()
         {
             int _index = 0;
-            for (int page = 1; page <= _pageMax; page++)
+            for (int page = 1; page < _pageMax + 1; page++)
             {
                 for (int row = 1; row < _maxRowsOnPage + 1; row++)
                 {
                     for (int col = 1; col < _maxColumnsOnPage + 1; col++)
                     {
-                        _buttonListManager.AddItemToButtonList((CreateNewButton(_dismantledComponentsList[_index]._PN, col, row - 1), col, row - 1));
-                        _index++;
+                        if(_index == _dismantledComponentsList.Count)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            _buttonListManager.AddItemToButtonList((CreateNewButton(_dismantledComponentsList[_index]._PN, col, row - 1), col, row - 1));
+                            _index++;
+                        }
                     }
+                    if (_index == _dismantledComponentsList.Count)
+                    {
+                        break;
+                    }
+                }
+                if (_index == _dismantledComponentsList.Count)
+                {
+                    break;
                 }
             }
         }
 
         public void CreateImageButtonList()
         {
-            for (int page = 1; page < _pageMax; page++)
+            int _index = 0;
+            for (int page = 1; page < _pageMax + 1; page++)
             {
                 for (int row = 1; row < _maxRowsOnPage + 1; row++)
                 {
                     for (int col = 1; col < _maxColumnsOnPage + 1; col++)
                     {
-                        _imageStatusButtonList.Add(CreateImageStatus(col, row - 1));
+                        if (_index == _dismantledComponentsList.Count)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            _imageStatusButtonList.Add(CreateImageStatus(col, row - 1));
+                            _index++;
+                        }
                     }
+                    if (_index == _dismantledComponentsList.Count)
+                    {
+                        break;
+                    }
+                }
+                if (_index == _dismantledComponentsList.Count)
+                {
+                    break;
                 }
             }
         }
