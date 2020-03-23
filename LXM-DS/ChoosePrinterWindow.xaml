@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:LXM_DS"
         xmlns:t="clr-namespace:LXM_DS.TOUCH"
         mc:Ignorable="d"
-        Title="ChoosePrinterWindow" Height="768" Width="1024">
-    <!--WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">-->
+        Title="ChoosePrinterWindow" Height="768" Width="1024"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Label Content="WYBIERZ DRUKARKE" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,20,0,0" Width="665"/>
         <!-- Back Button -->

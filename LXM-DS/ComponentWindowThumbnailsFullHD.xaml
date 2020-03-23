@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:LXM_DS"
         mc:Ignorable="d"
         Title="ComponentWindowThumbnailsFullHD"
-        Height="1080" Width="1920" >
-    <!-- WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">-->
+        Height="1080" Width="1920" 
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,1040,0,0" VerticalAlignment="Top" Width="1920"/>
         <Label x:Name="lblMT" Content="MT: " FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,1045,0,0" />
