@@ -6,6 +6,20 @@ using System.Threading.Tasks;
 
 namespace LXM_DS.PRINTER
 {
+    public enum COMPONENTTYPE
+    {
+        F,
+        H,
+        PSU,
+        S,
+        A,
+        OP,
+        MB,
+        ENG,
+        E,
+        M
+    }
+
     public class Component
     {
         //private static int _sID = 0;
@@ -16,7 +30,8 @@ namespace LXM_DS.PRINTER
         public string _test;
         public string _FID;
         public string _REV;
-        public string _type;
+        //public string _type;
+        public COMPONENTTYPE _type;
         public int _stock;
         public int _yield;
         public string _location;
@@ -31,7 +46,8 @@ namespace LXM_DS.PRINTER
             _test = Test;
             _FID = FID;
             _REV = Rev;
-            _type = Type;
+            //_type = Type;
+            _type = ParseComponentType(Type);
             _stock = Stock;
             _yield = YIELD;
             _location = Location;
@@ -41,6 +57,25 @@ namespace LXM_DS.PRINTER
         public override string ToString()
         {
             return String.Format("{0}\n{1}", _PN, _description);
+        }
+
+        public COMPONENTTYPE ParseComponentType(string Type)
+        {
+            COMPONENTTYPE _type;
+            switch(Type)
+            {
+                case "F": { _type = COMPONENTTYPE.F; break; };
+                case "H": { _type = COMPONENTTYPE.H; break; };
+                case "PSU": { _type = COMPONENTTYPE.PSU; break; };
+                case "S": { _type = COMPONENTTYPE.S; break; };
+                case "A": { _type = COMPONENTTYPE.A; break; };
+                case "OP": { _type = COMPONENTTYPE.OP; break; };
+                case "MB": { _type = COMPONENTTYPE.MB; break; };
+                case "ENG": { _type = COMPONENTTYPE.ENG; break; };
+                case "E": { _type = COMPONENTTYPE.E; break; };
+                default: { _type = COMPONENTTYPE.M; break; }; 
+            }
+            return _type;
         }
     }
 }

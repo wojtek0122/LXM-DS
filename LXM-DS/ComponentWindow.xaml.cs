@@ -61,7 +61,7 @@ namespace LXM_DS
         {
             //Print label
             BARCODE.Barcode _barcode = new BARCODE.Barcode();
-            _barcode.PrintLabel(_component._PN, _component._location);
+            _barcode.PrintLabel(_component._PN, _component._location, _login);
 
             //DeactivateField
             _dismantledComponentsList.Remove(_component);
@@ -84,7 +84,7 @@ namespace LXM_DS
         {
             //Print label - SCR
             BARCODE.Barcode _barcode = new BARCODE.Barcode();
-            _barcode.PrintLabel(_component._PN, "SCR");
+            _barcode.PrintLabel(_component._PN, "SCR", "");
 
             //DeactivateField
             _dismantledComponentsList.Remove(_component);
@@ -175,11 +175,13 @@ namespace LXM_DS
                         }
                     }
 
-                    switch(_component._type)
+                    switch (_component._type)
                     {
-                        case "MB": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
-                        case "OP": { SNWindow _snWindow = new SNWindow(_component._type,  _testid); _snWindow.Show(); break; };
-                        case "ENG": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
+                        case COMPONENTTYPE.MB: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
+                        case COMPONENTTYPE.OP: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
+                        case COMPONENTTYPE.ENG: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
+                        default:
+                            break;
                     }
                     string _path = ParseFIDPathFromXML();
                     int _revInt = 0;
@@ -192,15 +194,15 @@ namespace LXM_DS
                     {
                         _browser.Navigate(_path + @"FID\" + _fid + ".0" + _rev + " " + _pn + ".pdf");
                     }
-                    
+
                 }
-                catch(Exception)
+                catch (Exception)
                 {
 
                 }
 
             }
-            
+
         }
 
         public string ParseFIDPathFromXML()

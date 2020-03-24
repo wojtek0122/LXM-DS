@@ -67,43 +67,80 @@
 
     </Window.Resources>
     <Grid>
-        <Label Content="TEST DRUKARKI" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" Width="665"/>
-        <!-- Back Button -->
-        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnBack_Click">
-            <StackPanel Orientation="Horizontal">
-                <Image Source="FILES\Back.png" />
-            </StackPanel>
-        </Button>
+        <GroupBox x:Name="gboxMain" Visibility="Visible">
+            <Grid>
+                <Label Content="TEST DRUKARKI" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" Width="665"/>
+                <!-- Back Button -->
+                <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnBack_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="FILES\Back.png" />
+                    </StackPanel>
+                </Button>
 
-        <!-- Printer -->
-        <Label x:Name="lblFoto" HorizontalAlignment="Left"  Margin="1200,125,0,0" VerticalAlignment="Top" Height="500" Width="500">
-            <StackPanel Orientation="Horizontal">
-                <Image x:Name="imgFoto" Source="FILES\lexmark.png" />
-            </StackPanel>
-        </Label>
+                <!-- Printer -->
+                <Label x:Name="lblFoto" HorizontalAlignment="Left"  Margin="1200,125,0,0" VerticalAlignment="Top" Height="500" Width="500">
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:Name="imgFoto" Source="FILES\lexmark.png" />
+                    </StackPanel>
+                </Label>
 
-        <!-- Data -->
-        <Label Content="Label" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,85,0,0" VerticalAlignment="Top" Width="210"/>
-        <t:TouchEnabledTextBox x:Name="txtSN" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Margin="370,80,0,0" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtSN_TextChanged"/>
+                <!-- Data -->
+                <Label Content="Label" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,85,0,0" VerticalAlignment="Top" Width="210"/>
+                <t:TouchEnabledTextBox x:Name="txtSN" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Margin="370,80,0,0" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtSN_TextChanged"/>
         
-        <Label Content="Machine Type" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,175,0,0" VerticalAlignment="Top" Width="210"/>
-        <TextBox x:Name="txtMTlbl" IsReadOnly="True" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#646c74" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="370,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
-        <Label Content="Serial" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,255,0,0" VerticalAlignment="Top" Width="210"/>
-        <TextBox x:Name="txtSNlbl" IsReadOnly="True" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#646c74" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="370,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
+                <Label Content="Machine Type" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,175,0,0" VerticalAlignment="Top" Width="210"/>
+                <TextBox x:Name="txtMTlbl" IsReadOnly="True" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#646c74" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="370,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
+                <Label Content="Serial" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,255,0,0" VerticalAlignment="Top" Width="210"/>
+                <TextBox x:Name="txtSNlbl" IsReadOnly="True" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#646c74" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="370,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
 
-        <ToggleButton x:Name="tgbtnHDD" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="40,90,0,110" Content="DYSK: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnHDD_Click" />
-        <Label Content="HDD Serial" x:Name="lblHDD" Visibility="Hidden" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="370,350,0,0" VerticalAlignment="Top" Width="210"/>
-        <t:TouchEnabledTextBox x:Name="txtHDDSN" Visibility="Hidden" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="540,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtHDDSN_TextChanged"/>
+                <ToggleButton x:Name="tgbtnHDD" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="40,90,0,110" Content="DYSK: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnHDD_Click" />
+                <Label Content="HDD Serial" x:Name="lblHDD" Visibility="Hidden" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="370,350,0,0" VerticalAlignment="Top" Width="210"/>
+                <t:TouchEnabledTextBox x:Name="txtHDDSN" Visibility="Hidden" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="540,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtHDDSN_TextChanged"/>
 
-        <ToggleButton x:Name="tgbtnfirmware" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="225,245,-90,115" Content="AKTUALIZACJA FIRMWARE: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnfirmware_Click"/>
-        <ToggleButton x:Name="tgbtndefaults" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="245,350,-110,90" Content="USTAWIENIA DOMYSLNE: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtndefaults_Click"/>
-        <ToggleButton x:Name="tgbtnnvram" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="395,455,-260,65" Content="DLE - NVRAM: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnnvram_Click"/>
+                <ToggleButton x:Name="tgbtnfirmware" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="225,245,-90,115" Content="AKTUALIZACJA FIRMWARE: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnfirmware_Click"/>
+                <ToggleButton x:Name="tgbtndefaults" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="245,350,-110,90" Content="USTAWIENIA DOMYSLNE: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtndefaults_Click"/>
+                <ToggleButton x:Name="tgbtnnvram" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="395,455,-260,65" Content="DLE - NVRAM: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnnvram_Click"/>
 
-        <!-- Buttons -->
-        <Button x:Name="btnOK" Content="SPRAWNA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="20,635,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnOK_Click" Visibility="Hidden"/>
-        <Button x:Name="btnNOK" Content="USZKODZONA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="550,635,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnNOK_Click"/>
+                <!-- Buttons -->
+                <Button x:Name="btnOK" Content="SPRAWNA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="20,635,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnOK_Click" Visibility="Hidden"/>
+                <Button x:Name="btnNOK" Content="USZKODZONA" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="550,635,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnNOK_Click"/>
+                <!-- Right Button -->
+                <Button x:Name="btnRight" Visibility="Visible" Grid.RowSpan="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnRight_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="FILES\Right.png" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="gboxComponents" Visibility="Hidden">
+            <Grid>
+                <Label Content="TEST DRUKARKI" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" Width="665"/>
+                <!-- Back Button -->
+                <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnBack_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="FILES\Back.png" />
+                    </StackPanel>
+                </Button>
 
+                <!-- Data -->
+                <Label Content="Sprawny:" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Center" Height="90" Margin="150,70,0,0" VerticalAlignment="Top"  Width="210"/>
+                <ToggleButton x:Name="tgbtnFuser" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="0,120,0,0" Content="FUSER: " Style="{StaticResource ToggleButtonStyle1}"  HorizontalAlignment="Center" VerticalAlignment="Top" Click="tgbtnFuser_Click"/>
+                <ToggleButton x:Name="tgbtnGlowica" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="0,200,0,0" Content="GLOWICA: " Style="{StaticResource ToggleButtonStyle1}"  HorizontalAlignment="Center" VerticalAlignment="Top" Click="tgbtnGlowica_Click"/>
+                <ToggleButton x:Name="tgbtnZasilacz" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="0,280,0,0" Content="ZASILACZ: " Style="{StaticResource ToggleButtonStyle1}"  HorizontalAlignment="Center" VerticalAlignment="Top" Click="tgbtnZasilacz_Click"/>
+                <ToggleButton x:Name="tgbtnSkaner" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="0,360,0,0" Content="SKANER: " Style="{StaticResource ToggleButtonStyle1}"  HorizontalAlignment="Center" VerticalAlignment="Top" Click="tgbtnSkaner_Click"/>
+                <ToggleButton x:Name="tgbtnAdf" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="0,420,0,0" Content="ADF: " Style="{StaticResource ToggleButtonStyle1}"  HorizontalAlignment="Center" VerticalAlignment="Top" Click="tgbtnAdf_Click"/>
+                <ToggleButton x:Name="tgbtnOperatorPanel" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="0,500,0,0" Content="OPERATOR PANEL: " Style="{StaticResource ToggleButtonStyle1}"  HorizontalAlignment="Center" VerticalAlignment="Top" Click="tgbtnOperatorPanel_Click"/>
+                <ToggleButton x:Name="tgbtnPlytaGlowna" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="0,580,0,0" Content="PLYTA GLOWNA: " Style="{StaticResource ToggleButtonStyle1}"  HorizontalAlignment="Center" VerticalAlignment="Top" Click="tgbtnPlytaGlowna_Click"/>
+                <ToggleButton x:Name="tgbtnEngine" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="0,660,0,0" Content="PLYTA ENGINE: " Style="{StaticResource ToggleButtonStyle1}"  HorizontalAlignment="Center" VerticalAlignment="Top" Click="tgbtnEngine_Click"/>
+
+                <!-- Left Button -->
+                <Button x:Name="btnLeft" Visibility="Visible" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="White" Margin="10" Width="64" Height="64" Click="btnLeft_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="FILES\Left.png" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </GroupBox>
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,728,0,0" VerticalAlignment="Top" Width="1920"/>
-
     </Grid>
 </Window>

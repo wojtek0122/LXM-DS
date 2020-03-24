@@ -509,7 +509,7 @@ namespace LXM_DS.MYSQL
 
         }
 
-        public void InsertTestDataToMySQL(string PrinterMT, string PrinterSN, string Status, string Login, bool Firmware, bool Defaults, bool Nvram)
+        public void InsertTestDataToMySQL(string PrinterMT, string PrinterSN, string Status, string Login, bool Firmware, bool Defaults, bool Nvram, bool Fuser, bool Head, bool PSU, bool Scanner, bool ADF, bool OP, bool MB, bool ENG)
         {
             try
             {
@@ -521,7 +521,7 @@ namespace LXM_DS.MYSQL
                 _conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
 
-                string _sql = String.Format("INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled, firmware, defaults, nvram) VALUES " +
+                string _sql = String.Format("INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled, firmware, defaults, nvram, F, H, PSU, S, A, OP, MB, ENG) VALUES " +
                     "(" +
                     //printersid
                     "(SELECT printersid FROM printers WHERE mt='{0}'), " +
@@ -542,8 +542,25 @@ namespace LXM_DS.MYSQL
                     //defaults
                     "'{7}', " +
                     //nvram
-                    "'{8}'" +
-                    ");", PrinterMT, PrinterSN, Status, Login, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), 0, (Firmware==true?1:0), (Defaults==true?1:0), (Nvram==true?1:0));
+                    "'{8}', " +
+                    //F
+                    "'{9}', " +
+                    //H
+                    "'{10}', " +
+                    //PSU
+                    "'{11}', " +
+                    //S
+                    "'{12}', " +
+                    //A
+                    "'{13}', " +
+                    //OP
+                    "'{14}', " +
+                    //MB
+                    "'{15}', " +
+                    //ENG
+                    "'{16}'" +
+                    ");", PrinterMT, PrinterSN, Status, Login, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), 0, (Firmware==true?1:0), (Defaults==true?1:0), (Nvram==true?1:0),
+                     (Fuser == true ? 1 : 0), (Head == true ? 1 : 0), (PSU == true ? 1 : 0), (Scanner == true ? 1 : 0), (ADF == true ? 1 : 0), (OP == true ? 1 : 0), (MB == true ? 1 : 0), (ENG == true ? 1 : 0));
 
                 _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
                 _mySqlCommand.ExecuteNonQuery();

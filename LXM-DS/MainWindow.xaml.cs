@@ -71,7 +71,7 @@ namespace LXM_DS
         private void btnDismantle_Click(object sender, RoutedEventArgs e)
         {
             ChoosePrinterWindow _choosePrinter = new ChoosePrinterWindow(_login);
-            _choosePrinter.Topmost = true;
+            //_choosePrinter.Topmost = true;
             _choosePrinter.Show();
         }
 

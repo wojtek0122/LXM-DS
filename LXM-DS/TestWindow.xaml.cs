@@ -34,7 +34,20 @@ namespace LXM_DS
             public bool nvram;
         }
 
+        private struct STestComp
+        {
+            public bool F;
+            public bool H;
+            public bool PSU;
+            public bool S;
+            public bool A;
+            public bool OP;
+            public bool MB;
+            public bool ENG;
+        }
+
         printer _printer;
+        STestComp _testComp;
         string _login;
 
         Managers _managers;
@@ -193,7 +206,114 @@ namespace LXM_DS
 
         public void InsertDatatoMySQL()
         {
-            _mysqlManager.InsertTestDataToMySQL(_printer.mt, _printer.sn, _printer.status, _login, _printer.firmware, _printer.defaults, _printer.nvram);
+            _mysqlManager.InsertTestDataToMySQL(_printer.mt, _printer.sn, _printer.status, _login, _printer.firmware, _printer.defaults, _printer.nvram, _testComp.F, _testComp.H, _testComp.PSU, _testComp.S, _testComp.A, _testComp.OP, _testComp.MB, _testComp.ENG);
+        }
+
+        private void btnRight_Click(object sender, RoutedEventArgs e)
+        {
+            this.gboxMain.Visibility = Visibility.Hidden;
+            this.gboxComponents.Visibility = Visibility.Visible;
+        }
+        private void btnLeft_Click(object sender, RoutedEventArgs e)
+        {
+            this.gboxMain.Visibility = Visibility.Visible;
+            this.gboxComponents.Visibility = Visibility.Hidden;
+        }
+
+        private void tgbtnFuser_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtnFuser.IsChecked == true)
+            {
+                _testComp.F = true;
+            }
+            else
+            {
+                _testComp.F = false;
+            }
+        }
+
+        private void tgbtnGlowica_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtnGlowica.IsChecked == true)
+            {
+                _testComp.H = true;
+            }
+            else
+            {
+                _testComp.H = false;
+            }
+        }
+
+        private void tgbtnZasilacz_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtnZasilacz.IsChecked == true)
+            {
+                _testComp.PSU = true;
+            }
+            else
+            {
+                _testComp.PSU = false;
+            }
+        }
+
+        private void tgbtnSkaner_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtnSkaner.IsChecked == true)
+            {
+                _testComp.S = true;
+            }
+            else
+            {
+                _testComp.S = false;
+            }
+        }
+
+        private void tgbtnAdf_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtnAdf.IsChecked == true)
+            {
+                _testComp.A = true;
+            }
+            else
+            {
+                _testComp.A = false;
+            }
+        }
+
+        private void tgbtnOperatorPanel_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtnOperatorPanel.IsChecked == true)
+            {
+                _testComp.OP = true;
+            }
+            else
+            {
+                _testComp.OP = false;
+            }
+        }
+
+        private void tgbtnPlytaGlowna_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtnPlytaGlowna.IsChecked == true)
+            {
+                _testComp.MB = true;
+            }
+            else
+            {
+                _testComp.MB = false;
+            }
+        }
+
+        private void tgbtnEngine_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.tgbtnEngine.IsChecked == true)
+            {
+                _testComp.ENG = true;
+            }
+            else
+            {
+                _testComp.ENG = false;
+            }
         }
     }
 }

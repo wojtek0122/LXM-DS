@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace LXM_DS
 {
@@ -31,9 +32,12 @@ namespace LXM_DS
         string _pn;
         int _id;
         Component _component;
+        DispatcherTimer _timer;
+        int _count;
+
         public ComponentView(string Login, int TestID, string PN, int ID)
         {
-            this.Topmost = true;
+            //this.Topmost = true;
             InitializeComponent();
 
             _managers = Managers.CreateManagers();
@@ -58,12 +62,26 @@ namespace LXM_DS
                 _browser.Navigate(_path + @"FID\" + _component._FID + ".0" + _component._REV + " " + _component._PN + ".pdf");
             }
 
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += timer_Tick;
+            _timer.Start();
+        }
 
-            switch (_component._type)
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            _count++;
+            if(_count == 1)
             {
-                case "MB": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
-                case "OP": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
-                case "ENG": { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Show(); break; };
+                switch (_component._type)
+                {
+                    case COMPONENTTYPE.MB: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); break; };
+                    case COMPONENTTYPE.OP: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); break; };
+                    case COMPONENTTYPE.ENG: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); break; };
+                    default:
+                        break;
+                }
+                _timer.Stop();
             }
         }
 
@@ -71,7 +89,7 @@ namespace LXM_DS
         {
             //Print label
             BARCODE.Barcode _barcode = new BARCODE.Barcode();
-            _barcode.PrintLabel(_component._PN, _component._location);
+            _barcode.PrintLabel(_component._PN, _component._location, _login);
 
             //UpdateStock
             _mysqlManager.UpdateComponentStock(_component._id);
@@ -97,7 +115,7 @@ namespace LXM_DS
         {
             //Print label - SCR
             BARCODE.Barcode _barcode = new BARCODE.Barcode();
-            _barcode.PrintLabel(_component._PN, "SCR");
+            _barcode.PrintLabel(_component._PN, "SCR", "");
 
             //Add log
             _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NOK");
@@ -157,6 +175,11 @@ namespace LXM_DS
                 Console.WriteLine(ex.ToString());
             }
             return _parsedPath;
+        }
+
+        private void BACK_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

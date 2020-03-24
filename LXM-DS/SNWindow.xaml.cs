@@ -1,4 +1,5 @@
 ﻿using LXM_DS.MYSQL;
+using LXM_DS.PRINTER;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +21,15 @@ namespace LXM_DS
     /// </summary>
     public partial class SNWindow : Window
     {
-        string _type;
+        COMPONENTTYPE _type;
         int _testID;
         Managers _managers;
         MySQLManager _mysqlManager;
 
-        public SNWindow(string Type, int TestID)
+        public SNWindow(COMPONENTTYPE Type, int TestID)
         {
             InitializeComponent();
-            Topmost = true;
+            this.Topmost = true;
             this.Focus();
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
@@ -43,9 +44,9 @@ namespace LXM_DS
             lblTitle.Content = "Podaj numer seryjny ";
             switch (_type)
             {
-                case "MB": { lblTitle.Content += "płyty głównej:"; break; };
-                case "OP": { lblTitle.Content += "panelu:"; break; };
-                case "ENG": { lblTitle.Content += "płyty engine:"; break; };
+                case COMPONENTTYPE.MB: { lblTitle.Content += "płyty głównej:"; break; };
+                case COMPONENTTYPE.OP: { lblTitle.Content += "panelu:"; break; };
+                case COMPONENTTYPE.ENG: { lblTitle.Content += "płyty engine:"; break; };
             }
         }
 
@@ -53,11 +54,12 @@ namespace LXM_DS
         {
             switch (_type)
             {
-                case "MB": { _mysqlManager.UpsertResets(_testID, txtSN.Text, null, null); break; };
-                case "OP": { _mysqlManager.UpsertResets(_testID, null, txtSN.Text, null); break; };
-                case "ENG": { _mysqlManager.UpsertResets(_testID, null, null, txtSN.Text); break; };
+                case COMPONENTTYPE.MB: { _mysqlManager.UpsertResets(_testID, txtSN.Text, null, null); break; };
+                case COMPONENTTYPE.OP: { _mysqlManager.UpsertResets(_testID, null, txtSN.Text, null); break; };
+                case COMPONENTTYPE.ENG: { _mysqlManager.UpsertResets(_testID, null, null, txtSN.Text); break; };
             }
             this.Close();
         }
+
     }
 }

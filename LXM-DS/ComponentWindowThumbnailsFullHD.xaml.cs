@@ -49,7 +49,7 @@ namespace LXM_DS
 
         public ComponentWindowThumbnailsFullHD(int TestID, string MT, string Status, string Login)
         {
-            this.Topmost = true;
+            //this.Topmost = true;
             _testID = TestID;
             _mt = MT;
             _status = Status;
@@ -80,7 +80,7 @@ namespace LXM_DS
             {
                 _pageMax++;
             }
-            if (_dismantledComponentsList.Count<_maxButtonsOnPage)
+            if (_dismantledComponentsList.Count < _maxButtonsOnPage)
             {
                 _pageMax = 1;
             }
@@ -219,6 +219,10 @@ namespace LXM_DS
 
             if (_count == _dismantledComponentsList.Count)
             {
+                _dismantledComponentsList = null;
+                _imageStatusButtonList = null;
+                _buttonListManager.ClearList();
+                _timer.Stop();
                 this.Close();
             }
         }
@@ -319,7 +323,7 @@ namespace LXM_DS
             ComponentViewFullHD _componentViewFullHD = new ComponentViewFullHD(_login, _testID, _button.Name, _button.ID);
             _componentViewFullHD.Topmost = true;
             _componentViewFullHD.Show();
-            _button.IsEnabled = false;
+            //_button.IsEnabled = false;
         }
 
         public Image CreateImageStatus(int Column, int Row)

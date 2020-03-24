@@ -67,14 +67,14 @@ namespace LXM_DS
                         if(ParseFullHDInfoFromXML() == "YES")
                         {
                             MainWindowFullHD _mainWindowFullHD = new MainWindowFullHD(_user._login, _user.GetPermission());
-                            _mainWindowFullHD.Topmost = true;
+                            //_mainWindowFullHD.Topmost = true;
                             _mainWindowFullHD.Show();
                             this.Close();
                         }
                         else
                         {
                             MainWindow _mainWindow = new MainWindow(_user._login, _user.GetPermission());
-                            _mainWindow.Topmost = true;
+                            //_mainWindow.Topmost = true;
                             _mainWindow.Show();
                             this.Close();
                         }

@@ -41,5 +41,10 @@ namespace LXM_DS.BUTTON
         {
             return _buttonList[Index].Item1;
         }
+
+        public void ClearList()
+        {
+            _buttonList.Clear();
+        }
     }
 }
