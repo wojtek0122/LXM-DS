@@ -48,7 +48,7 @@ namespace LXM_DS
                     _mysqlManager.MakeBackup(ParsePathFromXML());
                 }
             }
-            if ((DateTime.Now.Hour == 16) && (DateTime.Now.Minute == 20))
+            if ((DateTime.Now.Hour == 5) && (DateTime.Now.Minute == 0))
             {
                 System.Diagnostics.Process.Start("shutdown.exe", "-r -t 0");
             }
