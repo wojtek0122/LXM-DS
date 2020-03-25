@@ -223,12 +223,12 @@ namespace LXM_DS
                 _imageStatusButtonList = null;
                 _buttonListManager.ClearList();
                 _timer.Stop();
-                CloseAdobreReaderProcess();
+                CloseAdobeReaderProcess();
                 this.Close();
             }
         }
 
-        private void CloseAdobreReaderProcess()
+        private void CloseAdobeReaderProcess()
         {
             foreach (var process in System.Diagnostics.Process.GetProcessesByName("AcroRd32"))
             {
