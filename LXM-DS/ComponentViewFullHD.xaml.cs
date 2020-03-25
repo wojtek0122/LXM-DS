@@ -84,6 +84,15 @@ namespace LXM_DS
                 _timer.Stop();
             }
         }
+
+        private void CloseAdobeReaderProcess()
+        {
+            foreach (var process in System.Diagnostics.Process.GetProcessesByName("AcroRd32"))
+            {
+                process.Kill();
+            }
+        }
+
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             //Print label
@@ -106,6 +115,7 @@ namespace LXM_DS
                 }
             }
 
+            CloseAdobeReaderProcess();
             //Close window
             this.Close();
         }
@@ -129,6 +139,7 @@ namespace LXM_DS
                 }
             }
 
+            CloseAdobeReaderProcess();
             //Close window
             this.Close();
         }
@@ -148,6 +159,7 @@ namespace LXM_DS
                 }
             }
 
+            CloseAdobeReaderProcess();
             //Close window
             this.Close();
         }
@@ -174,6 +186,12 @@ namespace LXM_DS
                 Console.WriteLine(ex.ToString());
             }
             return _parsedPath;
+        }
+
+        private void BACK_Click(object sender, RoutedEventArgs e)
+        {
+            CloseAdobeReaderProcess();
+            this.Close();
         }
     }
 }
