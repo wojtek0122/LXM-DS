@@ -37,7 +37,7 @@ namespace LXM_DS.BARCODE
             e.Graphics.DrawImage(img, imgCorner);
             e.Graphics.DrawString(_PN, new Font("Arial", 16), new SolidBrush(Color.Black), txtPNCorner);
             e.Graphics.DrawString(_location, new Font("Arial", 16), new SolidBrush(Color.Black), txtLocationCorner);
-            e.Graphics.DrawString(_login, new Font("Arial", 16), new SolidBrush(Color.Black), txtLocationCorner);
+            e.Graphics.DrawString(_login, new Font("Arial", 16), new SolidBrush(Color.Black), txtLoginCorner);
         }
     }
 }
