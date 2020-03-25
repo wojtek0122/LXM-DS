@@ -48,6 +48,10 @@ namespace LXM_DS
                     _mysqlManager.MakeBackup(ParsePathFromXML());
                 }
             }
+            if ((DateTime.Now.Hour == 16) && (DateTime.Now.Minute == 20))
+            {
+                System.Diagnostics.Process.Start("shutdown.exe", "-r -t 0");
+            }
         }
 
         private void btnZaloguj_Click(object sender, RoutedEventArgs e)
