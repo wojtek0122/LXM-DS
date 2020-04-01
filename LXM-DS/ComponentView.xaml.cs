@@ -116,6 +116,8 @@ namespace LXM_DS
             }
 
             CloseAdobeReaderProcess();
+            _browser.Dispose();
+
             //Close window
             this.Close();
         }
@@ -140,6 +142,8 @@ namespace LXM_DS
             }
 
             CloseAdobeReaderProcess();
+            _browser.Dispose();
+
             //Close window
             this.Close();
         }
@@ -160,6 +164,8 @@ namespace LXM_DS
             }
 
             CloseAdobeReaderProcess();
+            _browser.Dispose();
+
             //Close window
             this.Close();
         }
@@ -191,6 +197,7 @@ namespace LXM_DS
         private void BACK_Click(object sender, RoutedEventArgs e)
         {
             CloseAdobeReaderProcess();
+            _browser.Dispose();
             this.Close();
         }
     }
