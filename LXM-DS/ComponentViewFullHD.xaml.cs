@@ -75,9 +75,9 @@ namespace LXM_DS
             {
                 switch (_component._type)
                 {
-                    case COMPONENTTYPE.MB: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); break; };
-                    case COMPONENTTYPE.OP: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); break; };
-                    case COMPONENTTYPE.ENG: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); break; };
+                    case COMPONENTTYPE.MB: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); _snWindow.txtSN.Focus(); break; };
+                    case COMPONENTTYPE.OP: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); _snWindow.txtSN.Focus(); break; };
+                    case COMPONENTTYPE.ENG: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); _snWindow.txtSN.Focus(); break; };
                     default:
                         break;
                 }
