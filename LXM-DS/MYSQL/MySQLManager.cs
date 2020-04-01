@@ -509,6 +509,55 @@ namespace LXM_DS.MYSQL
 
         }
 
+        public void InsertTestDataToMySQL(string PrinterMT, string PrinterSN, string Status, string Login, bool Firmware, bool Defaults, bool Nvram)
+        {
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+
+                string _sql = String.Format("INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled, firmware, defaults, nvram) VALUES " +
+                    "(" +
+                    //printersid
+                    "(SELECT printersid FROM printers WHERE mt='{0}'), " +
+                    //printer sn
+                    "'{1}', " +
+                    //hddid
+                    "(SELECT hddid FROM hdd WHERE prtsn='{1}'), " +
+                    //status
+                    "'{2}', " +
+                    //userid
+                    "(SELECT usersid FROM users WHERE login='{3}'), " +
+                    //date
+                    "'{4}', " +
+                    //dismantled
+                    "'{5}', " +
+                    //firmware
+                    "'{6}', " +
+                    //defaults
+                    "'{7}', " +
+                    //nvram
+                    "'{8}'" +
+                    ");", PrinterMT, PrinterSN, Status, Login, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), 0, (Firmware == true ? 1 : 0), (Defaults == true ? 1 : 0), (Nvram == true ? 1 : 0));
+
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _mySqlCommand.ExecuteNonQuery();
+
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public void InsertTestDataToMySQL(string PrinterMT, string PrinterSN, string Status, string Login, bool Firmware, bool Defaults, bool Nvram, bool Fuser, bool Head, bool PSU, bool Scanner, bool ADF, bool OP, bool MB, bool ENG)
         {
             try

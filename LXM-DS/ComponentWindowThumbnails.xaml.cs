@@ -248,6 +248,11 @@ namespace LXM_DS
                 btnRight.Visibility = Visibility.Visible;
                 _pageCurrent--;
             }
+            if(_pageCurrent == 1 && _pageMax == 2)
+            {
+                btnRight.Visibility = Visibility.Visible;
+            }
+
             ButtonSetVisibility();
             ImageButtonSetVisibility();
             this.lblMT.Content = "MT: " + _mt + " \tStrona: " + _pageCurrent + " / " + _pageMax;
@@ -264,6 +269,10 @@ namespace LXM_DS
             {
                 btnLeft.Visibility = Visibility.Visible;
                 _pageCurrent++;
+            }
+            if (_pageCurrent == 2)
+            {
+                btnLeft.Visibility = Visibility.Visible;
             }
             ButtonSetVisibility();
             ImageButtonSetVisibility();
