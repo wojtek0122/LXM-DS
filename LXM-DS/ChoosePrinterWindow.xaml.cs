@@ -1,4 +1,5 @@
-﻿using LXM_DS.MYSQL;
+﻿using LXM_DS.BUTTON;
+using LXM_DS.MYSQL;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,11 +28,13 @@ namespace LXM_DS
         Managers _managers;
         MySQLManager _mysqlManager;
         private string _login;
+        ButtonListManager _buttonListManager;
         public ChoosePrinterWindow(String Login)
         {
             InitializeComponent();
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
+            _buttonListManager = _managers.GetButtonListManager();
             _login = Login;
             txtLabel.Focus();
         }
@@ -39,6 +42,7 @@ namespace LXM_DS
         private void btnWybierz_Click(object sender, RoutedEventArgs e)
         {
             _testid = _mysqlManager.GetTestIDFromTest(_printerSN);
+            _buttonListManager.ClearList();
             if (_testid == 0)
             {
                 this.lblInfo.Content = "BLAD: Drukarka nie zostala jeszcze przetestowana!";
