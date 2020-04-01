@@ -60,7 +60,7 @@ namespace LXM_DS
 
         private void txtLabel_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (this.txtLabel.Text.Length == 14)
+            if (this.txtLabel.Text.Length == 14 || this.txtLabel.Text.Length == 12)
             {
                 ParseTextBoxContent(this.txtLabel.Text.ToString());
             }
@@ -70,7 +70,14 @@ namespace LXM_DS
         {
             _printerMT = Content.Substring(1, 4);
             this.txtLabel.Text = _printerMT;
-            _printerSN = Content.Substring(5, 9);
+            if (_printerMT == "7014")
+            {
+                _printerSN = Content.Substring(5, 7);
+            }
+            else
+            {
+                _printerSN = Content.Substring(5, 9);
+            }
             this.txtLabel.Text = _printerSN;
             ChangePrinterFoto();
         }

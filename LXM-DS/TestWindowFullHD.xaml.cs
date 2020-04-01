@@ -94,8 +94,8 @@ namespace LXM_DS
 
         private void txtSN_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (this.txtSN.Text.Length == 14)
-            {
+            if if (this.txtSN.Text.Length == 14 || this.txtSN.Text.Length == 12)
+                {
                 ParseTextBoxContent(this.txtSN.Text.ToString());
             }
         }
@@ -104,7 +104,14 @@ namespace LXM_DS
         {
             _printer.mt = Content.Substring(1, 4);
             this.txtMTlbl.Text = _printer.mt;
-            _printer.sn = Content.Substring(5, 9);
+            if (_printer.mt == "7014")
+            {
+                _printer.sn = Content.Substring(5, 7);
+            }
+            else
+            {
+                _printer.sn = Content.Substring(5, 9);
+            }
             this.txtSNlbl.Text = _printer.sn;
             ChangePrinterFoto();
 
