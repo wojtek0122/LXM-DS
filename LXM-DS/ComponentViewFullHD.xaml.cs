@@ -71,7 +71,7 @@ namespace LXM_DS
         private void timer_Tick(object sender, EventArgs e)
         {
             _count++;
-            if (_count == 3)
+            if (_count == 1)
             {
                 switch (_component._type)
                 {
@@ -116,6 +116,7 @@ namespace LXM_DS
             }
 
             CloseAdobeReaderProcess();
+            _browser.Dispose();
             //Close window
             this.Close();
         }
@@ -140,6 +141,7 @@ namespace LXM_DS
             }
 
             CloseAdobeReaderProcess();
+            _browser.Dispose();
             //Close window
             this.Close();
         }
@@ -160,7 +162,15 @@ namespace LXM_DS
             }
 
             CloseAdobeReaderProcess();
+            _browser.Dispose();
             //Close window
+            this.Close();
+        }
+
+        private void BACK_Click(object sender, RoutedEventArgs e)
+        {
+            CloseAdobeReaderProcess();
+            _browser.Dispose();
             this.Close();
         }
 
@@ -186,12 +196,6 @@ namespace LXM_DS
                 Console.WriteLine(ex.ToString());
             }
             return _parsedPath;
-        }
-
-        private void BACK_Click(object sender, RoutedEventArgs e)
-        {
-            CloseAdobeReaderProcess();
-            this.Close();
         }
     }
 }

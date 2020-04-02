@@ -204,6 +204,7 @@ namespace LXM_DS
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            System.GC.Collect();
             ImageButtonSetVisibility();
 
             int _count = 0;
