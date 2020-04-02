@@ -64,9 +64,16 @@ namespace LXM_DS
 
         private void txtLabel_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (this.txtLabel.Text.Length == 14 || this.txtLabel.Text.Length == 12)
+            try
             {
-                ParseTextBoxContent(this.txtLabel.Text.ToString());
+                if (this.txtLabel.Text.Length == 14 || this.txtLabel.Text.Length == 12)
+                {
+                    ParseTextBoxContent(this.txtLabel.Text.ToString());
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
             }
         }
 

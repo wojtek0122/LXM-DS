@@ -94,9 +94,16 @@ namespace LXM_DS
 
         private void txtSN_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (this.txtSN.Text.Length == 14 || this.txtSN.Text.Length == 12)
+            try
+            {
+                if (this.txtSN.Text.Length == 14 || this.txtSN.Text.Length == 12)
                 {
-                ParseTextBoxContent(this.txtSN.Text.ToString());
+                    ParseTextBoxContent(this.txtSN.Text.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
             }
         }
 

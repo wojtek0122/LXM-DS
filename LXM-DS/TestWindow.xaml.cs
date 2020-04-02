@@ -96,14 +96,22 @@ namespace LXM_DS
 
         private void txtSN_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (this.txtSN.Text.Length == 14 || this.txtSN.Text.Length == 12)
+            try
             {
-                ParseTextBoxContent(this.txtSN.Text.ToString());
+                if (this.txtSN.Text.Length == 14 || this.txtSN.Text.Length == 12)
+                {
+                    ParseTextBoxContent(this.txtSN.Text.ToString());
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
             }
         }
 
         private void ParseTextBoxContent(string Content)
         {
+            
             _printer.mt = Content.Substring(1, 4);
             this.txtMTlbl.Text = _printer.mt;
             if(_printer.mt == "7014")
