@@ -21,8 +21,8 @@ namespace LXM_DS.TOUCH
            object sender,
            System.Windows.Input.TouchEventArgs e)
         {
-            string touchKeyboardPath =
-               @"C:\Program Files\Common Files\Microsoft Shared\Ink\TabTip.exe";
+            //string touchKeyboardPath = @"C:\Program Files\Common Files\Microsoft Shared\Ink\TabTip.exe";
+            string touchKeyboardPath = @"C:\Windows\System32\osk.exe";
             _touchKeyboardProcess = System.Diagnostics.Process.Start(touchKeyboardPath);
         }
 
