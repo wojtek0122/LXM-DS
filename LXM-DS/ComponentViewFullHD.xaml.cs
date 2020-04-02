@@ -71,7 +71,7 @@ namespace LXM_DS
         private void timer_Tick(object sender, EventArgs e)
         {
             _count++;
-            if (_count == 1)
+            if (_count == 3)
             {
                 switch (_component._type)
                 {
