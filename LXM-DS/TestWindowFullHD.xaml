@@ -65,13 +65,20 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <GroupBox x:Name="gboxMain" Visibility="Hidden">
+        <GroupBox x:Name="gboxMain" Visibility="Visible">
             <Grid>
                 <Label Content="TEST DRUKARKI" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" Width="665"/>
                 <!-- Back Button -->
                 <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnBack_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="FILES\Back.png" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Keyboard -->
+                <Button  BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Left" Background="White" Margin="850,85,0,0" Width="64" Height="64" Click="btnKeyboard_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="FILES\keyboard.png" />
                     </StackPanel>
                 </Button>
 
@@ -110,7 +117,7 @@
                 </Button>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="gboxComponents" Visibility="Visible">
+        <GroupBox x:Name="gboxComponents" Visibility="Hidden">
             <Grid>
                 <Label Content="TEST DRUKARKI" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" Width="665"/>
                 <!-- Back Button -->

@@ -6,12 +6,18 @@
         xmlns:local="clr-namespace:LXM_DS"
         xmlns:t="clr-namespace:LXM_DS.TOUCH"
         mc:Ignorable="d"
-        Title="SNWindow" Height="360" Width="530" 
+        Title="SNWindow" Height="420" Width="530" 
         WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="lblTitle" Content="Podaj numer seryjny:" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
         <Label Content="SN:" FontFamily="Oxygen-Bold" FontSize="16" Foreground="#4c4f5b" HorizontalAlignment="Left" Margin="60,90,0,0" VerticalAlignment="Top"/>
         <t:TouchEnabledTextBox x:Name="txtSN" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="35,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
-        <Button x:Name="btnAddSN" Content="Zapisz" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="35,220,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnAddSN_Click"/>
+        <Button x:Name="btnAddSN" Content="Zapisz" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Left" Margin="35,290,0,0" VerticalAlignment="Top" Width="450" Height="80" Click="btnAddSN_Click"/>
+        <!-- Keyboard -->
+        <Button  BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" HorizontalAlignment="Left" Background="White" Margin="220,200,0,0" Width="64" Height="64" Click="btnKeyboard_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="FILES\keyboard.png" />
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

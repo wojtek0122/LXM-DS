@@ -330,5 +330,11 @@ namespace LXM_DS
                 _testComp.ENG = false;
             }
         }
+
+        private void btnKeyboard_Click(object sender, RoutedEventArgs e)
+        {
+            string KeyboardPath = @"C:\Windows\System32\osk.exe";
+            System.Diagnostics.Process.Start(KeyboardPath);
+        }
     }
 }

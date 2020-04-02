@@ -103,5 +103,11 @@ namespace LXM_DS
                 this.imgFoto.Source = new ImageSourceConverter().ConvertFromString(@"..\..\FILES\lexmark.png") as ImageSource;
             }
         }
+
+        private void btnKeyboard_Click(object sender, RoutedEventArgs e)
+        {
+            string KeyboardPath = @"C:\Windows\System32\osk.exe";
+            System.Diagnostics.Process.Start(KeyboardPath);
+        }
     }
 }
