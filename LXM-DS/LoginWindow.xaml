@@ -12,7 +12,7 @@
         <Button x:Name="btnZaloguj" Content="Zaloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,600,0,0" Width="450" Height="80" Click="btnZaloguj_Click"/>
 
         <Label Content="KARTA:" FontFamily="Oxygen-Bold" FontSize="18" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-300,375,0,0"/>
-        <t:TouchEnabledTextBox x:Name="txtNFC" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="0,410,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
+        <TextBox x:Name="txtNFC" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="0,410,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
 
         <!-- nie używane login i haslo
         <t:TouchEnabledTextBox x:Name="txtLogin" Visibility="Hidden" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="570,410,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>

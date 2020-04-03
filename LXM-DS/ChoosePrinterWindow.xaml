@@ -26,7 +26,7 @@
 
         <!-- Label -->
         <Label Content="LABEL" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="35,335,0,0" VerticalAlignment="Top" Width="210"/>
-        <t:TouchEnabledTextBox x:Name="txtLabel" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="20,380,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtLabel_TextChanged"/>
+        <TextBox x:Name="txtLabel" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="20,380,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtLabel_TextChanged"/>
 
         <!-- Printer -->
         <Label HorizontalAlignment="Left"  Margin="500,125,0,0" VerticalAlignment="Top" Height="500" Width="500">

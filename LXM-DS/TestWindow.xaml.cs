@@ -333,7 +333,7 @@ namespace LXM_DS
 
         private void btnKeyboard_Click(object sender, RoutedEventArgs e)
         {
-            string KeyboardPath = @"C:\Windows\System32\osk.exe";
+            string KeyboardPath = @"C:\Program Files\Common Files\Microsoft Shared\Ink\TabTip.exe";
             System.Diagnostics.Process.Start(KeyboardPath);
         }
     }
