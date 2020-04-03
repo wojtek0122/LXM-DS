@@ -79,7 +79,6 @@ namespace LXM_DS
         private void ParseTextBoxContent(string Content)
         {
             _printerMT = Content.Substring(1, 4);
-            this.txtLabel.Text = _printerMT;
             if (_printerMT == "7014")
             {
                 _printerSN = Content.Substring(5, 7);
@@ -88,7 +87,6 @@ namespace LXM_DS
             {
                 _printerSN = Content.Substring(5, 9);
             }
-            this.txtLabel.Text = _printerSN;
             ChangePrinterFoto();
         }
 
