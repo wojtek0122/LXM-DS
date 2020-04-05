@@ -13,6 +13,7 @@ namespace Updater
             Logic _logic = new Logic();
 
             _logic.ParsePathFromXML();
+            _logic.CloseApp("LXM-DS");
             _logic.ExtractZip(args[0]);
             _logic.RunApp(_logic._path + @"bin\Debug\LXM-DS.exe");
 

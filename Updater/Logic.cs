@@ -11,9 +11,10 @@ namespace Updater
     {
         public string _path;
 
-        public void ExtractZip(string Version)
+        public void ExtractZip(string File)
         {
-            Console.WriteLine(Version);
+            Console.WriteLine("Extract ZIP - " + File);
+
         }
 
         public void RunApp(string PathToFile)
@@ -29,12 +30,28 @@ namespace Updater
             }
         }
 
+        public void CloseApp(string ProcessName)
+        {
+            try
+            {
+                foreach (var process in System.Diagnostics.Process.GetProcessesByName(ProcessName))
+                {
+                    process.Kill();
+                }
+                Console.WriteLine("Close App - " + ProcessName);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Close App ERROR - " + ex.ToString());
+            }
+        }
+
         public void ParsePathFromXML()
         {
             string _parsedPath = "";
             try
             {
-                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\Config.xml");
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
                 while (_xmlReader.Read())
                 {
                     if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))

@@ -39,28 +39,9 @@ namespace LXM_DS.AUTOUPDATE
             //Copy .zip file
             CopyZipFileFromServer(@"C:\LXM-DS_UPDATES\" + File + ".zip", _path + @"UPDATES\" + File + ".zip");
 
-            //Start .bat
-            StartBAT(File);
+            //Open Updater
+            OpenApp(_path + @"AUTOUPDATE\Updater.exe", File + ".zip");
 
-            //Close App
-            CloseApp("LXM-DS");
-
-            //Unzip files
-            //Unzip(@"C:\LXM-DS\" + File + ".zip");
-
-            //Start App
-            //OpenApp(@"C:\LXM-DS\bin\Debug\LXM-DS.exe");
-        }
-
-        private void StartBAT(string File)
-        {
-            string _p1 = _path + @"UPDATES\" + File + ".zip "; //Zip file
-            //string _p2 = @"C:\Program Files (x86)\7-Zip\7z.exe "; //7zip extract
-            string _p2 = @"C:\Program Files (x86)\7-Zip\7z.exe e " + _p1 + @" -o" + _path + " -aoa";
-
-            string _p3 = _path + @"bin\Debug\LXM-DS.exe"; //Open app
-            string _p4 = _path + @"AUTOUPDATE\Update.bat " + _p1 + _p2 + _p3;
-            OpenApp(_p4);
         }
 
         public void DeleteOldZip()
@@ -80,27 +61,11 @@ namespace LXM_DS.AUTOUPDATE
             }
         }
 
-        private void CloseApp(string ProcessName)
+        private void OpenApp(string PathToFile, string File)
         {
             try
             {
-                foreach (var process in System.Diagnostics.Process.GetProcessesByName(ProcessName))
-                {
-                    process.Kill();
-                }
-                LOG("Close App - " + ProcessName);
-            }
-            catch (Exception ex)
-            {
-                LOG("Close App ERROR - " + ex.ToString());
-            }
-        }
-
-        private void OpenApp(string PathToFile)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start(PathToFile);
+                System.Diagnostics.Process.Start(PathToFile, File);
                 LOG("Open App - " + PathToFile);
             }
             catch (Exception ex)
@@ -141,34 +106,6 @@ namespace LXM_DS.AUTOUPDATE
         public int GetCurrentVersion()
         {
             return _ver;
-        }
-
-        private void Unzip(string Path)
-        {
-            /*
-            try
-            {
-                ZipArchive oZip = new ZipArchive("TryIt");
-                ZipArchive _zip = new ZipArchive();
-                _zip.LOAD
-                oZip.Load("c:\\test.zip");
-
-                ZipFile[] zs = oZip.Files;
-                int count = zs.Length;
-                string password = "";
-                bool overwrite = true;
-                for (int i = 0; i < count; i++)
-                {
-                    ZipFile z = zs[i];
-                    if (!z.IsDirectory)
-                        oZip.ExtractTo(z, password, "c:\\unzipped", overwrite);
-                }
-            }
-            catch (Exception ep)
-            {
-                Console.Write(ep.Message);
-            }
-            */
         }
 
         private int ParseVersionFromXML()
