@@ -37,7 +37,7 @@ namespace LXM_DS.AUTOUPDATE
             DeleteOldZip();
 
             //Copy .zip file
-            CopyZipFileFromServer(@"C:\LXM-DS_UPDATES\" + File + ".zip", _path + @"\UPDATES\" + File + ".zip");
+            CopyZipFileFromServer(@"C:\LXM-DS_UPDATES\" + File + ".zip", _path + @"UPDATES\" + File + ".zip");
 
             //Close App
             CloseApp("LXM-DS");
