@@ -59,8 +59,8 @@ namespace LXM_DS.AUTOUPDATE
             string _p2 = @"C:\Program Files (x86)\7-Zip\7z.exe e " + _p1 + @" -o" + _path + " -aoa";
 
             string _p3 = _path + @"bin\Debug\LXM-DS.exe"; //Open app
-
-            OpenApp("Update.bat " + _p1 + _p2 + _p3);
+            string _p4 = _path + @"AUTOUPDATE\Update.bat " + _p1 + _p2 + _p3;
+            OpenApp(_p4);
         }
 
         public void DeleteOldZip()
