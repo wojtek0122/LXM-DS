@@ -53,7 +53,7 @@ namespace LXM_DS.AUTOUPDATE
 
         private void StartBAT(string File)
         {
-            string _p1 = _path + @"\UPDATES\" + File + ".zip "; //Zip file
+            string _p1 = _path + @"UPDATES\" + File + ".zip "; //Zip file
             //string _p2 = @"C:\Program Files (x86)\7-Zip\7z.exe "; //7zip extract
             string _p2 = @"C:\Program Files (x86)\7-Zip\7z.exe e " + _p1 + @" -o" + _path + " -aoa";
 
@@ -64,12 +64,12 @@ namespace LXM_DS.AUTOUPDATE
 
         public void DeleteOldZip()
         {
-            if (System.IO.Directory.Exists(_path + @"\UPDATES"))
+            if (System.IO.Directory.Exists(_path + @"UPDATES"))
             {
                 try
                 {
-                    System.IO.Directory.Delete(_path + @"\UPDATES", true);
-                    System.IO.Directory.CreateDirectory(_path + @"\UPDATES");
+                    System.IO.Directory.Delete(_path + @"UPDATES", true);
+                    System.IO.Directory.CreateDirectory(_path + @"UPDATES");
                 }
 
                 catch (System.IO.IOException e)
