@@ -347,5 +347,8 @@
   <ItemGroup>
     <Resource Include="Version.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UPDATES\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
