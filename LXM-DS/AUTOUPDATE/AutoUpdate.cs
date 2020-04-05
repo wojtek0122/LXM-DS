@@ -39,11 +39,12 @@ namespace LXM_DS.AUTOUPDATE
             //Copy .zip file
             CopyZipFileFromServer(@"C:\LXM-DS_UPDATES\" + File + ".zip", _path + @"UPDATES\" + File + ".zip");
 
+            //Start .bat
+            StartBAT(File);
+
             //Close App
             CloseApp("LXM-DS");
 
-            //Start .bat
-            StartBAT(File);
             //Unzip files
             //Unzip(@"C:\LXM-DS\" + File + ".zip");
 
