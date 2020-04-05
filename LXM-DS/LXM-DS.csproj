@@ -143,6 +143,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AUTOUPDATE\AutoUpdate.cs" />
+    <Compile Include="AUTOUPDATE\AppVersion.cs" />
     <Compile Include="BARCODE\Barcode.cs" />
     <Compile Include="BUTTON\ButtonListManager.cs" />
     <Compile Include="BUTTON\StatusButton.cs" />

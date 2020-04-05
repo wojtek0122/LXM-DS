@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LXM_DS.PRINTER;
 using LXM_DS.USERS;
+using LXM_DS.AUTOUPDATE;
 using MySql;
 
 namespace LXM_DS.MYSQL
@@ -28,6 +29,41 @@ namespace LXM_DS.MYSQL
                 _manager = new MySQLManager();
             }
             return _manager;
+        }
+
+        public AppVersion GetCurrentVersion()
+        {
+            AppVersion _version = null;
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = String.Format("SELECT * FROM versions WHERE current='1';");
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    int _ver;
+                    Int32.TryParse(_dataReader.GetValue(1).ToString(), out _ver);
+                    _version = new AppVersion(_ver , _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), 1);
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return _version;
         }
 
         public void MakeBackup(string Path) //Install-Package MySqlBackup.NET

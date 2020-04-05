@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LXM-DS", "LXM-DS\LXM-DS.csproj", "{84703DB4-61B6-43D9-A8A9-9A49F41F581D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoUpdate", "AutoUpdate\AutoUpdate.csproj", "{53EBDBC8-4998-4E80-958F-595AB6F990D9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,14 +21,6 @@ Global
 		{84703DB4-61B6-43D9-A8A9-9A49F41F581D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{84703DB4-61B6-43D9-A8A9-9A49F41F581D}.Release|x64.ActiveCfg = Release|x64
 		{84703DB4-61B6-43D9-A8A9-9A49F41F581D}.Release|x64.Build.0 = Release|x64
-		{53EBDBC8-4998-4E80-958F-595AB6F990D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53EBDBC8-4998-4E80-958F-595AB6F990D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53EBDBC8-4998-4E80-958F-595AB6F990D9}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{53EBDBC8-4998-4E80-958F-595AB6F990D9}.Debug|x64.Build.0 = Debug|Any CPU
-		{53EBDBC8-4998-4E80-958F-595AB6F990D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53EBDBC8-4998-4E80-958F-595AB6F990D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53EBDBC8-4998-4E80-958F-595AB6F990D9}.Release|x64.ActiveCfg = Release|Any CPU
-		{53EBDBC8-4998-4E80-958F-595AB6F990D9}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

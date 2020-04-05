@@ -2,6 +2,7 @@
 using LXM_DS.MYSQL;
 using LXM_DS.PRINTER;
 using LXM_DS.USERS;
+using LXM_DS.AUTOUPDATE;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,14 @@ namespace LXM_DS
         //UserManager _userManager;
         MySQLManager _mysqlManager;
         ButtonListManager _buttonListManager;
+        AutoUpdate _autoUpdate;
         private Managers()
         {
             _mysqlManager = MySQLManager.CreateManager();
             _printerManager = new PrinterManager();
             _buttonListManager = ButtonListManager.CreateManager();
-            
+            _autoUpdate = AutoUpdate.CreateAutoUpdate();
+
             //_userManager = new UserManager();
         }
 
@@ -55,6 +58,11 @@ namespace LXM_DS
         public MySQLManager GetMySQLManager()
         {
             return _mysqlManager;
+        }
+
+        public AutoUpdate GetAutoUpdate()
+        {
+            return _autoUpdate;
         }
 
         public void InitializePrinters()
