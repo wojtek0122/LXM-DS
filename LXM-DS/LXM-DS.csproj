@@ -344,5 +344,8 @@
   <ItemGroup>
     <Resource Include="FILES\keyboard.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Version.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -43,7 +43,7 @@ namespace LXM_DS.AUTOUPDATE
             CloseApp("LXM-DS");
 
             //Start .bat
-            StartBAT();
+            StartBAT(File);
             //Unzip files
             //Unzip(@"C:\LXM-DS\" + File + ".zip");
 
@@ -51,9 +51,15 @@ namespace LXM_DS.AUTOUPDATE
             //OpenApp(@"C:\LXM-DS\bin\Debug\LXM-DS.exe");
         }
 
-        private void StartBAT()
+        private void StartBAT(string File)
         {
+            string _p1 = _path + @"\UPDATES\" + File + ".zip "; //Zip file
+            //string _p2 = @"C:\Program Files (x86)\7-Zip\7z.exe "; //7zip extract
+            string _p2 = @"C:\Program Files (x86)\7-Zip\7z.exe e " + _p1 + @" -o" + _path + " -aoa";
 
+            string _p3 = _path + @"bin\Debug\LXM-DS.exe"; //Open app
+
+            OpenApp("Update.bat " + _p1 + _p2 + _p3);
         }
 
         public void DeleteOldZip()
@@ -169,14 +175,14 @@ namespace LXM_DS.AUTOUPDATE
             int _parsedVersion = 0;
             try
             {
-                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Version.xml");
                 while (_xmlReader.Read())
                 {
-                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "VERSION"))
                     {
                         if (_xmlReader.HasAttributes)
                         {
-                            string _parsedInfo = String.Format(_xmlReader.GetAttribute("VERSION"));
+                            string _parsedInfo = String.Format(_xmlReader.GetAttribute("CURRENT"));
                             Int32.TryParse(_parsedInfo, out _parsedVersion);
                         }
                     }

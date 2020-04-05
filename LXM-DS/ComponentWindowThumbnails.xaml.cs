@@ -26,6 +26,7 @@ namespace LXM_DS
         Managers _managers;
         PrinterManager _printerManager;
         ButtonListManager _buttonListManager;
+        AUTOUPDATE.AutoUpdate _autoUpdate;
 
         Printer _printer;
         List<Image> _imageStatusButtonList; 
@@ -58,6 +59,7 @@ namespace LXM_DS
             _managers = Managers.CreateManagers();
             _printerManager = _managers.GetPrinterManager();
             _buttonListManager = _managers.GetButtonListManager();
+            _autoUpdate = AUTOUPDATE.AutoUpdate.CreateAutoUpdate();
 
             _printer = _printerManager.GetPrinterByMT(_mt);
             _imageStatusButtonList = new List<Image>();
@@ -226,6 +228,7 @@ namespace LXM_DS
                 _buttonListManager.ClearList();
                 _timer.Stop();
                 CloseAdobeReaderProcess();
+                _autoUpdate.CheckUpdate();
                 this.Close();
             }
         }
