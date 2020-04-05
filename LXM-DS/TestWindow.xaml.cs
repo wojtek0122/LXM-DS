@@ -52,6 +52,7 @@ namespace LXM_DS
 
         Managers _managers;
         MySQLManager _mysqlManager;
+        AUTOUPDATE.AutoUpdate _autoUpdate;
 
         public TestWindow(string User)
         {
@@ -61,6 +62,7 @@ namespace LXM_DS
 
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
+            _autoUpdate = AUTOUPDATE.AutoUpdate.CreateAutoUpdate();
 
             _login = User;
             txtSN.Focus();
@@ -73,7 +75,7 @@ namespace LXM_DS
                 _printer.status = "NOK";
                 InsertHDDToMySQL();
                 InsertDatatoMySQL();
-                this.Close();
+                CloseWindow();
             }
             
         }
@@ -85,12 +87,18 @@ namespace LXM_DS
                 _printer.status = "OK";
                 InsertHDDToMySQL();
                 InsertDatatoMySQL();
-                this.Close();
+                CloseWindow();
             }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
+            CloseWindow();
+        }
+
+        private void CloseWindow()
+        {
+            _autoUpdate.CheckUpdate();
             this.Close();
         }
 

@@ -22,21 +22,26 @@ namespace LXM_DS
     {
         Managers _managers;
         MYSQL.MySQLManager _mysqlManager;
+        AUTOUPDATE.AutoUpdate _autoUpdate;
 
         private string _login;
         DispatcherTimer _timer;
+
         public MainWindowFullHD(string Login, int Permission)
         {
             InitializeComponent();
             _managers = Managers.CreateManagers();
             _managers.InitializePrinters();
             _mysqlManager = MYSQL.MySQLManager.CreateManager();
+            _autoUpdate = AUTOUPDATE.AutoUpdate.CreateAutoUpdate();
 
             lblName.Content = _login = Login;
             if (Permission == 9)
             {
                 gboxDismantle.Visibility = System.Windows.Visibility.Visible;
             }
+
+            lblVersion.Content = "version: " + _autoUpdate.GetCurrentVersion().ToString();
 
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);

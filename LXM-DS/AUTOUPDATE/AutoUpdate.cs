@@ -11,6 +11,7 @@ namespace LXM_DS.AUTOUPDATE
         private static AutoUpdate _autoUpdate = null;
         private AppVersion _appCurrentVersion = null;
         private int _ver = 0;
+        private string _path = null;
 
         MYSQL.MySQLManager _mysqlManager;
 
@@ -18,6 +19,7 @@ namespace LXM_DS.AUTOUPDATE
         {
             _mysqlManager = MYSQL.MySQLManager.CreateManager();
             _ver = ParseVersionFromXML();
+            _path = ParsePathFromXML();
         }
 
         public static AutoUpdate CreateAutoUpdate()
@@ -31,17 +33,44 @@ namespace LXM_DS.AUTOUPDATE
 
         private void UpdateApp(string File)
         {
+            //Delete old versions
+            DeleteOldZip();
+
             //Copy .zip file
-            CopyZipFileFromServer(@"C:\LXM-DS_UPDATES\" + File + ".zip", @"C:\LXM-DS\" + File + ".zip");
+            CopyZipFileFromServer(@"C:\LXM-DS_UPDATES\" + File + ".zip", _path + @"\UPDATES\" + File + ".zip");
 
             //Close App
             CloseApp("LXM-DS");
 
+            //Start .bat
+            StartBAT();
             //Unzip files
-            Unzip(@"C:\LXM-DS\" + File + ".zip");
+            //Unzip(@"C:\LXM-DS\" + File + ".zip");
 
             //Start App
-            OpenApp(@"C:\LXM-DS\bin\Debug\LXM-DS.exe");
+            //OpenApp(@"C:\LXM-DS\bin\Debug\LXM-DS.exe");
+        }
+
+        private void StartBAT()
+        {
+
+        }
+
+        public void DeleteOldZip()
+        {
+            if (System.IO.Directory.Exists(_path + @"\UPDATES"))
+            {
+                try
+                {
+                    System.IO.Directory.Delete(_path + @"\UPDATES", true);
+                    System.IO.Directory.CreateDirectory(_path + @"\UPDATES");
+                }
+
+                catch (System.IO.IOException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
         }
 
         private void CloseApp(string ProcessName)
@@ -98,6 +127,7 @@ namespace LXM_DS.AUTOUPDATE
             if(_appCurrentVersion._Version > _ver)
             {
                 UpdateApp(_appCurrentVersion._Name);
+                _ver = _appCurrentVersion._Version;
             }
         }
 
@@ -157,6 +187,30 @@ namespace LXM_DS.AUTOUPDATE
                 Console.WriteLine(ex.ToString());
             }
             return _parsedVersion;
+        }
+
+        private string ParsePathFromXML()
+        {
+            string _parsedPath = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _parsedPath = String.Format(_xmlReader.GetAttribute("PATH"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _parsedPath;
         }
 
         private void LOG(string Message)
