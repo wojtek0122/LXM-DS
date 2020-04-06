@@ -37,7 +37,7 @@ namespace LXM_DS.AUTOUPDATE
             DeleteOldZip();
 
             //Copy .zip file
-            CopyZipFileFromServer(@"\\192.168.1.254\LXM-DS_UPDATES\" + File + ".zip", _path + @"UPDATES\" + File + ".zip");
+            CopyZipFileFromServer(@"\\192.168.1.254\updates\" + File + ".zip", _path + @"UPDATES\" + File + ".zip");
 
             //Open Updater
             OpenApp(_path + @"AUTOUPDATE\Updater.exe", File + ".zip");
