@@ -14,7 +14,7 @@ namespace Updater
 
             _logic.ParsePathFromXML();
             _logic.CloseApp("LXM-DS");
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(2000);
             _logic.ExtractZip(args[0]);
             _logic.RunApp(_logic._path + @"bin\Debug\LXM-DS.exe");
         }
