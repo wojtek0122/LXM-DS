@@ -15,10 +15,10 @@ namespace Updater
         {
             Console.WriteLine("Extract ZIP - " + File);
 
-            //"C:\Program Files (x86)\7-Zip\7z.exe" x C:\LXM-DS\UPDATES\LXM-DS_2.zip -oC:\LXM-DS\ -aoa
+            //"C:\Program Files\7-Zip\7z.exe" x C:\LXM-DS\UPDATES\LXM-DS_2.zip -oC:\LXM-DS\ -aoa
 
             System.Diagnostics.Process _unzip = new System.Diagnostics.Process();
-            _unzip.StartInfo.FileName = @"C:\Program Files (x86)\7-Zip\7z.exe";
+            _unzip.StartInfo.FileName = @"C:\Program Files\7-Zip\7z.exe";
             _unzip.StartInfo.Arguments = "x " + _path + @"UPDATES\" + File + " -o" + _path + " -aoa";
             _unzip.Start();
         }
