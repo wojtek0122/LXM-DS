@@ -15,7 +15,7 @@ namespace Updater
         {
             Console.WriteLine("Extract ZIP - " + File);
 
-            //C:\Users\Dell>"C:\Program Files (x86)\7-Zip\7z.exe" x C:\LXM-DS\UPDATES\LXM-DS_2.zip -oC:\LXM-DS\ -aoa
+            //"C:\Program Files (x86)\7-Zip\7z.exe" x C:\LXM-DS\UPDATES\LXM-DS_2.zip -oC:\LXM-DS\ -aoa
 
             System.Diagnostics.Process _unzip = new System.Diagnostics.Process();
             _unzip.StartInfo.FileName = @"C:\Program Files (x86)\7-Zip\7z.exe";
