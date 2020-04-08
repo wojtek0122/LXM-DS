@@ -42,7 +42,7 @@ namespace LXM_DS
 
         private void btnWybierz_Click(object sender, RoutedEventArgs e)
         {
-            _testid = _mysqlManager.GetTestIDFromTest(_printerSN);
+            _testid = _mysqlManager.GetTestIDFromTestBySN(_printerSN);
             _buttonListManager.ClearList();
             if (_testid == 0)
             {
@@ -51,7 +51,7 @@ namespace LXM_DS
             else
             {
                 _mysqlManager.SetDismantled(_testid);
-                ComponentWindowThumbnailsFullHD _componentWindowThumbnailsFullHD = new ComponentWindowThumbnailsFullHD(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTest(_printerSN)), _mysqlManager.GetStatusFromTest(_printerSN), _login);
+                ComponentWindowThumbnailsFullHD _componentWindowThumbnailsFullHD = new ComponentWindowThumbnailsFullHD(_testid, _mysqlManager.GetMTFromPrintersWherePrinterID(_mysqlManager.GetPrinterIDFromTestBySN(_printerSN)), _mysqlManager.GetTestStatusFromTestBySN(_printerSN), _login);
                 this.Close();
                 _componentWindowThumbnailsFullHD.Show();
             }

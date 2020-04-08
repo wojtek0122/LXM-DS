@@ -660,7 +660,7 @@ namespace LXM_DS.MYSQL
             }
         }
 
-        public int GetTestIDFromTest(string SN)
+        public int GetTestIDFromTestBySN(string SN)
         {
             int _id = 0;
             try
@@ -702,7 +702,7 @@ namespace LXM_DS.MYSQL
             return _id;
         }
 
-        public int GetPrinterIDFromTest(string SN)
+        public int GetPrinterIDFromTestBySN(string SN)
         {
             int _id = 0;
             try
@@ -744,7 +744,7 @@ namespace LXM_DS.MYSQL
             return _id;
         }
 
-        public string GetStatusFromTest(string SN)
+        public string GetTestStatusFromTestBySN(string SN)
         {
             string _status = "";
             try
@@ -758,6 +758,41 @@ namespace LXM_DS.MYSQL
                 MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
                 MySql.Data.MySqlClient.MySqlDataReader _dataReader;
                 string _sql = "SELECT status FROM test WHERE sn='" + SN + "';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    _status = _dataReader.GetValue(0).ToString();
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _status;
+        }
+
+        public string GetTestStatusFromTestByTestID(int TestID)
+        {
+            string _status = "";
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT status FROM test WHERE testid='" + TestID + "';";
                 _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
                 _dataReader = _mySqlCommand.ExecuteReader();
 
