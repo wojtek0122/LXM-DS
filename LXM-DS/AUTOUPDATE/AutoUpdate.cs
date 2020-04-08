@@ -46,18 +46,17 @@ namespace LXM_DS.AUTOUPDATE
 
         public void DeleteOldZip()
         {
-            if (System.IO.Directory.Exists(_path + @"UPDATES"))
+            try
             {
-                try
+                if (System.IO.Directory.Exists(_path + @"UPDATES"))
                 {
                     System.IO.Directory.Delete(_path + @"UPDATES", true);
                     System.IO.Directory.CreateDirectory(_path + @"UPDATES");
                 }
-
-                catch (System.IO.IOException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+            }
+            catch (System.IO.IOException e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
 
