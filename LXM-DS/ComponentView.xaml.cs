@@ -95,86 +95,115 @@ namespace LXM_DS
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            //Print label
-            BARCODE.Barcode _barcode = new BARCODE.Barcode();
-            _barcode.PrintLabel(_component._PN, _component._location, _login);
-
-            //UpdateStock
-            _mysqlManager.UpdateComponentStock(_component._id);
-
-            //Add log
-            _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "OK");
-
-            StatusButton _btn;
-            foreach (var value in _buttonListManager.GetButtonList())
+            try
             {
-                _btn = value.Item1;
-                if (_btn.ID == _id)
+                //Print label
+                BARCODE.Barcode _barcode = new BARCODE.Barcode();
+                _barcode.PrintLabel(_component._PN, _component._location, _login);
+
+                //UpdateStock
+                _mysqlManager.UpdateComponentStock(_component._id);
+
+                //Add log
+                _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "OK");
+
+                StatusButton _btn;
+                foreach (var value in _buttonListManager.GetButtonList())
                 {
-                    _btn.STATUS = "OK";
+                    _btn = value.Item1;
+                    if (_btn.ID == _id)
+                    {
+                        _btn.STATUS = "OK";
+                    }
                 }
+
+                CloseAdobeReaderProcess();
+                _browser.Dispose();
+
+                //Close window
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
             }
 
-            CloseAdobeReaderProcess();
-            _browser.Dispose();
-
-            //Close window
-            this.Close();
         }
 
         private void NOK_Click(object sender, RoutedEventArgs e)
         {
-            //Print label - SCR
-            BARCODE.Barcode _barcode = new BARCODE.Barcode();
-            _barcode.PrintLabel(_component._PN, "SCR", "");
-
-            //Add log
-            _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NOK");
-
-            StatusButton _btn;
-            foreach (var value in _buttonListManager.GetButtonList())
+            try
             {
-                _btn = value.Item1;
-                if (_btn.ID == _id)
+                //Print label - SCR
+                BARCODE.Barcode _barcode = new BARCODE.Barcode();
+                _barcode.PrintLabel(_component._PN, "SCR", "");
+
+                //Add log
+                _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NOK");
+
+                StatusButton _btn;
+                foreach (var value in _buttonListManager.GetButtonList())
                 {
-                    _btn.STATUS = "NOK";
+                    _btn = value.Item1;
+                    if (_btn.ID == _id)
+                    {
+                        _btn.STATUS = "NOK";
+                    }
                 }
+
+                CloseAdobeReaderProcess();
+                _browser.Dispose();
+
+                //Close window
+                this.Close();
             }
-
-            CloseAdobeReaderProcess();
-            _browser.Dispose();
-
-            //Close window
-            this.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         private void NONE_Click(object sender, RoutedEventArgs e)
         {
-            //Add log
-            _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NONE");
-
-            StatusButton _btn;
-            foreach (var value in _buttonListManager.GetButtonList())
+            try
             {
-                _btn = value.Item1;
-                if (_btn.ID == _id)
+                //Add log
+                _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NONE");
+
+                StatusButton _btn;
+                foreach (var value in _buttonListManager.GetButtonList())
                 {
-                    _btn.STATUS = "NONE";
+                    _btn = value.Item1;
+                    if (_btn.ID == _id)
+                    {
+                        _btn.STATUS = "NONE";
+                    }
                 }
+
+                CloseAdobeReaderProcess();
+                _browser.Dispose();
+
+                //Close window
+                this.Close();
             }
-
-            CloseAdobeReaderProcess();
-            _browser.Dispose();
-
-            //Close window
-            this.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         private void BACK_Click(object sender, RoutedEventArgs e)
         {
-            CloseAdobeReaderProcess();
-            _browser.Dispose();
-            this.Close();
+            try
+            {
+                CloseAdobeReaderProcess();
+                _browser.Dispose();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         public string ParseFIDPathFromXML()
