@@ -73,6 +73,7 @@ namespace LXM_DS
             _count++;
             if (_count == 2)
             {
+                _timer.Stop();
                 switch (_component._type)
                 {
                     case COMPONENTTYPE.MB: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); _snWindow.txtSN.Focus(); break; };
@@ -81,7 +82,10 @@ namespace LXM_DS
                     default:
                         break;
                 }
-                _timer.Stop();
+                this.OK.Visibility = Visibility.Visible;
+                this.NOK.Visibility = Visibility.Visible;
+                this.NONE.Visibility = Visibility.Visible;
+                this.BACK.Visibility = Visibility.Visible;
             }
         }
 

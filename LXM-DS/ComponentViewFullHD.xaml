@@ -10,10 +10,10 @@
         WindowStyle="None"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <WebBrowser x:Name="_browser" HorizontalAlignment="Left" Height="920" VerticalAlignment="Top" Width="1920" IsEnabled="False"/>
-        <Button x:Name="OK" Content="OK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="80,940,0,0" VerticalAlignment="Top" Width="400" Height="80" Click="OK_Click"/>
-        <Button x:Name="NOK" Content="NOK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="530,940,0,0" VerticalAlignment="Top" Width="400" Height="80" Click="NOK_Click"/>
-        <Button x:Name="NONE" Content="BRAK" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="980,940,0,0" VerticalAlignment="Top" Width="400" Height="80" Click="NONE_Click"/>
-        <Button x:Name="BACK" Content="COFNIJ" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="Gray" Foreground="White" HorizontalAlignment="Left" Margin="1430,940,0,0" VerticalAlignment="Top" Width="400" Height="80" Click="BACK_Click"/>
+        <Button x:Name="OK" Content="OK" Visibility="Hidden" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6fcdb4" Foreground="White" HorizontalAlignment="Left" Margin="80,940,0,0" VerticalAlignment="Top" Width="400" Height="80" Click="OK_Click"/>
+        <Button x:Name="NOK" Content="NOK" Visibility="Hidden" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#6e0a16" Foreground="White" HorizontalAlignment="Left" Margin="530,940,0,0" VerticalAlignment="Top" Width="400" Height="80" Click="NOK_Click"/>
+        <Button x:Name="NONE" Content="BRAK" Visibility="Hidden" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="980,940,0,0" VerticalAlignment="Top" Width="400" Height="80" Click="NONE_Click"/>
+        <Button x:Name="BACK" Content="COFNIJ" Visibility="Hidden" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="Gray" Foreground="White" HorizontalAlignment="Left" Margin="1430,940,0,0" VerticalAlignment="Top" Width="400" Height="80" Click="BACK_Click"/>
 
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,1040,0,0" VerticalAlignment="Top" Width="1920"/>
         <Label x:Name="lblMT" FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,1050,0,0" />
