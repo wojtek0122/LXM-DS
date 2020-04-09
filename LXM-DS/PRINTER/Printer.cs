@@ -10,7 +10,7 @@ namespace LXM_DS.PRINTER
     class Printer
     {
         //private static int _sID = 0;
-        private int _ID;
+        public int _ID;
         public string _machineType;
         public string _subModel;
         public List<Component> _componentsList;

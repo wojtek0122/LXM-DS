@@ -331,6 +331,41 @@ namespace LXM_DS.MYSQL
             return _user;
         }
 
+        public int GetUserIDByLogin(string Login)
+        {
+            int _id = 0;
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT usersid FROM users WHERE login='" + Login + "';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    Int32.TryParse(_dataReader.GetValue(0).ToString(), out _id);
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _id;
+        }
+
         public User GetUserByNFC(string NFC)
         {
             User _user = null;
@@ -974,6 +1009,49 @@ namespace LXM_DS.MYSQL
                 Console.WriteLine(ex.Message);
             }
 
+        }
+
+        public void InsertPrinterDismantleTime(int UserID, int TestID, int PrintersID, DateTime StartDateTime, DateTime EndDateTime, TimeSpan Time)
+        {
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+
+                //DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                string _sql = String.Format("INSERT INTO dismantledtimes (userid, testid, printersid, start, end, time) VALUES " +
+                    "(" +
+                    //userid
+                    "'{0}', " +
+                    //testid
+                    "'{1}', " +
+                    //printersid
+                    "'{2}', " +
+                    //start
+                    "'{3}', " +
+                    //end
+                    "'{4}', " +
+                    //time
+                    "'{5}'" +
+                    ");", 
+                    UserID, TestID, PrintersID, StartDateTime.ToString("yyyy-MM-dd HH:mm:ss"), EndDateTime.ToString("yyyy-MM-dd HH:mm:ss"), Time.TotalMinutes);
+
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _mySqlCommand.ExecuteNonQuery();
+
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
     }

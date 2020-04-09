@@ -27,6 +27,7 @@ namespace LXM_DS
         PrinterManager _printerManager;
         ButtonListManager _buttonListManager;
         AUTOUPDATE.AutoUpdate _autoUpdate;
+        MYSQL.MySQLManager _mysqlManager;
 
         Printer _printer;
         List<Image> _imageStatusButtonList; 
@@ -44,6 +45,8 @@ namespace LXM_DS
         int _maxRowsOnPage = 3;
         int _maxButtonsOnPage = 0;
 
+        DateTime _dismantleStartDateTime;
+
         List<Component> _dismantledComponentsList;
 
         DispatcherTimer _timer;
@@ -60,6 +63,7 @@ namespace LXM_DS
             _printerManager = _managers.GetPrinterManager();
             _buttonListManager = _managers.GetButtonListManager();
             _autoUpdate = AUTOUPDATE.AutoUpdate.CreateAutoUpdate();
+            _mysqlManager = _managers.GetMySQLManager();
 
             _printer = _printerManager.GetPrinterByMT(_mt);
             _imageStatusButtonList = new List<Image>();
@@ -97,6 +101,7 @@ namespace LXM_DS
             CreateImageButtonList();
 
             this.lblMT.Content = "MT: " + _mt + " \tStrona: " + _pageCurrent + " / " + _pageMax;
+            _dismantleStartDateTime = DateTime.Now;
         }
 
         public void ButtonSetVisibility()
@@ -226,6 +231,7 @@ namespace LXM_DS
                 _dismantledComponentsList = null;
                 _imageStatusButtonList = null;
                 _buttonListManager.ClearList();
+                _mysqlManager.InsertPrinterDismantleTime(_mysqlManager.GetUserIDByLogin(_login), _testID, _printer._ID, _dismantleStartDateTime, DateTime.Now, DateTime.Now - _dismantleStartDateTime);
                 _timer.Stop();
                 CloseAdobeReaderProcess();
                 _autoUpdate.CheckUpdate();
