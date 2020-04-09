@@ -132,7 +132,12 @@ namespace LXM_DS
             }
             this.txtSNlbl.Text = _printer.sn;
             ChangePrinterFoto();
-          
+            CheckSubModel(_printer.mt);
+        }
+
+        private void CheckSubModel(string MachineType)
+        {
+
         }
 
         private void ChangePrinterFoto()

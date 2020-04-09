@@ -23,5 +23,10 @@ namespace LXM_DS
         {
             InitializeComponent();
         }
+
+        public int a()
+        {
+            return 5;
+        }
     }
 }
