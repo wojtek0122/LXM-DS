@@ -13,6 +13,7 @@
 
         <Label Content="KARTA:" FontFamily="Oxygen-Bold" FontSize="18" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-300,375,0,0"/>
         <TextBox x:Name="txtNFC" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="0,410,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
+        <Label x:Name="lblError" FontFamily="Oxygen-Bold" FontSize="14" Foreground="#b9192c" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,505,0,0"/>
 
         <!-- nie używane login i haslo
         <t:TouchEnabledTextBox x:Name="txtLogin" Visibility="Hidden" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="570,410,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>

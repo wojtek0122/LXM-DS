@@ -90,9 +90,14 @@ namespace LXM_DS
                             //}
                         //}
                     }
+                    else
+                    {
+                        this.lblError.Content = "BŁĄD: Brak użytkownika!";
+                    }
                 }
                 catch (Exception)
                 {
+                    this.lblError.Content = "BŁĄD: Brak połączenia!";
                     Console.WriteLine("BŁĄD:: Użytkownik nie istnieje!!!");
                 }  
             }

@@ -61,7 +61,15 @@ namespace LXM_DS
         {
             //Print label
             BARCODE.Barcode _barcode = new BARCODE.Barcode();
-            _barcode.PrintLabel(_component._PN, _component._location, _login);
+            if(_mysqlManager.GetTestStatusFromTestByTestID(_testid)=="OK")
+            {
+                _barcode.PrintLabel(_component._PN, _component._location, _login, "");
+            }
+            else
+            {
+                _barcode.PrintLabel(_component._PN, _component._location, _login, "DEF PRT");
+            }
+            
 
             //DeactivateField
             _dismantledComponentsList.Remove(_component);
@@ -84,7 +92,7 @@ namespace LXM_DS
         {
             //Print label - SCR
             BARCODE.Barcode _barcode = new BARCODE.Barcode();
-            _barcode.PrintLabel(_component._PN, "SCR", "");
+            _barcode.PrintLabel(_component._PN, "SCR", "", "");
 
             //DeactivateField
             _dismantledComponentsList.Remove(_component);
