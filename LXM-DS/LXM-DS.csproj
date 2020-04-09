@@ -177,6 +177,9 @@
     <Compile Include="SNWindow.xaml.cs">
       <DependentUpon>SNWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubmodelWindow.xaml.cs">
+      <DependentUpon>SubmodelWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SupermarketWindow.xaml.cs">
       <DependentUpon>SupermarketWindow.xaml</DependentUpon>
     </Compile>
@@ -248,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SNWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubmodelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
