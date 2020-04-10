@@ -32,24 +32,27 @@ namespace LXM_DS
             _subList = SubList;
             _btnList = new List<StatusButton>();
 
-            for(int i = 0; i < _btnList.Count; i++)
+            for(int i = 0; i < _subList.Count; i++)
             {
                 _btnList.Add(CreateNewButton(_subList[i].GetSubModel(), _subList[i].GetName(), i));
             }
-
         }
 
         public StatusButton CreateNewButton(int Submodel, string Name, int Row)
         {
             var _converter = new System.Windows.Media.BrushConverter();
-            var _brush = (Brush)_converter.ConvertFromString("#FFFFFFFF");
+            var _brushFore = (Brush)_converter.ConvertFromString("#FFFFFF");
+            var _brushBack = (Brush)_converter.ConvertFromString("#b9192c");
             StatusButton _btn = new StatusButton()
             {
                 Name = "SUB" + Submodel.ToString(),
-                Content = "Submodel: " + Submodel.ToString() + " - " + Name,
+                Content = Submodel.ToString() + " - " + Name,
                 Height = 80,
                 Width = 450,
-                Background = _brush,
+                FontFamily = new FontFamily("Oxygen-Bold"),
+                FontSize = 30,
+                Foreground = _brushFore,
+                Background = _brushBack,
                 Visibility = Visibility.Visible,
             };
             _btn.Click += new RoutedEventHandler(_btn_Click);
@@ -64,8 +67,7 @@ namespace LXM_DS
         private void _btn_Click(object sender, RoutedEventArgs e)
         {
             StatusButton _button = sender as StatusButton;
-            _ID = 1;
-            _SUB = 2;
+            
             this.Close();
         }
 
