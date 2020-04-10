@@ -580,7 +580,7 @@ namespace LXM_DS.MYSQL
 
         }
 
-        public void InsertTestDataToMySQL(string PrinterMT, string PrinterSN, string Status, string Login, bool Firmware, bool Defaults, bool Nvram)
+        public void InsertTestDataToMySQL(int PrinterID, string PrinterSN, string Status, string Login, bool Firmware, bool Defaults, bool Nvram)
         {
             try
             {
@@ -595,7 +595,7 @@ namespace LXM_DS.MYSQL
                 string _sql = String.Format("INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled, firmware, defaults, nvram) VALUES " +
                     "(" +
                     //printersid
-                    "(SELECT printersid FROM printers WHERE mt='{0}'), " +
+                    "'{0}', " +
                     //printer sn
                     "'{1}', " +
                     //hddid
@@ -614,7 +614,7 @@ namespace LXM_DS.MYSQL
                     "'{7}', " +
                     //nvram
                     "'{8}'" +
-                    ");", PrinterMT, PrinterSN, Status, Login, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), 0, (Firmware == true ? 1 : 0), (Defaults == true ? 1 : 0), (Nvram == true ? 1 : 0));
+                    ");", PrinterID.ToString(), PrinterSN, Status, Login, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), 0, (Firmware == true ? 1 : 0), (Defaults == true ? 1 : 0), (Nvram == true ? 1 : 0));
 
                 _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
                 _mySqlCommand.ExecuteNonQuery();
@@ -1052,6 +1052,47 @@ namespace LXM_DS.MYSQL
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public List<SSubmodel> GetPrinterIDFromPrintersByModel(string MachineType)
+        {
+            List<SSubmodel> _list = new List<SSubmodel>();
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+
+                string _sql = String.Format(@"SELECT printersid, submodel, name FROM `printers` WHERE mt='{0}';", MachineType);
+
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    int _id;
+                    Int32.TryParse(_dataReader.GetValue(0).ToString(), out _id);
+                    int _sub;
+                    Int32.TryParse(_dataReader.GetValue(1).ToString(), out _sub);
+                    _list.Add(new SSubmodel(_id, _sub, _dataReader.GetValue(2).ToString()));
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _list;
         }
 
     }

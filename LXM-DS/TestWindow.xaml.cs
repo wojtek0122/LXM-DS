@@ -25,6 +25,8 @@ namespace LXM_DS
         private struct printer
         {
             public string mt;
+            public int sub;
+            public int ID;
             public string sn;
             public string status;
             public bool hdd;
@@ -137,7 +139,24 @@ namespace LXM_DS
 
         private void CheckSubModel(string MachineType)
         {
+            List<SSubmodel> _list = new List<SSubmodel>();
 
+            _list = _mysqlManager.GetPrinterIDFromPrintersByModel(MachineType);
+
+            if(_list.Count>2)
+            {
+                SubmodelWindow _submodelWindow = new SubmodelWindow(_list);
+                _submodelWindow.Topmost = true;
+                _submodelWindow.Show();
+                _submodelWindow._ID = _printer.ID;
+                _submodelWindow._SUB = _printer.sub;
+            }
+            else 
+            {
+                _printer.ID = _list[0].GetPrintersID();
+                _printer.sub = _list[0].GetSubModel();
+            }
+            this.txtSUBlbl.Text = _printer.sub.ToString();
         }
 
         private void ChangePrinterFoto()
@@ -234,7 +253,7 @@ namespace LXM_DS
 
         public void InsertDatatoMySQL()
         {
-            _mysqlManager.InsertTestDataToMySQL(_printer.mt, _printer.sn, _printer.status, _login, _printer.firmware, _printer.defaults, _printer.nvram);
+            _mysqlManager.InsertTestDataToMySQL(_printer.ID, _printer.sn, _printer.status, _login, _printer.firmware, _printer.defaults, _printer.nvram);
         }
 
         private void btnRight_Click(object sender, RoutedEventArgs e)
@@ -242,6 +261,7 @@ namespace LXM_DS
             this.gboxMain.Visibility = Visibility.Hidden;
             this.gboxComponents.Visibility = Visibility.Visible;
         }
+
         private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
             this.gboxMain.Visibility = Visibility.Visible;
