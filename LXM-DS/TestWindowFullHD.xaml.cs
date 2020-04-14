@@ -1,4 +1,6 @@
-﻿using LXM_DS.MYSQL;
+﻿using LXM_DS.BUTTON;
+using LXM_DS.MYSQL;
+using LXM_DS.PRINTER;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +26,8 @@ namespace LXM_DS
         private struct printer
         {
             public string mt;
+            public int sub;
+            public int ID;
             public string sn;
             public string status;
             public bool hdd;
@@ -52,6 +56,8 @@ namespace LXM_DS
         Managers _managers;
         MySQLManager _mysqlManager;
         AUTOUPDATE.AutoUpdate _autoUpdate;
+        List<StatusButton> _btnList;
+        List<SSubmodel> _listSubmodel;
 
         public TestWindowFullHD(string User)
         {
@@ -130,7 +136,41 @@ namespace LXM_DS
             }
             this.txtSNlbl.Text = _printer.sn;
             ChangePrinterFoto();
+            CheckSubModel(_printer.mt);
+        }
 
+        private void CheckSubModel(string MachineType)
+        {
+            _listSubmodel = new List<SSubmodel>();
+
+            _listSubmodel = _mysqlManager.GetPrinterIDFromPrintersByModel(MachineType);
+
+            if (_listSubmodel.Count != 0)
+            {
+                if (_listSubmodel.Count > 2)
+                {
+                    for (int i = 0; i < _listSubmodel.Count; i++)
+                    {
+                        _btnList = new List<StatusButton>();
+                        _btnList.Add(CreateNewButton(_listSubmodel[i].GetPrintersID(), _listSubmodel[i].GetSubModel(), _listSubmodel[i].GetName(), i + 1));
+                    }
+                    gboxMain.Visibility = Visibility.Hidden;
+                    gboxSubmodel.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    _printer.ID = _listSubmodel[0].GetPrintersID();
+                    _printer.sub = _listSubmodel[0].GetSubModel();
+                    this.txtSUBlbl.Text = _printer.sub.ToString();
+                }
+                this.txtSUBlbl.Text = _printer.sub.ToString();
+            }
+            else
+            {
+                txtSN.Text = "BŁĄD - Nie ma takiego MT!";
+                btnNOK.IsEnabled = false;
+                btnOK.IsEnabled = false;
+            }
         }
 
         private void ChangePrinterFoto()
@@ -341,6 +381,45 @@ namespace LXM_DS
         {
             string KeyboardPath = @"C:\Program Files\Common Files\Microsoft Shared\Ink\TabTip.exe";
             System.Diagnostics.Process.Start(KeyboardPath);
+        }
+
+        public StatusButton CreateNewButton(int PrintersID, int Submodel, string Name, int Row)
+        {
+            var _converter = new System.Windows.Media.BrushConverter();
+            var _brushFore = (Brush)_converter.ConvertFromString("#FFFFFF");
+            var _brushBack = (Brush)_converter.ConvertFromString("#b9192c");
+            StatusButton _btn = new StatusButton()
+            {
+                Name = "SUB" + Submodel.ToString(),
+                Content = Submodel.ToString() + " - " + Name,
+                Height = 80,
+                Width = 450,
+                FontFamily = new FontFamily("Oxygen-Bold"),
+                FontSize = 30,
+                Foreground = _brushFore,
+                Background = _brushBack,
+                Visibility = Visibility.Visible,
+            };
+            _btn.Click += new RoutedEventHandler(_btn_Click);
+            Grid.SetColumn(_btn, 0);
+            Grid.SetRow(_btn, Row);
+
+            grdSubmodel.Children.Add(_btn);
+            _btn.ID = PrintersID;
+            return _btn;
+        }
+
+        private void _btn_Click(object sender, RoutedEventArgs e)
+        {
+            StatusButton _button = sender as StatusButton;
+            gboxSubmodel.Visibility = Visibility.Hidden;
+            gboxMain.Visibility = Visibility.Visible;
+
+            _printer.ID = _button.ID;
+            this.txtSUBlbl.Text = _button.Name.Substring(3);
+            int.TryParse(this.txtSUBlbl.Text, out _printer.sub);
+
+            _btnList = null;
         }
     }
 }
