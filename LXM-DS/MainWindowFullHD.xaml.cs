@@ -75,7 +75,7 @@ namespace LXM_DS
         private void btnDismantle_Click(object sender, RoutedEventArgs e)
         {
             ChoosePrinterWindowFullHD _choosePrinterWindowFullHD = new ChoosePrinterWindowFullHD(_login);
-            _choosePrinterWindowFullHD.Topmost = true;
+            //_choosePrinterWindowFullHD.Topmost = true;
             _choosePrinterWindowFullHD.Show();
         }
 
