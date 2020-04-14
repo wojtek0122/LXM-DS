@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:LXM_DS"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024"
-        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+                WindowStyle="ToolWindow" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" WindowState="Normal">
+
     <Grid>
         <!-- LOGO -->
         <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Width="475" Height="155">

@@ -7,7 +7,7 @@
         xmlns:t="clr-namespace:LXM_DS.TOUCH"
         mc:Ignorable="d"
         Title="TestWindow" Height="768" Width="1024"
-        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        WindowStyle="ToolWindow" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" WindowState="Normal">
     <Window.Resources>
 
         <Style x:Key="ButtonFocusVisual">
@@ -147,6 +147,25 @@
                         <Image Source="FILES\Left.png" />
                     </StackPanel>
                 </Button>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox x:Name="gboxSubmodel" Visibility="Hidden">
+            <Grid x:Name="grdSubmodel">
+                <Label Content="Wybierz submodel:" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" Width="665"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
             </Grid>
         </GroupBox>
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,728,0,0" VerticalAlignment="Top" Width="1920"/>
