@@ -7,7 +7,7 @@
         xmlns:t="clr-namespace:LXM_DS.TOUCH"
         mc:Ignorable="d"
         Title="TestWindow" Height="768" Width="1024"
-        WindowStyle="ToolWindow" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" WindowState="Normal">
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.Resources>
 
         <Style x:Key="ButtonFocusVisual">
