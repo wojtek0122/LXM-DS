@@ -10,6 +10,12 @@
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,1040,0,0" VerticalAlignment="Top" Width="1920"/>
+        <!-- Menu Button -->
+        <Button x:Name="Menu" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="4" Width="32" Height="32" Click="Menu_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="FILES\Up.png" />
+            </StackPanel>
+        </Button>
         <Label x:Name="lblMT" Content="MT: " FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,1045,0,0" />
         
         <Grid x:Name="grdThumbnails" Height="1030" VerticalAlignment="Top" Width="1920">
@@ -46,6 +52,9 @@
             </Button>
 
             <!-- Buttons -->
+        </Grid>
+        <Grid x:Name="grdMenu" Visibility="Hidden" Width="500" Height="100" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 40">
+            <Button x:Name="btnMenuExit" Content="Zamknij" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Width="450" Height="80" Margin="0,10" Click="btnMenuExit_Click"/>
         </Grid>
     </Grid>
 </Window>

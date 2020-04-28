@@ -226,15 +226,20 @@ namespace LXM_DS
 
             if (_count == _dismantledComponentsList.Count)
             {
-                _dismantledComponentsList = null;
-                _imageStatusButtonList = null;
-                _buttonListManager.ClearList();
-                _timer.Stop();
-                _mysqlManager.InsertPrinterDismantleTime(_mysqlManager.GetUserIDByLogin(_login), _testID, _printer._ID, _dismantleStartDateTime, DateTime.Now, DateTime.Now - _dismantleStartDateTime);
-                CloseAdobeReaderProcess();
-                _autoUpdate.CheckUpdate();
-                this.Close();
+                CloseWindow();
             }
+        }
+
+        private void CloseWindow()
+        {
+            _dismantledComponentsList = null;
+            _imageStatusButtonList = null;
+            _buttonListManager.ClearList();
+            _mysqlManager.InsertPrinterDismantleTime(_mysqlManager.GetUserIDByLogin(_login), _testID, _printer._ID, _dismantleStartDateTime, DateTime.Now, DateTime.Now - _dismantleStartDateTime);
+            _timer.Stop();
+            CloseAdobeReaderProcess();
+            _autoUpdate.CheckUpdate();
+            this.Close();
         }
 
         private void CloseAdobeReaderProcess()
@@ -419,6 +424,23 @@ namespace LXM_DS
                 Console.WriteLine(ex.ToString());
             }
             return _parsedPath;
+        }
+
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            if (grdMenu.Visibility == Visibility.Visible)
+            {
+                grdMenu.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grdMenu.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void btnMenuExit_Click(object sender, RoutedEventArgs e)
+        {
+            CloseWindow();
         }
     }
 }
