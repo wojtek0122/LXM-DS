@@ -62,6 +62,19 @@ namespace LXM_DS
                 _browser.Navigate(_path + @"FID\" + _component._FID + ".0" + _component._REV + " " + _component._PN + ".pdf");
             }
 
+            switch (_component._type)
+            {
+                case COMPONENTTYPE.MB: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); _snWindow.txtSN.Focus(); break; };
+                case COMPONENTTYPE.OP: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); _snWindow.txtSN.Focus(); break; };
+                case COMPONENTTYPE.ENG: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); _snWindow.txtSN.Focus(); break; };
+                default:
+                    break;
+            }
+            this.OK.Visibility = Visibility.Visible;
+            this.NOK.Visibility = Visibility.Visible;
+            this.NONE.Visibility = Visibility.Visible;
+            this.BACK.Visibility = Visibility.Visible;
+
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += timer_Tick;
@@ -74,18 +87,7 @@ namespace LXM_DS
             if (_count == 0)
             {
                 _timer.Stop();
-                switch (_component._type)
-                {
-                    case COMPONENTTYPE.MB: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); _snWindow.txtSN.Focus(); break; };
-                    case COMPONENTTYPE.OP: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); _snWindow.txtSN.Focus(); break; };
-                    case COMPONENTTYPE.ENG: { SNWindow _snWindow = new SNWindow(_component._type, _testid); _snWindow.Topmost = true; _snWindow.Show(); _snWindow.txtSN.Focus(); break; };
-                    default:
-                        break;
-                }
-                this.OK.Visibility = Visibility.Visible;
-                this.NOK.Visibility = Visibility.Visible;
-                this.NONE.Visibility = Visibility.Visible;
-                this.BACK.Visibility = Visibility.Visible;
+
             }
         }
 
