@@ -148,7 +148,7 @@ namespace LXM_DS
 
             if(_listSubmodel.Count!=0)
             {
-                if (_listSubmodel.Count > 2)
+                if (_listSubmodel.Count > 1)
                 {
                     for (int i = 0; i < _listSubmodel.Count; i++)
                     {
