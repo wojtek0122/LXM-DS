@@ -9,7 +9,8 @@
         Title="LOGIN" Height="768" Width="1024"
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <Button x:Name="btnZaloguj" Content="Zaloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,600,0,0" Width="450" Height="80" Click="btnZaloguj_Click"/>
+        <Button x:Name="btnZaloguj" Content="Zaloguj" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,550,0,0" Width="450" Height="80" Click="btnZaloguj_Click"/>
+        <Button x:Name="btnWylacz" Content="Zamknij" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="#b9192c" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,650,0,0" Width="450" Height="80" Click="btnWylacz_Click"/>
 
         <Label Content="KARTA:" FontFamily="Oxygen-Bold" FontSize="18" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-300,375,0,0"/>
         <TextBox x:Name="txtNFC" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="0,410,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>

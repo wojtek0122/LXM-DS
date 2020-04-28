@@ -191,5 +191,10 @@ namespace LXM_DS
             }
             return _parsedInfo;
         }
+
+        private void btnWylacz_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
