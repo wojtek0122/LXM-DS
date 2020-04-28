@@ -350,5 +350,8 @@
   <ItemGroup>
     <Folder Include="UPDATES\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FILES\Up.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

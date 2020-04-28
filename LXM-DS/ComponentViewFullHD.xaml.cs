@@ -71,7 +71,7 @@ namespace LXM_DS
         private void timer_Tick(object sender, EventArgs e)
         {
             _count++;
-            if (_count == 2)
+            if (_count == 0)
             {
                 _timer.Stop();
                 switch (_component._type)
