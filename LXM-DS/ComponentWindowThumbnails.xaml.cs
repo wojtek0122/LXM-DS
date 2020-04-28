@@ -422,5 +422,10 @@ namespace LXM_DS
             }
             return _parsedPath;
         }
+
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

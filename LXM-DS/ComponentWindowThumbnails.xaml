@@ -9,6 +9,12 @@
         WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,728,0,0" VerticalAlignment="Top" Width="1920"/>
+        <!-- Menu Button -->
+        <Button x:Name="Menu" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="4" Width="32" Height="32" Click="Menu_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="FILES\Up.png" />
+            </StackPanel>
+        </Button>
         <Label x:Name="lblMT" Content="MT: " FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,735,0,0" />
 
         <Grid x:Name="grdThumbnails" Height="728" VerticalAlignment="Top" Width="1024">
