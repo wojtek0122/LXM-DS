@@ -364,11 +364,12 @@ namespace LXM_DS
         {
             Image _imgState = new Image()
             {
-                Height = 200,
+                Height = 150,
                 Width = 255,
-                VerticalAlignment = VerticalAlignment.Center,
                 Visibility = Visibility.Hidden,
             };
+            _imgState.Margin = new Thickness(0, -49, 0, 0);
+
 
             Grid.SetColumn(_imgState, Column);
             Grid.SetRow(_imgState, Row);
