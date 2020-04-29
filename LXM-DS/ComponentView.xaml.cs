@@ -147,9 +147,12 @@ namespace LXM_DS
         {
             try
             {
-                //Print label - SCR
-                BARCODE.Barcode _barcode = new BARCODE.Barcode();
-                _barcode.PrintLabel(_component._PN, "SCR", "", "DEF");
+                if (ParseSCRLABELFromXML() == "YES")
+                {
+                    //Print label - SCR
+                    BARCODE.Barcode _barcode = new BARCODE.Barcode();
+                    _barcode.PrintLabel(_component._PN, "SCR", "", "DEF");
+                }
 
                 //Add log
                 _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "NOK");
@@ -241,6 +244,30 @@ namespace LXM_DS
                 Console.WriteLine(ex.ToString());
             }
             return _parsedPath;
+        }
+
+        public string ParseSCRLABELFromXML()
+        {
+            string _value = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _value = String.Format(_xmlReader.GetAttribute("SCRLABEL"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _value;
         }
     }
 }
