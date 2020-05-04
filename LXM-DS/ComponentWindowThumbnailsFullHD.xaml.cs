@@ -63,6 +63,7 @@ namespace LXM_DS
             _printerManager = _managers.GetPrinterManager();
             _buttonListManager = _managers.GetButtonListManager();
             _autoUpdate = AUTOUPDATE.AutoUpdate.CreateAutoUpdate();
+            _mysqlManager = _managers.GetMySQLManager();
 
             _printer = _printerManager.GetPrinterByMT(_mt);
             _imageStatusButtonList = new List<Image>();
@@ -362,11 +363,11 @@ namespace LXM_DS
         {
             Image _imgState = new Image()
             {
-                Height = 200,
+                Height = 150,
                 Width = 255,
-                VerticalAlignment = VerticalAlignment.Center,
                 Visibility = Visibility.Hidden,
             };
+            _imgState.Margin = new Thickness(0, -49, 0, 0);
 
             Grid.SetColumn(_imgState, Column);
             Grid.SetRow(_imgState, Row);

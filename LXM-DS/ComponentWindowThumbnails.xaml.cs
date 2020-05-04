@@ -212,7 +212,6 @@ namespace LXM_DS
         private void timer_Tick(object sender, EventArgs e)
         {
             System.GC.Collect();
-            
             ImageButtonSetVisibility();
 
             int _count = 0;
@@ -369,7 +368,6 @@ namespace LXM_DS
                 Visibility = Visibility.Hidden,
             };
             _imgState.Margin = new Thickness(0, -49, 0, 0);
-
 
             Grid.SetColumn(_imgState, Column);
             Grid.SetRow(_imgState, Row);
