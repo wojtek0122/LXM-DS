@@ -54,6 +54,32 @@ namespace LXM_DS.PRINTER
             return _prt;
         }
 
+        public Printer GetPrinterByID(int ID)
+        {
+            Printer _prt = null;
+            foreach (var value in _printers)
+            {
+                if (value._ID == ID)
+                {
+                    return value;
+                }
+            }
+            return _prt;
+        }
+
+        public Printer GetPrinterByMTSM(string MT, string Submodel)
+        {
+            Printer _prt = null;
+            foreach (var value in _printers)
+            {
+                if (value._machineType == MT &&value._subModel == Submodel)
+                {
+                    return value;
+                }
+            }
+            return _prt;
+        }
+
         //Load Components from XML
         /*NOT USED IN MYSQL VERSION
         private void LoadComponentsFromXML()

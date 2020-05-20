@@ -34,6 +34,7 @@ namespace LXM_DS
 
         int _testID;
         string _mt;
+        int _printerID;
         string _status;
         string _login;
         int _sID = 0;
@@ -51,11 +52,12 @@ namespace LXM_DS
 
         DispatcherTimer _timer;
 
-        public ComponentWindowThumbnailsFullHD(int TestID, string MT, string Status, string Login)
+        public ComponentWindowThumbnailsFullHD(int TestID, string MT, int PrinterID, string Status, string Login)
         {
             //this.Topmost = true;
             _testID = TestID;
             _mt = MT;
+            _printerID = PrinterID;
             _status = Status;
             _login = Login;
 
@@ -65,7 +67,8 @@ namespace LXM_DS
             _autoUpdate = AUTOUPDATE.AutoUpdate.CreateAutoUpdate();
             _mysqlManager = _managers.GetMySQLManager();
 
-            _printer = _printerManager.GetPrinterByMT(_mt);
+            //_printer = _printerManager.GetPrinterByMT(_mt);
+            _printer = _printerManager.GetPrinterByID(_printerID);
             _imageStatusButtonList = new List<Image>();
             _dismantledComponentsList = new List<Component>();
             foreach (var value in _printer.GetComponentList())
