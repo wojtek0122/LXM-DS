@@ -126,14 +126,15 @@ namespace LXM_DS
         {
             _printer.mt = Content.Substring(1, 4);
             this.txtMTlbl.Text = _printer.mt;
-            if (_printer.mt == "7014")
-            {
-                _printer.sn = Content.Substring(5, 7);
-            }
-            else
-            {
-                _printer.sn = Content.Substring(5, 9);
-            }
+            _printer.sn = Content;
+            //if (_printer.mt == "7014")
+            //{
+            //    _printer.sn = Content.Substring(5, 7);
+            //}
+            //else
+            //{
+            //    _printer.sn = Content.Substring(5, 9);
+            //}
             this.txtSNlbl.Text = _printer.sn;
             ChangePrinterFoto();
             CheckSubModel(_printer.mt);

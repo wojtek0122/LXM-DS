@@ -80,14 +80,15 @@ namespace LXM_DS
         private void ParseTextBoxContent(string Content)
         {
             _printerMT = Content.Substring(1, 4);
-            if (_printerMT == "7014")
-            {
-                _printerSN = Content.Substring(5, 7);
-            }
-            else
-            {
-                _printerSN = Content.Substring(5, 9);
-            }
+            _printerSN = Content;
+            //if (_printerMT == "7014")
+            //{
+            //    _printerSN = Content.Substring(5, 7);
+            //}
+            //else
+            //{
+            //    _printerSN = Content.Substring(5, 9);
+            //}
             ChangePrinterFoto();
         }
 
