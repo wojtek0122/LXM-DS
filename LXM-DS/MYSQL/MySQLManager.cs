@@ -1097,6 +1097,41 @@ namespace LXM_DS.MYSQL
             return _list;
         }
 
+        public int GetPageCountByTestID(int TestID)
+        {
+            int _pageCount = 0;
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                MySql.Data.MySqlClient.MySqlDataReader _dataReader;
+                string _sql = "SELECT pagecount FROM test WHERE testid='" + TestID + "';";
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _dataReader = _mySqlCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    Int32.TryParse(_dataReader.GetValue(0).ToString(), out _pageCount);
+                }
+
+                _dataReader.Close();
+                _mySqlCommand.Dispose();
+                _conn.Close();
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return _pageCount;
+        }
+
     }
 
 }
