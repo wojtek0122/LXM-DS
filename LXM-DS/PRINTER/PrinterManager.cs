@@ -26,6 +26,11 @@ namespace LXM_DS.PRINTER
             _components = ListOfComponents;
         }
 
+        public void DeleteComponents()
+        {
+            _components.Clear();
+        }
+
         public List<Component> GetComponents()
         {
             return _components;
@@ -34,6 +39,11 @@ namespace LXM_DS.PRINTER
         public void SetPrinters(List<Printer> ListOfPrinters)
         {
             _printers = ListOfPrinters;
+        }
+
+        public void DeletePrinters()
+        {
+            _printers.Clear();
         }
 
         public List<Printer> GetPrintersList()
