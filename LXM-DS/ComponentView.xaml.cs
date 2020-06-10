@@ -48,7 +48,8 @@ namespace LXM_DS
             _pn = PN;
             _id = ID;
             _component = _mysqlManager.GetComponentByPN(PN.Remove(0, 2));
-            lblMT.Content = _component._PN;
+            lblMT.Content = "Komponent: " + _component._PN;
+            lblComment.Content = "Komentarz: " + _component._comment;
 
             string _path = ParseFIDPathFromXML();
             int _revInt = 0;
