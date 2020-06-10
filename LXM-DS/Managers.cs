@@ -70,5 +70,17 @@ namespace LXM_DS
             _printerManager.SetComponents(_mysqlManager.GetComponents());
             _printerManager.SetPrinters(_mysqlManager.GetPrinters(_printerManager.GetComponents()));
         }
+
+        public void DeletePrinters()
+        {
+            _printerManager.DeleteComponents();
+            _printerManager.DeletePrinters();
+        }
+
+        public void ReinitializePrinters()
+        {
+            DeletePrinters();
+            InitializePrinters();
+        }
     }
 }
