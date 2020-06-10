@@ -103,7 +103,7 @@
 
                 <!-- PageCount -->
                 <Label Content="Page Count: " FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="480,255,0,0" VerticalAlignment="Top" Width="210"/>
-                <TextBox x:Name="txtPC" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Margin="650,240,0,0" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="350" Height="70" TextChanged="txtSN_TextChanged"/>
+                <TextBox x:Name="txtPC" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Margin="650,240,0,0" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="350" Height="70" TextChanged="txtPC_TextChanged"/>
 
                 <ToggleButton x:Name="tgbtnHDD" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="40,90,0,110" Content="DYSK: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnHDD_Click" />
                 <Label Content="HDD Serial" x:Name="lblHDD" Visibility="Hidden" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="370,350,0,0" VerticalAlignment="Top" Width="210"/>
