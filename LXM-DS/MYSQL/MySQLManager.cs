@@ -580,7 +580,7 @@ namespace LXM_DS.MYSQL
 
         }
 
-        public void InsertTestDataToMySQL(int PrinterID, string PrinterSN, string Status, string Login, bool Firmware, bool Defaults, bool Nvram)
+        public void InsertTestDataToMySQL(int PrinterID, string PrinterSN, string Status, string Login, bool Firmware, bool Defaults, bool Nvram, int PageCount)
         {
             try
             {
@@ -592,7 +592,7 @@ namespace LXM_DS.MYSQL
                 _conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
 
-                string _sql = String.Format("INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled, firmware, defaults, nvram) VALUES " +
+                string _sql = String.Format("INSERT INTO test (printersid, sn, hddid, status, userid, date, dismantled, firmware, defaults, nvram, pagecount) VALUES " +
                     "(" +
                     //printersid
                     "'{0}', " +
@@ -614,7 +614,9 @@ namespace LXM_DS.MYSQL
                     "'{7}', " +
                     //nvram
                     "'{8}'" +
-                    ");", PrinterID.ToString(), PrinterSN, Status, Login, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), 0, (Firmware == true ? 1 : 0), (Defaults == true ? 1 : 0), (Nvram == true ? 1 : 0));
+                    //pagecount
+                    "'{9}'" +
+                    ");", PrinterID.ToString(), PrinterSN, Status, Login, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), 0, (Firmware == true ? 1 : 0), (Defaults == true ? 1 : 0), (Nvram == true ? 1 : 0), PageCount);
 
                 _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
                 _mySqlCommand.ExecuteNonQuery();
