@@ -35,6 +35,7 @@ namespace LXM_DS
             public bool firmware;
             public bool defaults;
             public bool nvram;
+            public int pageCount;
         }
 
         private struct STestComp
@@ -425,7 +426,14 @@ namespace LXM_DS
 
         private void txtPC_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            try
+            {
+                Int32.TryParse(txtPC.Text, out _printer.pageCount);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+            }
         }
     }
 }
