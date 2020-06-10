@@ -99,6 +99,10 @@
                 <Label Content="Serial" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,255,0,0" VerticalAlignment="Top" Width="210"/>
                 <TextBox x:Name="txtSNlbl" IsReadOnly="True" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#646c74" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="370,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70"/>
 
+                <!-- PageCount -->
+                <Label Content="Page Count" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="135,330,0,0" VerticalAlignment="Top" Width="210"/>
+                <TextBox x:Name="txtPC" MaxLength="14" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Margin="370,320,0,0" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtPC_TextChanged"/>
+
                 <ToggleButton x:Name="tgbtnHDD" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" Margin="40,0,0,110" Content="DYSK: " Style="{StaticResource ToggleButtonStyle1}" Click="tgbtnHDD_Click" />
                 <Label Content="HDD Serial" x:Name="lblHDD" Visibility="Hidden" FontFamily="Oxygen-Bold" FontSize="30" Foreground="#4c4f5b" HorizontalAlignment="Left" Height="90" Margin="370,465,0,0" VerticalAlignment="Top" Width="210"/>
                 <t:TouchEnabledTextBox x:Name="txtHDDSN" Visibility="Hidden" Padding="5" FontFamily="Oxygen" FontSize="30" Background="#d9d9d9" Foreground="#4c4f5b" BorderThickness="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="540,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="70" TextChanged="txtHDDSN_TextChanged"/>

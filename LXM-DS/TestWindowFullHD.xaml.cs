@@ -422,5 +422,10 @@ namespace LXM_DS
 
             _btnList = null;
         }
+
+        private void txtPC_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
