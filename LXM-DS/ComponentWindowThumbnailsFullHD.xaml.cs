@@ -38,6 +38,7 @@ namespace LXM_DS
         string _status;
         string _login;
         int _sID = 0;
+        int _pageCount;
 
         int _pageCurrent = 1;
         int _pageMax = 1;
@@ -103,6 +104,9 @@ namespace LXM_DS
             ButtonSetVisibility();
             CreateImageButtonList();
 
+            _pageCount = _mysqlManager.GetPageCountByTestID(_testID);
+
+            this.lblPC.Content = "Page Count: " + _pageCount;
             this.lblMT.Content = "MT: " + _mt + " \tStrona: " + _pageCurrent + " / " + _pageMax;
             _dismantleStartDateTime = DateTime.Now;
         }
