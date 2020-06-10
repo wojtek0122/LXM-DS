@@ -16,7 +16,8 @@
         <Button x:Name="BACK" Content="COFNIJ" Visibility="Hidden" FontFamily="Oxygen" FontSize="30" FontStyle="Normal" Background="Gray" Foreground="White" HorizontalAlignment="Left" Margin="1430,940,0,0" VerticalAlignment="Top" Width="400" Height="80" Click="BACK_Click"/>
 
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,1040,0,0" VerticalAlignment="Top" Width="1920"/>
-        <Label x:Name="lblMT" FontFamily="Oxygen" FontSize="16" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="40" Margin="0,1050,0,0" />
+        <Label x:Name="lblMT" Content="Komponent: " FontFamily="Oxygen" FontSize="24" FontStyle="Normal" Foreground="white" HorizontalAlignment="Left" Height="50" Margin="150,1030,0,0" />
+        <Label x:Name="lblComment" Content="Komentarz: " FontFamily="Oxygen" FontSize="24" FontStyle="Normal" Foreground="white" HorizontalAlignment="Center" Height="50" Margin="0,1030,0,0" />
         <Image x:Name="serial_bcode1" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2"/>
     </Grid>
 </Window>
