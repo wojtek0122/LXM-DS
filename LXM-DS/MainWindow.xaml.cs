@@ -67,6 +67,7 @@ namespace LXM_DS
 
         private void btnTest_Click(object sender, RoutedEventArgs e)
         {
+            _managers.ReinitializePrinters();
             TestWindow _testWindow = new TestWindow(_login);
             _testWindow.Topmost = true;
             _testWindow.Show();
@@ -74,6 +75,7 @@ namespace LXM_DS
 
         private void btnDismantle_Click(object sender, RoutedEventArgs e)
         {
+            _managers.ReinitializePrinters();
             ChoosePrinterWindow _choosePrinter = new ChoosePrinterWindow(_login);
             //_choosePrinter.Topmost = true;
             _choosePrinter.Show();
