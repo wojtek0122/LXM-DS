@@ -613,7 +613,7 @@ namespace LXM_DS.MYSQL
                     //defaults
                     "'{7}', " +
                     //nvram
-                    "'{8}'" +
+                    "'{8}', " +
                     //pagecount
                     "'{9}'" +
                     ");", PrinterID.ToString(), PrinterSN, Status, Login, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), 0, (Firmware == true ? 1 : 0), (Defaults == true ? 1 : 0), (Nvram == true ? 1 : 0), PageCount);
