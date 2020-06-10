@@ -270,7 +270,7 @@ namespace LXM_DS
 
         public void InsertDatatoMySQL()
         {
-            _mysqlManager.InsertTestDataToMySQL(_printer.ID, _printer.sn, _printer.status, _login, _printer.firmware, _printer.defaults, _printer.nvram);
+            _mysqlManager.InsertTestDataToMySQL(_printer.ID, _printer.sn, _printer.status, _login, _printer.firmware, _printer.defaults, _printer.nvram, _printer.pageCount);
         }
 
         private void btnRight_Click(object sender, RoutedEventArgs e)
