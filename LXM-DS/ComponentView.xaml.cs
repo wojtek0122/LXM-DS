@@ -51,16 +51,32 @@ namespace LXM_DS
             lblMT.Content = "Komponent: " + _component._PN;
             lblComment.Content = "Komentarz: " + _component._comment;
 
-            string _path = ParseFIDPathFromXML();
             int _revInt = 0;
             int.TryParse(_component._REV, out _revInt);
-            if (_revInt > 9)
+
+            string _parsedShareFIDPath = ParseSharedFIDPathFromXML();
+            if (String.IsNullOrEmpty(_parsedShareFIDPath) || String.IsNullOrWhiteSpace(_parsedShareFIDPath))
             {
-                _browser.Navigate(_path + @"FID\" + _component._FID + "." + _component._REV + " " + _component._PN + ".pdf");
+                string _path = ParseFIDPathFromXML();
+                if (_revInt > 9)
+                {
+                    _browser.Navigate(_path + @"FID\" + _component._FID + "." + _component._REV + " " + _component._PN + ".pdf");
+                }
+                else
+                {
+                    _browser.Navigate(_path + @"FID\" + _component._FID + ".0" + _component._REV + " " + _component._PN + ".pdf");
+                }
             }
             else
             {
-                _browser.Navigate(_path + @"FID\" + _component._FID + ".0" + _component._REV + " " + _component._PN + ".pdf");
+                if (_revInt > 9)
+                {
+                    _browser.Navigate(_parsedShareFIDPath + _component._FID + "." + _component._REV + " " + _component._PN + ".pdf");
+                }
+                else
+                {
+                    _browser.Navigate(_parsedShareFIDPath + _component._FID + ".0" + _component._REV + " " + _component._PN + ".pdf");
+                }
             }
 
             this.OK.Visibility = Visibility.Visible;
