@@ -284,5 +284,29 @@ namespace LXM_DS
             }
             return _value;
         }
+
+        public string ParseSharedFIDPathFromXML()
+        {
+            string _value = "";
+            try
+            {
+                System.Xml.XmlReader _xmlReader = System.Xml.XmlReader.Create("..\\..\\Config.xml");
+                while (_xmlReader.Read())
+                {
+                    if ((_xmlReader.NodeType == System.Xml.XmlNodeType.Element) && (_xmlReader.Name == "CONFIG"))
+                    {
+                        if (_xmlReader.HasAttributes)
+                        {
+                            _value = String.Format(_xmlReader.GetAttribute("FIDPATH"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return _value;
+        }
     }
 }
