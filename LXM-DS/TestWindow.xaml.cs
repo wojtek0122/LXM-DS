@@ -56,9 +56,17 @@ namespace LXM_DS
 
         Managers _managers;
         MySQLManager _mysqlManager;
+        ButtonListManager _buttonListManager;
         AUTOUPDATE.AutoUpdate _autoUpdate;
-        List<StatusButton> _btnList;
+        //List<StatusButton> _btnList;
         List<SSubmodel> _listSubmodel;
+
+        int _pageCurrent = 1;
+        int _pageMax = 1;
+
+        int _maxColumnsOnPage = 2;
+        int _maxRowsOnPage = 6;
+        int _maxButtonsOnPage = 0;
 
         public TestWindow(string User)
         {
@@ -69,6 +77,7 @@ namespace LXM_DS
             _managers = Managers.CreateManagers();
             _mysqlManager = _managers.GetMySQLManager();
             _autoUpdate = AUTOUPDATE.AutoUpdate.CreateAutoUpdate();
+            _buttonListManager = _managers.GetButtonListManager();
 
             _login = User;
             txtSN.Focus();
@@ -144,19 +153,60 @@ namespace LXM_DS
 
         private void CheckSubModel(string MachineType)
         {
+
             _listSubmodel = new List<SSubmodel>();
 
             _listSubmodel = _mysqlManager.GetPrinterIDFromPrintersByModel(MachineType);
 
-            if(_listSubmodel.Count!=0)
+            _maxButtonsOnPage = _maxColumnsOnPage * _maxRowsOnPage;
+            _pageMax = _listSubmodel.Count / (_maxButtonsOnPage);
+            if ((_listSubmodel.Count % _maxButtonsOnPage) > 0)
+            {
+                _pageMax++;
+            }
+            if (_listSubmodel.Count < _maxButtonsOnPage)
+            {
+                _pageMax = 1;
+            }
+            if (_pageMax > 1)
+            {
+                btnRightSub.Visibility = Visibility.Visible;
+            }
+
+            if (_listSubmodel.Count!=0)
             {
                 if (_listSubmodel.Count > 1)
                 {
-                    for (int i = 0; i < _listSubmodel.Count; i++)
+
+                    int _index = 0;
+                    for (int page = 1; page < _pageMax + 1; page++)
                     {
-                        _btnList = new List<StatusButton>();
-                        _btnList.Add(CreateNewButton(_listSubmodel[i].GetPrintersID(), _listSubmodel[i].GetSubModel(), _listSubmodel[i].GetName(), i + 1));
+                        for (int row = 1; row < _maxRowsOnPage + 1; row++)
+                        {
+                            for (int col = 1; col < _maxColumnsOnPage + 1; col++)
+                            {
+                                if (_index == _listSubmodel.Count)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    _buttonListManager.AddItemToButtonList((CreateNewButton(_listSubmodel[_index].GetPrintersID(), _listSubmodel[_index].GetSubModel(), _listSubmodel[_index].GetName(), row, col), col, row));
+                                    _index++;
+                                }
+                            }
+                            if (_index == _listSubmodel.Count)
+                            {
+                                break;
+                            }
+                        }
+                        if (_index == _listSubmodel.Count)
+                        {
+                            break;
+                        }
                     }
+
+
                     gboxMain.Visibility = Visibility.Hidden;
                     gboxSubmodel.Visibility = Visibility.Visible;
                 }
@@ -387,7 +437,7 @@ namespace LXM_DS
             System.Diagnostics.Process.Start(KeyboardPath);
         }
 
-        public StatusButton CreateNewButton(int PrintersID, int Submodel, string Name, int Row)
+        public StatusButton CreateNewButton(int PrintersID, int Submodel, string Name, int Row, int Col)
         {
             var _converter = new System.Windows.Media.BrushConverter();
             var _brushFore = (Brush)_converter.ConvertFromString("#FFFFFF");
@@ -396,8 +446,8 @@ namespace LXM_DS
             {
                 Name = "SUB" + Submodel.ToString(),
                 Content = Submodel.ToString() + " - " + Name,
-                Height = 80,
-                Width = 450,
+                Height = 60,
+                Width = 350,
                 FontFamily = new FontFamily("Oxygen-Bold"),
                 FontSize = 30,
                 Foreground = _brushFore,
@@ -405,7 +455,7 @@ namespace LXM_DS
                 Visibility = Visibility.Visible,
             };
             _btn.Click += new RoutedEventHandler(_btn_Click);
-            Grid.SetColumn(_btn, 0);
+            Grid.SetColumn(_btn, Col);
             Grid.SetRow(_btn, Row);
 
             grdSubmodel.Children.Add(_btn);
@@ -423,7 +473,8 @@ namespace LXM_DS
             this.txtSUBlbl.Text = _button.Name.Substring(3);
             int.TryParse(this.txtSUBlbl.Text, out _printer.sub);
 
-            _btnList = null;
+            //_btnList = null;
+            _buttonListManager = null;
         }
 
         private void txtPC_TextChanged(object sender, TextChangedEventArgs e)
@@ -435,6 +486,65 @@ namespace LXM_DS
             catch (Exception ex)
             {
                 System.Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private void btnLeftSub_Click(object sender, RoutedEventArgs e)
+        {
+            if (_pageCurrent == 1 + 1)
+            {
+                _pageCurrent = 1;
+                btnLeftSub.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnRightSub.Visibility = Visibility.Visible;
+                _pageCurrent--;
+            }
+            if (_pageCurrent == 1 && _pageMax == 2)
+            {
+                btnRightSub.Visibility = Visibility.Visible;
+            }
+            ButtonSetVisibility();
+        }
+
+        private void btnRightSub_Click(object sender, RoutedEventArgs e)
+        {
+            if (_pageCurrent == _pageMax - 1)
+            {
+                _pageCurrent = _pageMax;
+                btnRightSub.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnLeftSub.Visibility = Visibility.Visible;
+                _pageCurrent++;
+            }
+            if (_pageCurrent == 2)
+            {
+                btnLeftSub.Visibility = Visibility.Visible;
+            }
+            ButtonSetVisibility();
+        }
+
+        public void ButtonSetVisibility()
+        {
+            StatusButton _btn;
+            int _index = 0;
+            int _min = (_pageCurrent * _maxButtonsOnPage) - _maxButtonsOnPage;
+            int _max = (_pageCurrent * _maxButtonsOnPage) - 1;
+            foreach (var value in _buttonListManager.GetButtonList())
+            {
+                _btn = value.Item1;
+                if (_index >= _min && _index <= _max)
+                {
+                    _btn.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    _btn.Visibility = Visibility.Hidden;
+                }
+                _index++;
             }
         }
     }
