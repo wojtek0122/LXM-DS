@@ -192,6 +192,11 @@ namespace LXM_DS
                                 else
                                 {
                                     _buttonListManager.AddItemToButtonList((CreateNewButton(_listSubmodel[_index].GetPrintersID(), _listSubmodel[_index].GetSubModel(), _listSubmodel[_index].GetName(), row, col), col, row));
+                                    if(_index>_maxButtonsOnPage)
+                                    {
+                                        _buttonListManager.SetVisibilityToHidden(_index);
+                                    }
+                                    
                                     _index++;
                                 }
                             }
@@ -473,8 +478,7 @@ namespace LXM_DS
             this.txtSUBlbl.Text = _button.Name.Substring(3);
             int.TryParse(this.txtSUBlbl.Text, out _printer.sub);
 
-            //_btnList = null;
-            _buttonListManager = null;
+            _buttonListManager.ClearList();
         }
 
         private void txtPC_TextChanged(object sender, TextChangedEventArgs e)
