@@ -46,5 +46,10 @@ namespace LXM_DS.BUTTON
         {
             _buttonList.Clear();
         }
+
+        public void SetVisibilityToHidden(int Index)
+        {
+            _buttonList[Index].Item1.Visibility = System.Windows.Visibility.Hidden;
+        }
     }
 }
