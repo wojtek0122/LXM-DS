@@ -156,9 +156,11 @@
 
         <GroupBox x:Name="gboxSubmodel" Visibility="Hidden">
             <Grid x:Name="grdSubmodel">
-                <Label Content="Wybierz submodel:" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" Width="665"/>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="400" />
+                    <ColumnDefinition Width="400" />
+                    <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100" />
@@ -170,6 +172,20 @@
                     <RowDefinition Height="100" />
                     <RowDefinition Height="100" />
                 </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.ColumnSpan="4" Content="Wybierz submodel:" FontFamily="Oxygen-Bold" FontSize="36" Foreground="#4c4f5b" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" Width="665"/>
+                <!-- Right Button -->
+                <Button x:Name="btnRightSub" Visibility="Hidden" Grid.RowSpan="6" Grid.Column="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" Margin="10" Width="64" Height="64" Click="btnRightSub_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="FILES\Right.png" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Left Button -->
+                <Button x:Name="btnLeftSub" Visibility="Hidden" Grid.Column="0" Grid.Row="0" Grid.RowSpan="6" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="White" Margin="10" Width="64" Height="64" Click="btnLeftSub_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="FILES\Left.png" />
+                    </StackPanel>
+                </Button>
             </Grid>
         </GroupBox>
         <Rectangle Fill="#b9192c" HorizontalAlignment="Left" Height="40" Margin="0,728,0,0" VerticalAlignment="Top" Width="1920"/>
