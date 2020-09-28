@@ -143,6 +143,8 @@ namespace LXM_DS
 
         private void CheckSubModel(string MachineType)
         {
+            int _col = 0;
+            int _row = 1;
             _listSubmodel = new List<SSubmodel>();
 
             _listSubmodel = _mysqlManager.GetPrinterIDFromPrintersByModel(MachineType);
@@ -151,10 +153,16 @@ namespace LXM_DS
             {
                 if (_listSubmodel.Count > 1)
                 {
+                    _btnList = new List<StatusButton>();
                     for (int i = 0; i < _listSubmodel.Count; i++)
                     {
-                        _btnList = new List<StatusButton>();
-                        _btnList.Add(CreateNewButton(_listSubmodel[i].GetPrintersID(), _listSubmodel[i].GetSubModel(), _listSubmodel[i].GetName(), i + 1));
+                        if(i == 6) //6 - max per screen
+                        {
+                            _col = 1;
+                            _row = 1;
+                        }
+                        _btnList.Add(CreateNewButton(_listSubmodel[i].GetPrintersID(), _listSubmodel[i].GetSubModel(), _listSubmodel[i].GetName(), _row, _col));
+                        _row++;
                     }
                     gboxMain.Visibility = Visibility.Hidden;
                     gboxSubmodel.Visibility = Visibility.Visible;
@@ -385,7 +393,7 @@ namespace LXM_DS
             System.Diagnostics.Process.Start(KeyboardPath);
         }
 
-        public StatusButton CreateNewButton(int PrintersID, int Submodel, string Name, int Row)
+        public StatusButton CreateNewButton(int PrintersID, int Submodel, string Name, int Row, int Col)
         {
             var _converter = new System.Windows.Media.BrushConverter();
             var _brushFore = (Brush)_converter.ConvertFromString("#FFFFFF");
@@ -403,7 +411,7 @@ namespace LXM_DS
                 Visibility = Visibility.Visible,
             };
             _btn.Click += new RoutedEventHandler(_btn_Click);
-            Grid.SetColumn(_btn, 0);
+            Grid.SetColumn(_btn, Col);
             Grid.SetRow(_btn, Row);
 
             grdSubmodel.Children.Add(_btn);
