@@ -79,6 +79,10 @@ namespace LXM_DS
             _autoUpdate = AUTOUPDATE.AutoUpdate.CreateAutoUpdate();
             _buttonListManager = _managers.GetButtonListManager();
 
+            _listSubmodel = new List<SSubmodel>();
+
+            _maxButtonsOnPage = _maxColumnsOnPage * _maxRowsOnPage;
+
             _login = User;
             txtSN.Focus();
         }
@@ -153,13 +157,22 @@ namespace LXM_DS
 
         private void CheckSubModel(string MachineType)
         {
+            if(MachineType != "7014" && txtSN.Text.Length == 14)
+            {
+                CheckSubmodelButtons(MachineType);
+            }
+            else if (MachineType == "7014" && txtSN.Text.Length == 12)
+            {
+                CheckSubmodelButtons(MachineType);
+            }
+            
+        }
 
-            _listSubmodel = new List<SSubmodel>();
-
+        private void CheckSubmodelButtons(string MachineType)
+        {
             _listSubmodel = _mysqlManager.GetPrinterIDFromPrintersByModel(MachineType);
-
-            _maxButtonsOnPage = _maxColumnsOnPage * _maxRowsOnPage;
             _pageMax = _listSubmodel.Count / (_maxButtonsOnPage);
+
             if ((_listSubmodel.Count % _maxButtonsOnPage) > 0)
             {
                 _pageMax++;
@@ -173,7 +186,7 @@ namespace LXM_DS
                 btnRightSub.Visibility = Visibility.Visible;
             }
 
-            if (_listSubmodel.Count!=0)
+            if (_listSubmodel.Count != 0)
             {
                 if (_listSubmodel.Count > 1)
                 {
@@ -192,6 +205,7 @@ namespace LXM_DS
                                 else
                                 {
                                     _buttonListManager.AddItemToButtonList((CreateNewButton(_listSubmodel[_index].GetPrintersID(), _listSubmodel[_index].GetSubModel(), _listSubmodel[_index].GetName(), row, col), col, row));
+                                    _buttonListManager.SetVisibilityToHidden(_index);
                                     _index++;
                                 }
                             }
