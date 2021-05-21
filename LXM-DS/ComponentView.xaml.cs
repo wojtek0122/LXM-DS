@@ -127,10 +127,19 @@ namespace LXM_DS
                 if(_component._destination==1)
                 {
                     _barcode.PrintLabel(_component._PN, "ODZYSK", _login, "ODZYSK", _printerModel);
+                    
+                    //Add log
+                    _mysqlManager.InsertRecycledComponentLog(_login, _testid, _component._id, "OK");
                 }
                 else
                 {
                     _barcode.PrintLabel(_component._PN, _component._location, _login, "", _printerModel);
+
+                    //UpdateStock
+                    _mysqlManager.UpdateComponentStock(_component._id);
+
+                    //Add log
+                    _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "OK");
                 }
 
                 /*
@@ -143,12 +152,6 @@ namespace LXM_DS
                     _barcode.PrintLabel(_component._PN, _component._location, _login, "DEF PRT");
                 }
                 */
-
-                //UpdateStock
-                _mysqlManager.UpdateComponentStock(_component._id);
-
-                //Add log
-                _mysqlManager.InsertComponentLog(_login, _testid, _component._id, "OK");
 
                 StatusButton _btn;
                 foreach (var value in _buttonListManager.GetButtonList())
