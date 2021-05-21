@@ -123,7 +123,16 @@ namespace LXM_DS
             {
                 //Print label
                 BARCODE.Barcode _barcode = new BARCODE.Barcode();
-                _barcode.PrintLabel(_component._PN, _component._location, _login, "", _printerModel);
+
+                if(_component._destination==1)
+                {
+                    _barcode.PrintLabel(_component._PN, "ODZYSK", _login, "ODZYSK", _printerModel);
+                }
+                else
+                {
+                    _barcode.PrintLabel(_component._PN, _component._location, _login, "", _printerModel);
+                }
+
                 /*
                 if(_mysqlManager.GetTestStatusFromTestByTestID(_testid) == "OK")
                 {
