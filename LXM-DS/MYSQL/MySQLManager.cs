@@ -429,8 +429,10 @@ namespace LXM_DS.MYSQL
                     Int32.TryParse(_dataReader.GetValue(8).ToString(), out _stock);
                     int _yield;
                     Int32.TryParse(_dataReader.GetValue(9).ToString(), out _yield);
+                    int _dest;
+                    Int32.TryParse(_dataReader.GetValue(12).ToString(), out _dest);
 
-                    _list.Add(new Component(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _dataReader.GetValue(5).ToString(), _dataReader.GetValue(6).ToString(), _dataReader.GetValue(7).ToString(), _stock, _yield, _dataReader.GetValue(10).ToString(), _dataReader.GetValue(11).ToString()));
+                    _list.Add(new Component(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _dataReader.GetValue(5).ToString(), _dataReader.GetValue(6).ToString(), _dataReader.GetValue(7).ToString(), _stock, _yield, _dataReader.GetValue(10).ToString(), _dataReader.GetValue(11).ToString(), _dest));
                 }
 
                 _dataReader.Close();
@@ -471,8 +473,10 @@ namespace LXM_DS.MYSQL
                     Int32.TryParse(_dataReader.GetValue(8).ToString(), out _stock);
                     int _yield;
                     Int32.TryParse(_dataReader.GetValue(9).ToString(), out _yield);
+                    int _dest;
+                    Int32.TryParse(_dataReader.GetValue(12).ToString(), out _dest);
 
-                    _component = new Component(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _dataReader.GetValue(5).ToString(), _dataReader.GetValue(6).ToString(), _dataReader.GetValue(7).ToString(), _stock, _yield, _dataReader.GetValue(10).ToString(), _dataReader.GetValue(11).ToString());
+                    _component = new Component(_id, _dataReader.GetValue(1).ToString(), _dataReader.GetValue(2).ToString(), _dataReader.GetValue(3).ToString(), _dataReader.GetValue(4).ToString(), _dataReader.GetValue(5).ToString(), _dataReader.GetValue(6).ToString(), _dataReader.GetValue(7).ToString(), _stock, _yield, _dataReader.GetValue(10).ToString(), _dataReader.GetValue(11).ToString(), _dest);
                 }
 
                 _dataReader.Close();
