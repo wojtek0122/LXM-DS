@@ -989,6 +989,42 @@ namespace LXM_DS.MYSQL
             }
         }
 
+        public void InsertRecycledComponentLog(string Login, int TestID, int ComponentID, string Status)
+        {
+            try
+            {
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+
+                _conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand _mySqlCommand;
+                string _sql = ";";
+
+
+                _sql = String.Format("" +
+                    "INSERT INTO recycled (usersid, testid, componentid, status, date) VALUES " +
+                    "(" +
+                    "(SELECT usersid FROM users WHERE login='{0}'), " +
+                    "'{1}', " +
+                    "'{2}', " +
+                    "'{3}', " +
+                    "'{4}'" +
+                    ");", Login, TestID, ComponentID, Status, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                _mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(_sql, _conn);
+                _mySqlCommand.ExecuteNonQuery();
+                _mySqlCommand.Dispose();
+
+                _conn.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public void UpdateComponentStock(int ComponentID)
         {
             try
