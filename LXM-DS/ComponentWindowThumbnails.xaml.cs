@@ -369,7 +369,7 @@ namespace LXM_DS
         private void _btn_Click(object sender, RoutedEventArgs e)
         {
             StatusButton _button = sender as StatusButton;
-            ComponentView _componentView = new ComponentView(_login, _testID, _button.Name, _button.ID);
+            ComponentView _componentView = new ComponentView(_login, _testID, _button.Name, _button.ID, _printer._machineType + "-" + _printer._subModel);
             _componentView.Topmost = true;
             _componentView.Show();
             //_button.IsEnabled = false;

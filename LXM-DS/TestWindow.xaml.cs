@@ -125,6 +125,12 @@ namespace LXM_DS
         {
             try
             {
+                if (this.txtSN.Text.Length == 24)
+                {
+                    var _sn = this.txtSN.Text.ToString();
+                    ParseTextBoxContent(_sn.Substring(9, 14));
+                }
+
                 if (this.txtSN.Text.Length == 14 || this.txtSN.Text.Length == 12)
                 {
                     ParseTextBoxContent(this.txtSN.Text.ToString());
@@ -157,11 +163,11 @@ namespace LXM_DS
 
         private void CheckSubModel(string MachineType)
         {
-            if(MachineType != "7014" && txtSN.Text.Length == 14)
+            if((MachineType != "7014" || MachineType != "4513" || MachineType != "7510" || MachineType != "7500" || MachineType != "5025" || MachineType != "5057") && txtSNlbl.Text.Length == 14)
             {
                 CheckSubmodelButtons(MachineType);
             }
-            else if (MachineType == "7014" && txtSN.Text.Length == 12)
+            else if ((MachineType == "7014" || MachineType == "4513" || MachineType == "7510" || MachineType == "7500" || MachineType == "5025" || MachineType == "5057") && txtSNlbl.Text.Length == 12)
             {
                 CheckSubmodelButtons(MachineType);
             }

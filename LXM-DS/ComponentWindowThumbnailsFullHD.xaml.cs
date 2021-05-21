@@ -369,7 +369,7 @@ namespace LXM_DS
         private void _btn_Click(object sender, RoutedEventArgs e)
         {
             StatusButton _button = sender as StatusButton;
-            ComponentViewFullHD _componentViewFullHD = new ComponentViewFullHD(_login, _testID, _button.Name, _button.ID);
+            ComponentViewFullHD _componentViewFullHD = new ComponentViewFullHD(_login, _testID, _button.Name, _button.ID, _printer._machineType + "-" + _printer._subModel);
             _componentViewFullHD.Topmost = true;
             _componentViewFullHD.Show();
             //_button.IsEnabled = false;

@@ -31,11 +31,12 @@ namespace LXM_DS
         string _login;
         string _pn;
         int _id;
+        string _printerModel;
         Component _component;
         DispatcherTimer _timer;
         int _count;
 
-        public ComponentView(string Login, int TestID, string PN, int ID)
+        public ComponentView(string Login, int TestID, string PN, int ID, string PrinterModel)
         {
             //this.Topmost = true;
             InitializeComponent();
@@ -47,6 +48,7 @@ namespace LXM_DS
             _testid = TestID;
             _pn = PN;
             _id = ID;
+            _printerModel = PrinterModel;
             _component = _mysqlManager.GetComponentByPN(PN.Remove(0, 2));
             lblMT.Content = "Komponent: " + _component._PN;
             lblComment.Content = "Komentarz: " + _component._comment;
@@ -121,7 +123,7 @@ namespace LXM_DS
             {
                 //Print label
                 BARCODE.Barcode _barcode = new BARCODE.Barcode();
-                _barcode.PrintLabel(_component._PN, _component._location, _login, "");
+                _barcode.PrintLabel(_component._PN, _component._location, _login, "", _printerModel);
                 /*
                 if(_mysqlManager.GetTestStatusFromTestByTestID(_testid) == "OK")
                 {
@@ -170,7 +172,7 @@ namespace LXM_DS
                 {
                     //Print label - SCR
                     BARCODE.Barcode _barcode = new BARCODE.Barcode();
-                    _barcode.PrintLabel(_component._PN, "SCR", "", "DEF");
+                    _barcode.PrintLabel(_component._PN, "SCR", "", "", _printerModel);
                 }
 
                 //Add log
