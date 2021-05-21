@@ -169,7 +169,7 @@ namespace LXM_DS
                         }
                         else
                         {
-                            _buttonListManager.AddItemToButtonList((CreateNewButton(_dismantledComponentsList[_index]._PN, col, row - 1), col, row - 1));
+                            _buttonListManager.AddItemToButtonList((CreateNewButton(_dismantledComponentsList[_index]._PN, col, row - 1, _dismantledComponentsList[_index]._destination), col, row - 1));
                             _index++;
                         }
                     }
@@ -301,7 +301,7 @@ namespace LXM_DS
             this.lblMT.Content = "MT: " + _mt + " \tStrona: " + _pageCurrent + " / " + _pageMax;
         }
 
-        public StatusButton CreateNewButton(string PN, int Column, int Row)
+        public StatusButton CreateNewButton(string PN, int Column, int Row, int Destination)
         {
             int _column = Column;
             int _row = Row;
@@ -348,6 +348,11 @@ namespace LXM_DS
             _grid.Children.Add(_lab);
 
             _brush = (Brush)_converter.ConvertFromString("#FFFFFFFF");
+            if(Destination == 1)
+            {
+                _brush = (Brush)_converter.ConvertFromString("#FFF4BD00");
+            }
+
             StatusButton _btn = new StatusButton()
             {
                 Name = "PN" + PN,
