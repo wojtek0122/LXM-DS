@@ -75,6 +75,12 @@ namespace LXM_DS
             foreach (var value in _printer.GetComponentList())
             {
                 _dismantledComponentsList.Add(value);
+                if (value._destination == 1)
+                {
+                    var _cpy = new Component(value);
+                    _cpy._destination = 0;
+                    _dismantledComponentsList.Add(_cpy);
+                }
             }
 
             InitializeComponent();
@@ -348,7 +354,7 @@ namespace LXM_DS
             _grid.Children.Add(_lab);
 
             _brush = (Brush)_converter.ConvertFromString("#FFFFFFFF");
-            if (Destination == 1)
+            if (Destination == 1 || Destination == 2)
             {
                 _brush = (Brush)_converter.ConvertFromString("#FFF4BD00");
             }
