@@ -32,11 +32,12 @@ namespace LXM_DS
         string _pn;
         int _id;
         string _printerModel;
+        int _destination;
         Component _component;
         DispatcherTimer _timer;
         int _count;
 
-        public ComponentViewFullHD(string Login, int TestID, string PN, int ID, string PrinterModel)
+        public ComponentViewFullHD(string Login, int TestID, string PN, int ID, string PrinterModel, int Destination)
         {
             //this.Topmost = true;
             InitializeComponent();
@@ -49,6 +50,7 @@ namespace LXM_DS
             _pn = PN;
             _id = ID;
             _printerModel = PrinterModel;
+            _destination = Destination;
             _component = _mysqlManager.GetComponentByPN(PN.Remove(0,2));
             lblMT.Content = "Komponent: " + _component._PN;
             lblComment.Content = "Komentarz: " + _component._comment;
@@ -124,7 +126,7 @@ namespace LXM_DS
                 //Print label
                 BARCODE.Barcode _barcode = new BARCODE.Barcode();
 
-                if (_component._destination == 1 || _component._destination == 2)
+                if (_destination == 1 || _destination == 2)
                 {
                     _barcode.PrintLabel(_component._PN, "ODZYSK", _login, "ODZYSK", _printerModel);
 
