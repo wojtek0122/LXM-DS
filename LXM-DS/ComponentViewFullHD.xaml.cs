@@ -124,7 +124,7 @@ namespace LXM_DS
                 //Print label
                 BARCODE.Barcode _barcode = new BARCODE.Barcode();
 
-                if(_component._destination == 1)
+                if (_component._destination == 1 || _component._destination == 2)
                 {
                     _barcode.PrintLabel(_component._PN, "ODZYSK", _login, "ODZYSK", _printerModel);
 

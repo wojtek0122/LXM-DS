@@ -367,6 +367,7 @@ namespace LXM_DS
                 Width = 255,
                 Background = _brush,
                 ID = _sID++,
+                DEST = Destination,
                 Visibility = Visibility.Hidden,
             };
             _btn.Click += new RoutedEventHandler(_btn_Click);
@@ -380,7 +381,7 @@ namespace LXM_DS
         private void _btn_Click(object sender, RoutedEventArgs e)
         {
             StatusButton _button = sender as StatusButton;
-            ComponentView _componentView = new ComponentView(_login, _testID, _button.Name, _button.ID, _printer._machineType + "-" + _printer._subModel);
+            ComponentView _componentView = new ComponentView(_login, _testID, _button.Name, _button.ID, _printer._machineType + "-" + _printer._subModel, _button.DEST);
             _componentView.Topmost = true;
             _componentView.Show();
             //_button.IsEnabled = false;

@@ -12,6 +12,8 @@ namespace LXM_DS.BUTTON
         public string STATUS = "";
         public bool ACTIVE = true;
         public int ID;
+        public int DEST = 0;
+
         public StatusButton()
         {
 
