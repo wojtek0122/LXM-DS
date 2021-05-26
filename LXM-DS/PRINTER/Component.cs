@@ -56,6 +56,23 @@ namespace LXM_DS.PRINTER
             _destination = Destination;
         }
 
+        public Component(Component value)
+        {
+            _id = value._id;
+            _PN = value._PN;
+            _foto = value._foto;
+            _description = value._description;
+            _test = value._test;
+            _FID = value._FID;
+            _REV = value._REV;
+            _type = value._type;
+            _stock = value._stock;
+            _yield = value._yield;
+            _location = value._location;
+            _comment = value._comment;
+            _destination = value._destination;
+        }
+
         public override string ToString()
         {
             return String.Format("{0}\n{1}", _PN, _description);
