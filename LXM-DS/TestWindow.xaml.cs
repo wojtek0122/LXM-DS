@@ -56,10 +56,10 @@ namespace LXM_DS
 
         Managers _managers;
         MySQLManager _mysqlManager;
-        ButtonListManager _buttonListManager;
         AUTOUPDATE.AutoUpdate _autoUpdate;
-        //List<StatusButton> _btnList;
+        List<StatusButton> _btnList;
         List<SSubmodel> _listSubmodel;
+        ButtonListManager _buttonListManager;
 
         int _pageCurrent = 1;
         int _pageMax = 1;
@@ -123,6 +123,18 @@ namespace LXM_DS
 
         private void txtSN_TextChanged(object sender, TextChangedEventArgs e)
         {
+            /*try
+            {
+                if (this.txtSN.Text.Length == 14 || this.txtSN.Text.Length == 12)
+                {
+                    ParseTextBoxContent(this.txtSN.Text.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+            }*/
+            
             try
             {
                 if (this.txtSN.Text.Length == 24)
@@ -140,11 +152,11 @@ namespace LXM_DS
             {
                 System.Console.WriteLine(ex.ToString());
             }
+            
         }
 
         private void ParseTextBoxContent(string Content)
         {
-            
             _printer.mt = Content.Substring(1, 4);
             this.txtMTlbl.Text = _printer.mt;
             _printer.sn = Content;
@@ -158,10 +170,10 @@ namespace LXM_DS
             //}
             this.txtSNlbl.Text = _printer.sn;
             ChangePrinterFoto();
-            CheckSubModel(_printer.mt);
+            CheckSubmodelButtons(_printer.mt);
         }
 
-        private void CheckSubModel(string MachineType)
+        /*private void CheckSubModel(string MachineType)
         {
             if((MachineType != "7014" || MachineType != "4513" || MachineType != "7510" || MachineType != "7500" || MachineType != "5025" || MachineType != "5057") && txtSNlbl.Text.Length == 14)
             {
@@ -172,6 +184,48 @@ namespace LXM_DS
                 CheckSubmodelButtons(MachineType);
             }
             
+        }*/
+
+        private void CheckSubModel(string MachineType)
+        {
+            int _col = 0;
+            int _row = 1;
+            _listSubmodel = new List<SSubmodel>();
+
+            _listSubmodel = _mysqlManager.GetPrinterIDFromPrintersByModel(MachineType);
+
+            if (_listSubmodel.Count != 0)
+            {
+                if (_listSubmodel.Count > 1)
+                {
+                    _btnList = new List<StatusButton>();
+                    for (int i = 0; i < _listSubmodel.Count; i++)
+                    {
+                        if (i == 6) //6 - max per screen
+                        {
+                            _col = 1;
+                            _row = 1;
+                        }
+                        _btnList.Add(CreateNewButton(_listSubmodel[i].GetPrintersID(), _listSubmodel[i].GetSubModel(), _listSubmodel[i].GetName(), _row, _col));
+                        _row++;
+                    }
+                    gboxMain.Visibility = Visibility.Hidden;
+                    gboxSubmodel.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    _printer.ID = _listSubmodel[0].GetPrintersID();
+                    _printer.sub = _listSubmodel[0].GetSubModel();
+                    this.txtSUBlbl.Text = _printer.sub.ToString();
+                }
+                this.txtSUBlbl.Text = _printer.sub.ToString();
+            }
+            else
+            {
+                txtSN.Text = "BŁĄD - Nie ma takiego MT!";
+                btnNOK.IsEnabled = false;
+                btnOK.IsEnabled = false;
+            }
         }
 
         private void CheckSubmodelButtons(string MachineType)
@@ -494,6 +548,7 @@ namespace LXM_DS
             int.TryParse(this.txtSUBlbl.Text, out _printer.sub);
 
             _buttonListManager.ClearList();
+            
         }
 
         private void txtPC_TextChanged(object sender, TextChangedEventArgs e)
@@ -526,7 +581,7 @@ namespace LXM_DS
             }
             ButtonSetVisibility();
         }
-
+        
         private void btnRightSub_Click(object sender, RoutedEventArgs e)
         {
             if (_pageCurrent == _pageMax - 1)
@@ -545,7 +600,7 @@ namespace LXM_DS
             }
             ButtonSetVisibility();
         }
-
+        
         public void ButtonSetVisibility()
         {
             StatusButton _btn;
